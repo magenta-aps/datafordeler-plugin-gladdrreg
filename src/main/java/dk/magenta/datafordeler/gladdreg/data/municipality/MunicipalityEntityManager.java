@@ -37,6 +37,9 @@ public class MunicipalityEntityManager extends EntityManager {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private MunicipalityEntityService municipalityEntityService;
+
     private HttpCommunicator commonFetcher;
 
     protected Logger log = LogManager.getLogger("MunicipalityEntityManager");
@@ -76,7 +79,7 @@ public class MunicipalityEntityManager extends EntityManager {
 
     @Override
     public FapiService getEntityService() {
-        return null;
+        return this.municipalityEntityService;
     }
 
     @Override
