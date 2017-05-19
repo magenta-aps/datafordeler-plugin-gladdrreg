@@ -7,21 +7,19 @@ import dk.magenta.datafordeler.core.database.EntityReference;
 import dk.magenta.datafordeler.core.database.Registration;
 import dk.magenta.datafordeler.core.database.RegistrationReference;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
-import dk.magenta.datafordeler.core.exception.InvalidDataInputException;
 import dk.magenta.datafordeler.core.exception.ParseException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
 import dk.magenta.datafordeler.core.io.Receipt;
+import dk.magenta.datafordeler.core.plugin.Communicator;
+import dk.magenta.datafordeler.core.plugin.HttpCommunicator;
 import dk.magenta.datafordeler.core.plugin.EntityManager;
-import dk.magenta.datafordeler.core.plugin.Fetcher;
-import dk.magenta.datafordeler.core.plugin.HttpFetcher;
 import dk.magenta.datafordeler.core.util.ItemInputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -37,7 +35,7 @@ public class MunicipalityEntityManager extends EntityManager {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private Fetcher registrationFetcher;
+    private HttpCommunicator commonFetcher;
 
     protected Logger log = LogManager.getLogger("MunicipalityEntityManager");
 
@@ -48,7 +46,7 @@ public class MunicipalityEntityManager extends EntityManager {
         this.managedEntityReferenceClass = MunicipalityEntityReference.class;
         this.managedRegistrationClass = MunicipalityRegistration.class;
         this.managedRegistrationReferenceClass = MunicipalityRegistrationReference.class;
-        this.registrationFetcher = new HttpFetcher();
+        this.commonFetcher = new HttpCommunicator();
         this.handledURISubstrings = new ArrayList<>();
         this.handledURISubstrings.add("http://localhost:8000/municipality");
         this.handledURISubstrings.add("http://localhost:8000/get/municipality");
@@ -65,8 +63,13 @@ public class MunicipalityEntityManager extends EntityManager {
     }
 
     @Override
-    protected Fetcher getRegistrationFetcher() {
-        return this.registrationFetcher;
+    protected Communicator getRegistrationFetcher() {
+        return this.commonFetcher;
+    }
+
+    @Override
+    protected Communicator getReceiptSender() {
+        return this.commonFetcher;
     }
 
     @Override
@@ -82,7 +85,7 @@ public class MunicipalityEntityManager extends EntityManager {
 
     @Override
     protected URI getReceiptEndpoint(Receipt receipt) {
-        return expandBaseURI(this.getBaseEndpoint(), "/receipt");
+        return expandBaseURI(this.getBaseEndpoint(), "/receipt/" + receipt.getEventID());
     }
 
     @Override
@@ -145,4 +148,5 @@ public class MunicipalityEntityManager extends EntityManager {
     protected Logger getLog() {
         return this.log;
     }
+
 }

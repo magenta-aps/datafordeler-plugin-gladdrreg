@@ -19,7 +19,7 @@ public class GladdregConfiguration implements Configuration {
     private final String plugin = GladdregPlugin.class.getName();
 
     @Column
-    private String pullCronSchedule = "0 0 0 * * ?";
+    private String pullCronSchedule = "0 15 * * * ?";
 
     public String getPullCronSchedule() {
         return this.pullCronSchedule;

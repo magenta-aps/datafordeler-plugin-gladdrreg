@@ -1,8 +1,8 @@
 package dk.magenta.datafordeler.gladdreg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.magenta.datafordeler.core.plugin.Fetcher;
-import dk.magenta.datafordeler.core.plugin.HttpFetcher;
+import dk.magenta.datafordeler.core.plugin.Communicator;
+import dk.magenta.datafordeler.core.plugin.HttpCommunicator;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.plugin.RegisterManager;
 import dk.magenta.datafordeler.core.util.ListHashMap;
@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class GladdregRegisterManager extends RegisterManager {
 
-    private Fetcher commonFetcher;
+    private HttpCommunicator commonFetcher;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -37,7 +37,7 @@ public class GladdregRegisterManager extends RegisterManager {
     private Logger log = LogManager.getLogger("GladdregRegisterManager");
 
     public GladdregRegisterManager() {
-        this.commonFetcher = new HttpFetcher();
+        this.commonFetcher = new HttpCommunicator();
         try {
             this.baseEndpoint = new URI("http", null, "localhost", 8000, "", null, null);
         } catch (URISyntaxException e) {
@@ -65,7 +65,7 @@ public class GladdregRegisterManager extends RegisterManager {
 
 
     @Override
-    protected Fetcher getEventFetcher() {
+    protected Communicator getEventFetcher() {
         return this.commonFetcher;
     }
 
@@ -80,7 +80,7 @@ public class GladdregRegisterManager extends RegisterManager {
     }
 
     @Override
-    protected Fetcher getChecksumFetcher() {
+    protected Communicator getChecksumFetcher() {
         return this.commonFetcher;
     }
 
