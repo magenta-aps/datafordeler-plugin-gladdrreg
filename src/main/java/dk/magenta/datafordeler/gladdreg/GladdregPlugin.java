@@ -3,9 +3,9 @@ package dk.magenta.datafordeler.gladdreg;
 import dk.magenta.datafordeler.core.configuration.ConfigurationManager;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.plugin.RegisterManager;
+import dk.magenta.datafordeler.gladdreg.data.municipality.MunicipalityEntity;
+import dk.magenta.datafordeler.gladdreg.data.municipality.MunicipalityEntityManager;
 import dk.magenta.datafordeler.gladdreg.configuration.GladdregConfigurationManager;
-import dk.magenta.datafordeler.gladdreg.municipality.MunicipalityEntity;
-import dk.magenta.datafordeler.gladdreg.municipality.MunicipalityEntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

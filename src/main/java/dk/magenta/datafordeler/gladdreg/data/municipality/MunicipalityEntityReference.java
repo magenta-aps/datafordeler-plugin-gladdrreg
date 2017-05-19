@@ -1,4 +1,4 @@
-package dk.magenta.datafordeler.gladdreg.municipality;
+package dk.magenta.datafordeler.gladdreg.data.municipality;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dk.magenta.datafordeler.core.database.EntityReference;

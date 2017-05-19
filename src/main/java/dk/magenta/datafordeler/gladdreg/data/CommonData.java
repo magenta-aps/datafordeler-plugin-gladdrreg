@@ -1,8 +1,4 @@
-package dk.magenta.datafordeler.gladdreg;
-
-/**
- * Created by lars on 18-05-17.
- */
+package dk.magenta.datafordeler.gladdreg.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dk.magenta.datafordeler.core.database.DataItem;
@@ -14,6 +10,9 @@ import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Created by lars on 19-05-17.
+ */
 @MappedSuperclass
 public class CommonData<V extends Effect, D extends DataItem> extends DataItem<V, D> {
 

@@ -1,8 +1,7 @@
-package dk.magenta.datafordeler.gladdreg.municipality;
+package dk.magenta.datafordeler.gladdreg.data.municipality;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dk.magenta.datafordeler.core.database.DataItem;
-import dk.magenta.datafordeler.gladdreg.CommonData;
+import dk.magenta.datafordeler.gladdreg.data.SumiffiikData;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -15,7 +14,7 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="municipality_data")
-public class MunicipalityData extends CommonData<MunicipalityEffect, MunicipalityData> {
+public class MunicipalityData extends SumiffiikData<MunicipalityEffect, MunicipalityData> {
 
     @Column
     @JsonProperty
@@ -32,24 +31,12 @@ public class MunicipalityData extends CommonData<MunicipalityEffect, Municipalit
     @XmlElement
     private String name;
 
-    @Column
-    @JsonProperty
-    @XmlElement
-    private String sumiffiik;
-
-    @Column
-    @JsonProperty
-    @XmlElement
-    private String sumiffiik_domain;
-
     @Override
     public Map<String, Object> asMap() {
         HashMap<String, Object> map = new HashMap<>(super.asMap());
         map.put("code", this.code);
         map.put("abbrev", this.abbrev);
         map.put("name", this.name);
-        map.put("sumiffiik", this.sumiffiik);
-        map.put("sumiffiik_domain", this.sumiffiik_domain);
         return map;
     }
 }

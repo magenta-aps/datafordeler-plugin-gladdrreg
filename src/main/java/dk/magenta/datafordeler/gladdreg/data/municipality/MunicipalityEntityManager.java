@@ -1,4 +1,4 @@
-package dk.magenta.datafordeler.gladdreg.municipality;
+package dk.magenta.datafordeler.gladdreg.data.municipality;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,8 +12,8 @@ import dk.magenta.datafordeler.core.exception.WrongSubclassException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
 import dk.magenta.datafordeler.core.io.Receipt;
 import dk.magenta.datafordeler.core.plugin.Communicator;
-import dk.magenta.datafordeler.core.plugin.HttpCommunicator;
 import dk.magenta.datafordeler.core.plugin.EntityManager;
+import dk.magenta.datafordeler.core.plugin.HttpCommunicator;
 import dk.magenta.datafordeler.core.util.ItemInputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +24,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.time.OffsetDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by lars on 16-05-17.
