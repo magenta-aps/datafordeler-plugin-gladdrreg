@@ -1,4 +1,4 @@
-package dk.magenta.datafordeler.gladdreg.data.municipality;
+package dk.magenta.datafordeler.gladdreg.data.district;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -32,29 +32,29 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @Component
-public class MunicipalityEntityManager extends EntityManager {
+public class DistrictEntityManager extends EntityManager {
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
-    private MunicipalityEntityService municipalityEntityService;
+    private DistrictEntityService districtEntityService;
 
     private HttpCommunicator commonFetcher;
 
-    protected Logger log = LogManager.getLogger("MunicipalityEntityManager");
+    protected Logger log = LogManager.getLogger("DistrictEntityManager");
 
     private Collection<String> handledURISubstrings;
 
-    public MunicipalityEntityManager() {
-        this.managedEntityClass = MunicipalityEntity.class;
-        this.managedEntityReferenceClass = MunicipalityEntityReference.class;
-        this.managedRegistrationClass = MunicipalityRegistration.class;
-        this.managedRegistrationReferenceClass = MunicipalityRegistrationReference.class;
+    public DistrictEntityManager() {
+        this.managedEntityClass = DistrictEntity.class;
+        this.managedEntityReferenceClass = DistrictEntityReference.class;
+        this.managedRegistrationClass = DistrictRegistration.class;
+        this.managedRegistrationReferenceClass = DistrictRegistrationReference.class;
         this.commonFetcher = new HttpCommunicator();
         this.handledURISubstrings = new ArrayList<>();
-        this.handledURISubstrings.add("http://localhost:8000/municipality");
-        this.handledURISubstrings.add("http://localhost:8000/get/municipality");
+        this.handledURISubstrings.add("http://localhost:8000/district");
+        this.handledURISubstrings.add("http://localhost:8000/get/district");
     }
 
     @Override
@@ -79,7 +79,7 @@ public class MunicipalityEntityManager extends EntityManager {
 
     @Override
     public FapiService getEntityService() {
-        return this.municipalityEntityService;
+        return this.districtEntityService;
     }
 
     @Override
@@ -105,7 +105,7 @@ public class MunicipalityEntityManager extends EntityManager {
 
     @Override
     public RegistrationReference parseReference(URI uri) {
-        return new MunicipalityRegistrationReference(uri);
+        return new DistrictRegistrationReference(uri);
     }
 
     @Override
