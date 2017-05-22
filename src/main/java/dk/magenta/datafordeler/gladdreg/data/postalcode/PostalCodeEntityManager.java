@@ -1,4 +1,4 @@
-package dk.magenta.datafordeler.gladdreg.data.district;
+package dk.magenta.datafordeler.gladdreg.data.postalcode;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -32,29 +32,29 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @Component
-public class DistrictEntityManager extends EntityManager {
+public class PostalCodeEntityManager extends EntityManager {
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
-    private DistrictEntityService districtEntityService;
+    private PostalCodeEntityService postalCodeEntityService;
 
     private HttpCommunicator commonFetcher;
 
-    protected Logger log = LogManager.getLogger("DistrictEntityManager");
+    protected Logger log = LogManager.getLogger("PostalCodeEntityManager");
 
     private Collection<String> handledURISubstrings;
 
-    public DistrictEntityManager() {
-        this.managedEntityClass = DistrictEntity.class;
-        this.managedEntityReferenceClass = DistrictEntityReference.class;
-        this.managedRegistrationClass = DistrictRegistration.class;
-        this.managedRegistrationReferenceClass = DistrictRegistrationReference.class;
+    public PostalCodeEntityManager() {
+        this.managedEntityClass = PostalCodeEntity.class;
+        this.managedEntityReferenceClass = PostalCodeEntityReference.class;
+        this.managedRegistrationClass = PostalCodeRegistration.class;
+        this.managedRegistrationReferenceClass = PostalCodeRegistrationReference.class;
         this.commonFetcher = new HttpCommunicator();
         this.handledURISubstrings = new ArrayList<>();
-        this.handledURISubstrings.add("http://localhost:8000/district");
-        this.handledURISubstrings.add("http://localhost:8000/get/district");
+        this.handledURISubstrings.add("http://localhost:8000/postalcode");
+        this.handledURISubstrings.add("http://localhost:8000/get/postalcode");
     }
 
     @Override
@@ -79,7 +79,7 @@ public class DistrictEntityManager extends EntityManager {
 
     @Override
     public FapiService getEntityService() {
-        return this.districtEntityService;
+        return this.postalCodeEntityService;
     }
 
     @Override
@@ -105,7 +105,7 @@ public class DistrictEntityManager extends EntityManager {
 
     @Override
     public RegistrationReference parseReference(URI uri) {
-        return new DistrictRegistrationReference(uri);
+        return new PostalCodeRegistrationReference(uri);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class DistrictEntityManager extends EntityManager {
         if (reference.getURI() != null) {
             return reference.getURI();
         }
-        return EntityManager.expandBaseURI(this.getBaseEndpoint(), "/get/district/"+reference.getChecksum());
+        return EntityManager.expandBaseURI(this.getBaseEndpoint(), "/get/postalcode/"+reference.getChecksum());
     }
 
     @Override
