@@ -1,12 +1,8 @@
 package dk.magenta.datafordeler.gladdreg.data.municipality;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdreg.data.SumiffiikQuery;
 
-import javax.persistence.Column;
-import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
 import java.util.Map;
 
