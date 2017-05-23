@@ -3,8 +3,12 @@ package dk.magenta.datafordeler.gladdreg;
 import dk.magenta.datafordeler.core.configuration.ConfigurationManager;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.plugin.RegisterManager;
+import dk.magenta.datafordeler.gladdreg.data.bnumber.BNumberEntity;
+import dk.magenta.datafordeler.gladdreg.data.bnumber.BNumberEntityManager;
 import dk.magenta.datafordeler.gladdreg.data.district.DistrictEntity;
 import dk.magenta.datafordeler.gladdreg.data.district.DistrictEntityManager;
+import dk.magenta.datafordeler.gladdreg.data.locality.LocalityEntity;
+import dk.magenta.datafordeler.gladdreg.data.locality.LocalityEntityManager;
 import dk.magenta.datafordeler.gladdreg.data.municipality.MunicipalityEntity;
 import dk.magenta.datafordeler.gladdreg.data.municipality.MunicipalityEntityManager;
 import dk.magenta.datafordeler.gladdreg.configuration.GladdregConfigurationManager;
@@ -36,11 +40,19 @@ public class GladdregPlugin extends Plugin {
     @Autowired
     private PostalCodeEntityManager postalCodeEntityManager;
 
+    @Autowired
+    private LocalityEntityManager localityEntityManager;
+
+    @Autowired
+    private BNumberEntityManager bNumberEntityManager;
+
     @PostConstruct
     public void init() {
         this.registerManager.addEntityManager(this.municipalityEntityManager, MunicipalityEntity.schema);
         this.registerManager.addEntityManager(this.districtEntityManager, DistrictEntity.schema);
         this.registerManager.addEntityManager(this.postalCodeEntityManager, PostalCodeEntity.schema);
+        this.registerManager.addEntityManager(this.localityEntityManager, LocalityEntity.schema);
+        this.registerManager.addEntityManager(this.bNumberEntityManager, BNumberEntity.schema);
     }
 
     @Override
