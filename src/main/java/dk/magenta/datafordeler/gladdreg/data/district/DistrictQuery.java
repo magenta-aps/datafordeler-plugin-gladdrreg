@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdreg.data.district;
 
+import dk.magenta.datafordeler.core.database.Entity;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdreg.data.SumiffiikQuery;
 
@@ -60,6 +61,11 @@ public class DistrictQuery extends SumiffiikQuery {
         this.setCode(listHashMap.getFirst(CODE));
         this.setAbbrev(listHashMap.getFirst(ABBREV));
         this.setName(listHashMap.getFirst(NAME));
+    }
+
+    @Override
+    public Class<? extends Entity> getEntityClass() {
+        return DistrictEntity.class;
     }
 
 }

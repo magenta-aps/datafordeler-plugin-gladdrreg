@@ -2,6 +2,7 @@ package dk.magenta.datafordeler.gladdreg.data.district;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.database.Registration;
 
 import javax.persistence.Table;
 

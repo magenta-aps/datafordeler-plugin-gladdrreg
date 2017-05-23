@@ -1,5 +1,7 @@
 package dk.magenta.datafordeler.gladdreg.data.postalcode;
 
+import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdreg.data.SumiffiikQuery;
 
@@ -14,8 +16,10 @@ public class PostalCodeQuery extends SumiffiikQuery {
     public static final String CODE = "code";
     public static final String NAME = "name";
 
+    @QueryField(type = QueryField.FieldType.INT)
     private String code;
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String name;
 
     public String getCode() {
@@ -47,6 +51,11 @@ public class PostalCodeQuery extends SumiffiikQuery {
         super.setFromParameters(listHashMap);
         this.setCode(listHashMap.getFirst(CODE));
         this.setName(listHashMap.getFirst(NAME));
+    }
+
+    @Override
+    public Class<? extends Entity> getEntityClass() {
+        return PostalCodeEntity.class;
     }
 
 }

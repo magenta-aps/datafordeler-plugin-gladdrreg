@@ -1,5 +1,7 @@
 package dk.magenta.datafordeler.gladdreg.data;
 
+import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 
 import java.util.HashMap;
@@ -8,13 +10,15 @@ import java.util.Map;
 /**
  * Created by lars on 19-05-17.
  */
-public class SumiffiikQuery extends CommonQuery {
+public abstract class SumiffiikQuery extends CommonQuery {
 
     public static final String SUMIFFIIK = "sumiffiik";
     public static final String SUMIFFIIK_DOMAIN = "sumiffiik_domain";
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String sumiffiik;
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String sumiffiik_domain;
 
     public String getSumiffiik() {
@@ -47,5 +51,8 @@ public class SumiffiikQuery extends CommonQuery {
         this.setSumiffiik(listHashMap.getFirst(SUMIFFIIK));
         this.setSumiffiik_domain(listHashMap.getFirst(SUMIFFIIK_DOMAIN));
     }
+
+    @Override
+    public abstract Class<? extends Entity> getEntityClass();
 
 }

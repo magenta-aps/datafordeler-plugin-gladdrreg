@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdreg.data;
 
 import dk.magenta.datafordeler.core.fapi.Query;
+import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 
 import java.util.HashMap;
@@ -18,12 +19,16 @@ public abstract class CommonQuery extends Query {
 
     // Contain all fields that are searchable
 
+    @QueryField(type = QueryField.FieldType.BOOLEAN)
     private Boolean active;
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String note;
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String registration_user;
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String state;
 
     public boolean isActive() {
