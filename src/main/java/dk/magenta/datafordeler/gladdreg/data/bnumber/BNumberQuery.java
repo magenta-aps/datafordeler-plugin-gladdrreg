@@ -53,9 +53,9 @@ public class BNumberQuery extends SumiffiikQuery {
     @Override
     public Map<String, Object> getSearchParameters() {
         HashMap<String, Object> map = new HashMap<>(super.getSearchParameters());
-        map.put("code", this.code);
-        map.put("name", this.name);
-        map.put("nickname", this.nickname);
+        map.put(CODE, this.code);
+        map.put(NAME, this.name);
+        map.put(NICKNAME, this.nickname);
         return map;
     }
 

@@ -78,11 +78,11 @@ public class LocalityQuery extends SumiffiikQuery {
     @Override
     public Map<String, Object> getSearchParameters() {
         HashMap<String, Object> map = new HashMap<>(super.getSearchParameters());
-        map.put("code", this.code);
-        map.put("abbrev", this.abbrev);
-        map.put("name", this.name);
-        map.put("type", this.type);
-        map.put("localityState", this.localityState);
+        map.put(CODE, this.code);
+        map.put(ABBREV, this.abbrev);
+        map.put(NAME, this.name);
+        map.put(TYPE, this.type);
+        map.put(LOCALITY_STATE, this.localityState);
         return map;
     }
 

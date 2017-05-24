@@ -14,6 +14,8 @@ import dk.magenta.datafordeler.gladdreg.data.municipality.MunicipalityEntityMana
 import dk.magenta.datafordeler.gladdreg.configuration.GladdregConfigurationManager;
 import dk.magenta.datafordeler.gladdreg.data.postalcode.PostalCodeEntity;
 import dk.magenta.datafordeler.gladdreg.data.postalcode.PostalCodeEntityManager;
+import dk.magenta.datafordeler.gladdreg.data.road.RoadEntity;
+import dk.magenta.datafordeler.gladdreg.data.road.RoadEntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,6 +48,9 @@ public class GladdregPlugin extends Plugin {
     @Autowired
     private BNumberEntityManager bNumberEntityManager;
 
+    @Autowired
+    private RoadEntityManager roadEntityManager;
+
     @PostConstruct
     public void init() {
         this.registerManager.addEntityManager(this.municipalityEntityManager, MunicipalityEntity.schema);
@@ -53,6 +58,7 @@ public class GladdregPlugin extends Plugin {
         this.registerManager.addEntityManager(this.postalCodeEntityManager, PostalCodeEntity.schema);
         this.registerManager.addEntityManager(this.localityEntityManager, LocalityEntity.schema);
         this.registerManager.addEntityManager(this.bNumberEntityManager, BNumberEntity.schema);
+        this.registerManager.addEntityManager(this.roadEntityManager, RoadEntity.schema);
     }
 
     @Override

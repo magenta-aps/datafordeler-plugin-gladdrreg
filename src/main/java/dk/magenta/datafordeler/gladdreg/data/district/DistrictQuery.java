@@ -49,9 +49,9 @@ public class DistrictQuery extends SumiffiikQuery {
     @Override
     public Map<String, Object> getSearchParameters() {
         HashMap<String, Object> map = new HashMap<>(super.getSearchParameters());
-        map.put("code", this.code);
-        map.put("abbrev", this.abbrev);
-        map.put("name", this.name);
+        map.put(CODE, this.code);
+        map.put(ABBREV, this.abbrev);
+        map.put(NAME, this.name);
         return map;
     }
 
