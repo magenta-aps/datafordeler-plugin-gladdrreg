@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdreg.data.postalcode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dk.magenta.datafordeler.gladdreg.data.SumiffiikData;
 

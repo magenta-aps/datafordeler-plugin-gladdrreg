@@ -1,13 +1,16 @@
 package dk.magenta.datafordeler.gladdreg.data.municipality;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdreg.data.SumiffiikData;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by lars on 16-05-17.
@@ -39,4 +42,5 @@ public class MunicipalityData extends SumiffiikData<MunicipalityEffect, Municipa
         map.put("name", this.name);
         return map;
     }
+
 }

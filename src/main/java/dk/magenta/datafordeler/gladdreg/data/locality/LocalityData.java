@@ -1,13 +1,18 @@
 package dk.magenta.datafordeler.gladdreg.data.locality;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdreg.data.SumiffiikData;
 
 import javax.persistence.Column;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by lars on 16-05-17.
@@ -43,20 +48,20 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
 
 
 
-    @Column
+    @ManyToOne
     @JsonProperty(required = false)
     @XmlElement
-    private int municipality;
+    private Identification municipality;
 
-    @Column
+    @ManyToOne
     @JsonProperty(required = false)
     @XmlElement
-    private int district;
+    private Identification district;
 
-    @Column
+    @ManyToOne
     @JsonProperty(value="postal_code", required = false)
     @XmlElement
-    private int postalCode;
+    private Identification postalCode;
 
 
     @Override
@@ -69,4 +74,29 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
         map.put("localityState", this.localityState);
         return map;
     }
+
+    @Override
+    @JsonIgnore
+    public HashMap<String, Identification> getReferences() {
+        HashMap<String, Identification> references = super.getReferences();
+        references.put("municipality", this.municipality);
+        references.put("district", this.district);
+        references.put("postalCode", this.postalCode);
+        return references;
+    }
+
+    @Override
+    public void updateReferences(HashMap<String, Identification> references) {
+        super.updateReferences(references);
+        if (references.containsKey("municipality")) {
+            this.municipality = references.get("municipality");
+        }
+        if (references.containsKey("district")) {
+            this.district = references.get("district");
+        }
+        if (references.containsKey("postalCode")) {
+            this.postalCode = references.get("postalCode");
+        }
+    }
+
 }
