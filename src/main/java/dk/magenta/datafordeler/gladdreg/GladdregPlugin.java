@@ -3,6 +3,8 @@ package dk.magenta.datafordeler.gladdreg;
 import dk.magenta.datafordeler.core.configuration.ConfigurationManager;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.plugin.RegisterManager;
+import dk.magenta.datafordeler.gladdreg.data.address.AddressEntity;
+import dk.magenta.datafordeler.gladdreg.data.address.AddressEntityManager;
 import dk.magenta.datafordeler.gladdreg.data.bnumber.BNumberEntity;
 import dk.magenta.datafordeler.gladdreg.data.bnumber.BNumberEntityManager;
 import dk.magenta.datafordeler.gladdreg.data.district.DistrictEntity;
@@ -51,6 +53,9 @@ public class GladdregPlugin extends Plugin {
     @Autowired
     private RoadEntityManager roadEntityManager;
 
+    @Autowired
+    private AddressEntityManager addressEntityManager;
+
     @PostConstruct
     public void init() {
         this.registerManager.addEntityManager(this.municipalityEntityManager, MunicipalityEntity.schema);
@@ -59,6 +64,7 @@ public class GladdregPlugin extends Plugin {
         this.registerManager.addEntityManager(this.localityEntityManager, LocalityEntity.schema);
         this.registerManager.addEntityManager(this.bNumberEntityManager, BNumberEntity.schema);
         this.registerManager.addEntityManager(this.roadEntityManager, RoadEntity.schema);
+        this.registerManager.addEntityManager(this.addressEntityManager, AddressEntity.schema);
     }
 
     @Override
