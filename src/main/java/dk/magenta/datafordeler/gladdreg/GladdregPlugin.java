@@ -74,6 +74,11 @@ public class GladdregPlugin extends Plugin {
     }
 
     @Override
+    public String getName() {
+        return "gladdrreg";
+    }
+
+    @Override
     public RegisterManager getRegisterManager() {
         return this.registerManager;
     }
