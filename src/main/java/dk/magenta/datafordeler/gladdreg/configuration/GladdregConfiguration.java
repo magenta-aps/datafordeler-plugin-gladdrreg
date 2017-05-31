@@ -21,7 +21,14 @@ public class GladdregConfiguration implements Configuration {
     @Column
     private String pullCronSchedule = "0 0 * * * ?";
 
+    @Column
+    private String registerAddress = "http://localhost:8000";
+
     public String getPullCronSchedule() {
         return this.pullCronSchedule;
+    }
+
+    public String getRegisterAddress() {
+        return this.registerAddress;
     }
 }

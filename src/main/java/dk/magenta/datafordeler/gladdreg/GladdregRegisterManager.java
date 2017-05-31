@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.OffsetDateTime;
@@ -38,8 +39,12 @@ public class GladdregRegisterManager extends RegisterManager {
 
     public GladdregRegisterManager() {
         this.commonFetcher = new HttpCommunicator();
+    }
+
+    @PostConstruct
+    public void init() {
         try {
-            this.baseEndpoint = new URI("http", null, "localhost", 8000, "", null, null);
+            this.baseEndpoint = new URI(this.configurationManager.getConfiguration().getRegisterAddress());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
