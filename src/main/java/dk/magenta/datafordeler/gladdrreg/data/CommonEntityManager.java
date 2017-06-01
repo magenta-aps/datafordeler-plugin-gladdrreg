@@ -13,6 +13,7 @@ import dk.magenta.datafordeler.core.io.Receipt;
 import dk.magenta.datafordeler.core.plugin.Communicator;
 import dk.magenta.datafordeler.core.plugin.EntityManager;
 import dk.magenta.datafordeler.core.plugin.HttpCommunicator;
+import dk.magenta.datafordeler.core.plugin.RegisterManager;
 import dk.magenta.datafordeler.core.util.ItemInputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,12 +51,12 @@ public abstract class CommonEntityManager extends EntityManager {
         this.handledURISubstrings = new ArrayList<>();
     }
 
-    @PostConstruct
-    public void init() {
+    @Override
+    public void setRegisterManager(RegisterManager registerManager) {
+        super.setRegisterManager(registerManager);
         this.handledURISubstrings.add(expandBaseURI(this.getBaseEndpoint(), "/" + this.getBaseName(), null, null).toString());
         this.handledURISubstrings.add(expandBaseURI(this.getBaseEndpoint(), "/get/" + this.getBaseName(), null, null).toString());
     }
-
 
     @Override
     public Collection<String> getHandledURISubstrings() {

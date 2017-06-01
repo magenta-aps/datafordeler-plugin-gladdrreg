@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dk.magenta.datafordeler</groupId>
-    <artifactId>datafordeler-plugin-gladdreg</artifactId>
+    <artifactId>datafordeler-plugin-gladdrreg</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>datafordeler-plugin-gladdreg</name>
+    <name>datafordeler-plugin-gladdrreg</name>
 
     <properties>
         <java.version>1.8</java.version>
