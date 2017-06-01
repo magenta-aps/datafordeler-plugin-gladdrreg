@@ -35,6 +35,11 @@ public class RoadEntityManager extends CommonEntityManager {
     }
 
     @Override
+    public String getSchema() {
+        return RoadEntity.schema;
+    }
+
+    @Override
     protected RegistrationReference createRegistrationReference(URI uri) {
         return new RoadRegistrationReference(uri);
     }

@@ -35,6 +35,11 @@ public class DistrictEntityManager extends CommonEntityManager {
     }
 
     @Override
+    public String getSchema() {
+        return DistrictEntity.schema;
+    }
+
+    @Override
     protected RegistrationReference createRegistrationReference(URI uri) {
         return new DistrictRegistrationReference(uri);
     }

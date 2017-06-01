@@ -35,6 +35,11 @@ public class PostalCodeEntityManager extends CommonEntityManager {
     }
 
     @Override
+    public String getSchema() {
+        return PostalCodeEntity.schema;
+    }
+
+    @Override
     protected RegistrationReference createRegistrationReference(URI uri) {
         return new PostalCodeRegistrationReference(uri);
     }

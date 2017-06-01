@@ -56,6 +56,11 @@ public class AddressEntityManager extends CommonEntityManager {
     }
 
     @Override
+    public String getSchema() {
+        return AddressEntity.schema;
+    }
+
+    @Override
     protected RegistrationReference createRegistrationReference(URI uri) {
         return new AddressRegistrationReference(uri);
     }

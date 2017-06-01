@@ -35,6 +35,11 @@ public class BNumberEntityManager extends CommonEntityManager {
     }
 
     @Override
+    public String getSchema() {
+        return BNumberEntity.schema;
+    }
+
+    @Override
     protected RegistrationReference createRegistrationReference(URI uri) {
         return new BNumberRegistrationReference(uri);
     }

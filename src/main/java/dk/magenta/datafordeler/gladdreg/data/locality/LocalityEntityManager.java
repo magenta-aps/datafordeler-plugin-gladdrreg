@@ -35,6 +35,11 @@ public class LocalityEntityManager extends CommonEntityManager {
     }
 
     @Override
+    public String getSchema() {
+        return LocalityEntity.schema;
+    }
+
+    @Override
     protected RegistrationReference createRegistrationReference(URI uri) {
         return new LocalityRegistrationReference(uri);
     }

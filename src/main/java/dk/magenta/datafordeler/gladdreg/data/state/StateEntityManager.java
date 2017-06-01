@@ -57,6 +57,11 @@ public class StateEntityManager extends CommonEntityManager {
     }
 
     @Override
+    public String getSchema() {
+        return StateEntity.schema;
+    }
+
+    @Override
     public RegistrationReference createRegistrationReference(URI uri) {
         return new StateRegistrationReference(uri);
     }

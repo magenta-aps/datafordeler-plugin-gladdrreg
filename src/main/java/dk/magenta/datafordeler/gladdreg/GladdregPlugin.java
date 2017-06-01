@@ -63,14 +63,14 @@ public class GladdregPlugin extends Plugin {
 
     @PostConstruct
     public void init() {
-        this.registerManager.addEntityManager(this.municipalityEntityManager, MunicipalityEntity.schema);
-        this.registerManager.addEntityManager(this.districtEntityManager, DistrictEntity.schema);
-        this.registerManager.addEntityManager(this.postalCodeEntityManager, PostalCodeEntity.schema);
-        this.registerManager.addEntityManager(this.localityEntityManager, LocalityEntity.schema);
-        this.registerManager.addEntityManager(this.bNumberEntityManager, BNumberEntity.schema);
-        this.registerManager.addEntityManager(this.roadEntityManager, RoadEntity.schema);
-        this.registerManager.addEntityManager(this.addressEntityManager, AddressEntity.schema);
-        this.registerManager.addEntityManager(this.stateEntityManager, StateEntity.schema);
+        this.registerManager.addEntityManager(this.municipalityEntityManager);
+        this.registerManager.addEntityManager(this.districtEntityManager);
+        this.registerManager.addEntityManager(this.postalCodeEntityManager);
+        this.registerManager.addEntityManager(this.localityEntityManager);
+        this.registerManager.addEntityManager(this.bNumberEntityManager);
+        this.registerManager.addEntityManager(this.roadEntityManager);
+        this.registerManager.addEntityManager(this.addressEntityManager);
+        this.registerManager.addEntityManager(this.stateEntityManager);
     }
 
     @Override

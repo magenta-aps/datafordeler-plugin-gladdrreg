@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -47,8 +48,12 @@ public abstract class CommonEntityManager extends EntityManager {
     public CommonEntityManager() {
         this.commonFetcher = new HttpCommunicator();
         this.handledURISubstrings = new ArrayList<>();
-        this.handledURISubstrings.add("http://localhost:8000/" + this.getBaseName());
-        this.handledURISubstrings.add("http://localhost:8000/get/" + this.getBaseName());
+    }
+
+    @PostConstruct
+    public void init() {
+        this.handledURISubstrings.add(expandBaseURI(this.getBaseEndpoint(), "/" + this.getBaseName(), null, null).toString());
+        this.handledURISubstrings.add(expandBaseURI(this.getBaseEndpoint(), "/get/" + this.getBaseName(), null, null).toString());
     }
 
 
@@ -74,7 +79,6 @@ public abstract class CommonEntityManager extends EntityManager {
 
     @Override
     public URI getBaseEndpoint() {
-        //return expandBaseURI(this.getRegisterManager().getBaseEndpoint(), "/municipality");
         return this.getRegisterManager().getBaseEndpoint();
     }
 

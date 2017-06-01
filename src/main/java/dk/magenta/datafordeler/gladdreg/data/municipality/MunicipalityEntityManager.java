@@ -35,6 +35,11 @@ public class MunicipalityEntityManager extends CommonEntityManager {
     }
 
     @Override
+    public String getSchema() {
+        return MunicipalityEntity.schema;
+    }
+
+    @Override
     protected RegistrationReference createRegistrationReference(URI uri) {
         return new MunicipalityRegistrationReference(uri);
     }
