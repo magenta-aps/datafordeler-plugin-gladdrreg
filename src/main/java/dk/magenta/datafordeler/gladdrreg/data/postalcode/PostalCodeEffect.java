@@ -8,6 +8,6 @@ import javax.persistence.Table;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="postalcode_effect")
+@Table(name="gladdrreg_postalcode_effect")
 public class PostalCodeEffect extends Effect<PostalCodeRegistration, PostalCodeEffect, PostalCodeData> {
 }

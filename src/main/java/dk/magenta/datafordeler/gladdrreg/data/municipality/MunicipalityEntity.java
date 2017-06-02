@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="municipality_entity")
+@Table(name="gladdrreg_municipality_entity")
 public class MunicipalityEntity extends Entity<MunicipalityEntity, MunicipalityRegistration> {
 
     @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="type")

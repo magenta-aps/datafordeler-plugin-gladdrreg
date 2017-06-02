@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="municipality_data")
+@Table(name="gladdrreg_municipality_data")
 public class MunicipalityData extends SumiffiikData<MunicipalityEffect, MunicipalityData> {
 
     @Column

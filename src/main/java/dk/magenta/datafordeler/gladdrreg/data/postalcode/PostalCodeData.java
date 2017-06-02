@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="postalcode_data")
+@Table(name="gladdrreg_postalcode_data")
 public class PostalCodeData extends SumiffiikData<PostalCodeEffect, PostalCodeData> {
 
     @Column

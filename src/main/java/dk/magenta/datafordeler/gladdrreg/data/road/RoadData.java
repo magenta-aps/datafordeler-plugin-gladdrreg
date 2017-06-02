@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="road_data")
+@Table(name="gladdrreg_road_data")
 public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
 
     @Column

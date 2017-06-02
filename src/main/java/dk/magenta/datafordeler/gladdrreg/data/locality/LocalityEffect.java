@@ -8,6 +8,6 @@ import javax.persistence.Table;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="locality_effect")
+@Table(name="gladdrreg_locality_effect")
 public class LocalityEffect extends Effect<LocalityRegistration, LocalityEffect, LocalityData> {
 }

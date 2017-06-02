@@ -8,6 +8,6 @@ import javax.persistence.Table;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="bnumber_effect")
+@Table(name="gladdrreg_bnumber_effect")
 public class BNumberEffect extends Effect<BNumberRegistration, BNumberEffect, BNumberData> {
 }

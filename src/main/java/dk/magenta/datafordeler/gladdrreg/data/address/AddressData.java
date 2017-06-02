@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="address_data")
+@Table(name="gladdrreg_address_data")
 public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
 
     @Column

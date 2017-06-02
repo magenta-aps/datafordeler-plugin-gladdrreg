@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="bnumber_data")
+@Table(name="gladdrreg_bnumber_data")
 public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
 
     @Column
