@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.district;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
@@ -16,10 +17,13 @@ public class DistrictQuery extends SumiffiikQuery {
     public static final String ABBREV = "abbrev";
     public static final String NAME = "name";
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String code;
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String abbrev;
 
+    @QueryField(type = QueryField.FieldType.STRING)
     private String name;
 
     public String getCode() {
