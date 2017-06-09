@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data;
 
+import dk.magenta.datafordeler.core.database.Entity;
 import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
@@ -10,7 +11,7 @@ import java.util.Map;
 /**
  * Created by lars on 19-05-17.
  */
-public abstract class CommonQuery extends Query {
+public abstract class CommonQuery <E extends Entity> extends Query<E> {
 
     public static final String ACTIVE = "active";
     public static final String NOTE = "note";

@@ -44,14 +44,14 @@ public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
     @XmlElement
     private String cprName;
 
+    @ManyToOne
     @JsonProperty
     @XmlElement
-    @ManyToOne
     private Identification location;
 
+    @ManyToOne
     @JsonProperty
     @XmlElement
-    @ManyToOne
     private Identification municipality;
 
     @Override

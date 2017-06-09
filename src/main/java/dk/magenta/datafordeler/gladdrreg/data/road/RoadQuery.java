@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by lars on 19-05-17.
  */
-public class RoadQuery extends SumiffiikQuery {
+public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
     public static final String CODE = "code";
     public static final String NAME = "name";
@@ -96,7 +96,7 @@ public class RoadQuery extends SumiffiikQuery {
     }
 
     @Override
-    public Class<? extends Entity> getEntityClass() {
+    public Class<RoadEntity> getEntityClass() {
         return RoadEntity.class;
     }
 

@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by lars on 19-05-17.
  */
-public class PostalCodeQuery extends SumiffiikQuery {
+public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
 
     public static final String CODE = "code";
     public static final String NAME = "name";
@@ -54,7 +54,7 @@ public class PostalCodeQuery extends SumiffiikQuery {
     }
 
     @Override
-    public Class<? extends Entity> getEntityClass() {
+    public Class<PostalCodeEntity> getEntityClass() {
         return PostalCodeEntity.class;
     }
 

@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by lars on 19-05-17.
  */
-public class AddressQuery extends SumiffiikQuery {
+public class AddressQuery extends SumiffiikQuery<AddressEntity> {
 
     public static final String HOUSE_NUMBER = "houseNumber";
     public static final String FLOOR = "floor";
@@ -68,7 +68,7 @@ public class AddressQuery extends SumiffiikQuery {
     }
 
     @Override
-    public Class<? extends Entity> getEntityClass() {
+    public Class<AddressEntity> getEntityClass() {
         return AddressEntity.class;
     }
 

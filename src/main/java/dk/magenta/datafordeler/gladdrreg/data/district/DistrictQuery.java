@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by lars on 19-05-17.
  */
-public class DistrictQuery extends SumiffiikQuery {
+public class DistrictQuery extends SumiffiikQuery<DistrictEntity> {
 
     public static final String CODE = "code";
     public static final String ABBREV = "abbrev";
@@ -68,7 +68,7 @@ public class DistrictQuery extends SumiffiikQuery {
     }
 
     @Override
-    public Class<? extends Entity> getEntityClass() {
+    public Class<DistrictEntity> getEntityClass() {
         return DistrictEntity.class;
     }
 

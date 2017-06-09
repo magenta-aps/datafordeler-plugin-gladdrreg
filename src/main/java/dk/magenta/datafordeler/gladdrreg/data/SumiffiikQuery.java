@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by lars on 19-05-17.
  */
-public abstract class SumiffiikQuery extends CommonQuery {
+public abstract class SumiffiikQuery<E extends Entity> extends CommonQuery<E> {
 
     public static final String SUMIFFIIK = "sumiffiik";
     public static final String SUMIFFIIK_DOMAIN = "sumiffiik_domain";
@@ -51,8 +51,4 @@ public abstract class SumiffiikQuery extends CommonQuery {
         this.setSumiffiik(listHashMap.getFirst(SUMIFFIIK));
         this.setSumiffiik_domain(listHashMap.getFirst(SUMIFFIIK_DOMAIN));
     }
-
-    @Override
-    public abstract Class<? extends Entity> getEntityClass();
-
 }
