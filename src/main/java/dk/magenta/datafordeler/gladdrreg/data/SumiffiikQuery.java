@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 
@@ -46,9 +47,9 @@ public abstract class SumiffiikQuery<E extends Entity> extends CommonQuery<E> {
     }
 
     @Override
-    public void setFromParameters(ListHashMap<String, String> listHashMap) {
-        super.setFromParameters(listHashMap);
-        this.setSumiffiik(listHashMap.getFirst(SUMIFFIIK));
-        this.setSumiffiik_domain(listHashMap.getFirst(SUMIFFIIK_DOMAIN));
+    public void setFromParameters(ParameterMap parameters) {
+        super.setFromParameters(parameters);
+        this.setSumiffiik(parameters.getFirst(SUMIFFIIK));
+        this.setSumiffiik_domain(parameters.getFirst(SUMIFFIIK_DOMAIN));
     }
 }

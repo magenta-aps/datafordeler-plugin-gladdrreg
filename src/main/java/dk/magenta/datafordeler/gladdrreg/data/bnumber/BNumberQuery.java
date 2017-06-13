@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.bnumber;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
@@ -60,11 +61,11 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
     }
 
     @Override
-    public void setFromParameters(ListHashMap<String, String> listHashMap) {
-        super.setFromParameters(listHashMap);
-        this.setCode(listHashMap.getFirst(CODE));
-        this.setName(listHashMap.getFirst(NAME));
-        this.setNickname(listHashMap.getFirst(NICKNAME));
+    public void setFromParameters(ParameterMap parameters) {
+        super.setFromParameters(parameters);
+        this.setCode(parameters.getFirst(CODE));
+        this.setName(parameters.getFirst(NAME));
+        this.setNickname(parameters.getFirst(NICKNAME));
     }
 
     @Override

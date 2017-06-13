@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.road;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
@@ -86,13 +87,13 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
     }
 
     @Override
-    public void setFromParameters(ListHashMap<String, String> listHashMap) {
-        super.setFromParameters(listHashMap);
-        this.setCode(listHashMap.getFirst(CODE));
-        this.setName(listHashMap.getFirst(NAME));
-        this.setShortName(listHashMap.getFirst(SHORT_NAME));
-        this.setAlternateName(listHashMap.getFirst(ALTERNATE_NAME));
-        this.setCprName(listHashMap.getFirst(CPR_NAME));
+    public void setFromParameters(ParameterMap parameters) {
+        super.setFromParameters(parameters);
+        this.setCode(parameters.getFirst(CODE));
+        this.setName(parameters.getFirst(NAME));
+        this.setShortName(parameters.getFirst(SHORT_NAME));
+        this.setAlternateName(parameters.getFirst(ALTERNATE_NAME));
+        this.setCprName(parameters.getFirst(CPR_NAME));
     }
 
     @Override

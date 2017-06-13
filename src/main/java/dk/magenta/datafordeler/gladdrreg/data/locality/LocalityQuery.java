@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.locality;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
@@ -87,13 +88,13 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
     }
 
     @Override
-    public void setFromParameters(ListHashMap<String, String> listHashMap) {
-        super.setFromParameters(listHashMap);
-        this.setCode(listHashMap.getFirst(CODE));
-        this.setAbbrev(listHashMap.getFirst(ABBREV));
-        this.setName(listHashMap.getFirst(NAME));
-        this.setType(Query.intFromString(listHashMap.getFirst(TYPE)));
-        this.setLocalityState(Query.intFromString(listHashMap.getFirst(LOCALITY_STATE)));
+    public void setFromParameters(ParameterMap parameters) {
+        super.setFromParameters(parameters);
+        this.setCode(parameters.getFirst(CODE));
+        this.setAbbrev(parameters.getFirst(ABBREV));
+        this.setName(parameters.getFirst(NAME));
+        this.setType(Query.intFromString(parameters.getFirst(TYPE)));
+        this.setLocalityState(Query.intFromString(parameters.getFirst(LOCALITY_STATE)));
     }
 
     @Override

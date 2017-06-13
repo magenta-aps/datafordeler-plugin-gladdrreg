@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.address;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
@@ -60,11 +61,11 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
     }
 
     @Override
-    public void setFromParameters(ListHashMap<String, String> listHashMap) {
-        super.setFromParameters(listHashMap);
-        this.setHouseNumber(listHashMap.getFirst(HOUSE_NUMBER));
-        this.setFloor(listHashMap.getFirst(FLOOR));
-        this.setRoom(listHashMap.getFirst(ROOM));
+    public void setFromParameters(ParameterMap parameters) {
+        super.setFromParameters(parameters);
+        this.setHouseNumber(parameters.getFirst(HOUSE_NUMBER));
+        this.setFloor(parameters.getFirst(FLOOR));
+        this.setRoom(parameters.getFirst(ROOM));
     }
 
     @Override

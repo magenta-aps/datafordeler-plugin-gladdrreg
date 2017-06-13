@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.core.util.ListHashMap;
@@ -75,10 +76,10 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
     }
 
     @Override
-    public void setFromParameters(ListHashMap<String, String> listHashMap) {
-        this.setActive(Query.booleanFromString(listHashMap.getFirst(ACTIVE)));
-        this.setNote(listHashMap.getFirst(NOTE));
-        this.setRegistration_user(listHashMap.getFirst(REGISTRATION_USER));
-        this.setState(listHashMap.getFirst(STATE));
+    public void setFromParameters(ParameterMap parameters) {
+        this.setActive(Query.booleanFromString(parameters.getFirst(ACTIVE)));
+        this.setNote(parameters.getFirst(NOTE));
+        this.setRegistration_user(parameters.getFirst(REGISTRATION_USER));
+        this.setState(parameters.getFirst(STATE));
     }
 }
