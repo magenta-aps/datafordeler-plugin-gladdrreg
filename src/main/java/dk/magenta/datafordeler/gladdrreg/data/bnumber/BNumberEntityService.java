@@ -18,11 +18,6 @@ import javax.ws.rs.Path;
 public class BNumberEntityService extends FapiService<BNumberEntity, BNumberQuery> {
 
     @Override
-    protected void checkAccess(DafoUserDetails dafoUserDetails) throws AccessDeniedException, AccessRequiredException {
-
-    }
-
-    @Override
     public int getVersion() {
         return 1;
     }
@@ -35,6 +30,10 @@ public class BNumberEntityService extends FapiService<BNumberEntity, BNumberQuer
     @Override
     protected Class<BNumberEntity> getEntityClass() {
         return BNumberEntity.class;
+    }
+
+    @Override
+    protected void checkAccess(DafoUserDetails dafoUserDetails) throws AccessDeniedException, AccessRequiredException {
     }
 
     @Override

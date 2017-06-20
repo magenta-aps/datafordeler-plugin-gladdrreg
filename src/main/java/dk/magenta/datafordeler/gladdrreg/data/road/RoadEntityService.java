@@ -18,11 +18,6 @@ import javax.ws.rs.Path;
 public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
 
     @Override
-    protected void checkAccess(DafoUserDetails dafoUserDetails) throws AccessDeniedException, AccessRequiredException {
-
-    }
-
-    @Override
     public int getVersion() {
         return 1;
     }
@@ -35,6 +30,10 @@ public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
     @Override
     protected Class<RoadEntity> getEntityClass() {
         return RoadEntity.class;
+    }
+
+    @Override
+    protected void checkAccess(DafoUserDetails dafoUserDetails) throws AccessDeniedException, AccessRequiredException {
     }
 
     @Override

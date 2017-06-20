@@ -73,4 +73,9 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
         return AddressEntity.class;
     }
 
+    @Override
+    public Class getDataClass() {
+        return AddressData.class;
+    }
+
 }

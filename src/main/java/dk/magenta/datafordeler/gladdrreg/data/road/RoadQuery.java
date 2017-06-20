@@ -101,4 +101,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
         return RoadEntity.class;
     }
 
+    @Override
+    public Class getDataClass() {
+        return RoadData.class;
+    }
+
 }

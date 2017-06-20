@@ -102,4 +102,9 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
         return LocalityEntity.class;
     }
 
+    @Override
+    public Class getDataClass() {
+        return LocalityData.class;
+    }
+
 }

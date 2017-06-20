@@ -71,4 +71,9 @@ public class DistrictQuery extends SumiffiikQuery<DistrictEntity> {
         return DistrictEntity.class;
     }
 
+    @Override
+    public Class getDataClass() {
+        return DistrictData.class;
+    }
+
 }

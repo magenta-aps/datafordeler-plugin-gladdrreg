@@ -73,4 +73,9 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
         return BNumberEntity.class;
     }
 
+    @Override
+    public Class getDataClass() {
+        return BNumberData.class;
+    }
+
 }

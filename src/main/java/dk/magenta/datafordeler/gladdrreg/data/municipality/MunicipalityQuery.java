@@ -73,4 +73,9 @@ public class MunicipalityQuery extends SumiffiikQuery<MunicipalityEntity> {
         return MunicipalityEntity.class;
     }
 
+    @Override
+    public Class getDataClass() {
+        return MunicipalityData.class;
+    }
+
 }

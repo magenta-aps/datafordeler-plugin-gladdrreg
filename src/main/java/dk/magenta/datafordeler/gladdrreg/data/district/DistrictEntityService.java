@@ -18,11 +18,6 @@ import javax.ws.rs.Path;
 public class DistrictEntityService extends FapiService<DistrictEntity, DistrictQuery> {
 
     @Override
-    protected void checkAccess(DafoUserDetails dafoUserDetails) throws AccessDeniedException, AccessRequiredException {
-
-    }
-
-    @Override
     public int getVersion() {
         return 1;
     }
@@ -35,6 +30,10 @@ public class DistrictEntityService extends FapiService<DistrictEntity, DistrictQ
     @Override
     protected Class<DistrictEntity> getEntityClass() {
         return DistrictEntity.class;
+    }
+
+    @Override
+    protected void checkAccess(DafoUserDetails dafoUserDetails) throws AccessDeniedException, AccessRequiredException {
     }
 
     @Override

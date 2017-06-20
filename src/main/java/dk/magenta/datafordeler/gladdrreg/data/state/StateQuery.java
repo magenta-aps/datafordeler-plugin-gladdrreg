@@ -73,4 +73,9 @@ public class StateQuery extends SumiffiikQuery<StateEntity> {
         return StateEntity.class;
     }
 
+    @Override
+    public Class getDataClass() {
+        return StateData.class;
+    }
+
 }

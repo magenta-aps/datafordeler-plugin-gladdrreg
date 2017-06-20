@@ -57,4 +57,9 @@ public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
         return PostalCodeEntity.class;
     }
 
+    @Override
+    public Class getDataClass() {
+        return PostalCodeData.class;
+    }
+
 }

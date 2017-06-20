@@ -18,11 +18,6 @@ import javax.ws.rs.Path;
 public class PostalCodeEntityService extends FapiService<PostalCodeEntity, PostalCodeQuery> {
 
     @Override
-    protected void checkAccess(DafoUserDetails dafoUserDetails) throws AccessDeniedException, AccessRequiredException {
-
-    }
-
-    @Override
     public int getVersion() {
         return 1;
     }
@@ -35,6 +30,10 @@ public class PostalCodeEntityService extends FapiService<PostalCodeEntity, Posta
     @Override
     protected Class<PostalCodeEntity> getEntityClass() {
         return PostalCodeEntity.class;
+    }
+
+    @Override
+    protected void checkAccess(DafoUserDetails dafoUserDetails) throws AccessDeniedException, AccessRequiredException {
     }
 
     @Override
