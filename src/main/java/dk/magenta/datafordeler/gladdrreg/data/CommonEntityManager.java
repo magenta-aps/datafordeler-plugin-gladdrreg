@@ -24,9 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by lars on 29-05-17.
@@ -98,21 +96,22 @@ public abstract class CommonEntityManager extends EntityManager {
     }
 
     @Override
-    public Registration parseRegistration(JsonNode registrationData) throws ParseException {
+    public List<? extends Registration> parseRegistration(JsonNode registrationData) throws ParseException {
         if (registrationData.has("registrationFrom")) { // Check whether the object is wrapped
             // Unwrapped case
             try {
-                return this.getObjectMapper().treeToValue(registrationData, this.managedRegistrationClass);
+                return Collections.singletonList(this.getObjectMapper().treeToValue(registrationData, this.managedRegistrationClass));
             } catch (JsonProcessingException e) {
                 throw new ParseException("Error parsing registration "+registrationData);
             }
         } else {
             // Wrapped case
-            Map<String, Registration> map = this.parseRegistrationList(registrationData);
-            if (map.size() > 0) {
-                return map.get(map.keySet().iterator().next());
+            Map<String, List<? extends Registration>> map = this.parseRegistrationList(registrationData);
+            ArrayList<Registration> list = new ArrayList<>();
+            for (String key : map.keySet()) {
+                list.addAll(map.get(key));
             }
-            return null;
+            return list;
         }
     }
 
