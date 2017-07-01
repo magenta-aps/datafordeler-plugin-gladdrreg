@@ -4,14 +4,14 @@ import dk.magenta.datafordeler.core.exception.AccessDeniedException;
 import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
 import dk.magenta.datafordeler.core.user.DafoUserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by lars on 19-05-17.
  */
 
-@Controller
+@RestController
 @RequestMapping("/gladdrreg/road/1/rest")
 public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
 
