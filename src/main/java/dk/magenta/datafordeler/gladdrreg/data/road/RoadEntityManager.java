@@ -11,7 +11,7 @@ import java.net.URI;
 /**
  * Created by lars on 16-05-17.
  */
-@Component
+@Component("gladdrregRoadEntityManager")
 public class RoadEntityManager extends CommonEntityManager {
 
     @Autowired
