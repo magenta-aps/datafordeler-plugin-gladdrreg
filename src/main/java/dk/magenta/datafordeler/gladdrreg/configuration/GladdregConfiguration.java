@@ -18,8 +18,9 @@ public class GladdregConfiguration implements Configuration {
     @Column(name = "id")
     private final String plugin = GladdregPlugin.class.getName();
 
+    // Midnight every january 1st, eg. never
     @Column
-    private String pullCronSchedule = "0 0 * * * ?";
+    private String pullCronSchedule = "0 0 0 1 1 ?";
 
     @Column
     private String registerAddress = "http://localhost:8000";
