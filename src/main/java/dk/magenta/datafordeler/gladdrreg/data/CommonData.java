@@ -12,6 +12,7 @@ import javax.persistence.MappedSuperclass;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
 import java.util.Map;
+import org.hibernate.Session;
 
 /**
  * Created by lars on 19-05-17.
@@ -65,4 +66,7 @@ public class CommonData<V extends Effect, D extends DataItem> extends DataItem<V
         }
     }
 
+    @Override
+    public void forceLoad(Session session) {
+    }
 }
