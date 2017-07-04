@@ -1,9 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.bnumber;
 
-import dk.magenta.datafordeler.core.database.Entity;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
-import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
 import java.util.HashMap;
@@ -18,13 +16,13 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
     public static final String NAME = "name";
     public static final String NICKNAME = "nickname";
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = CODE)
     private String code;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
     private String name;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = NICKNAME)
     private String nickname;
 
     public String getCode() {

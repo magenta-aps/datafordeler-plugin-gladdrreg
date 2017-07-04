@@ -18,13 +18,13 @@ public class StateQuery extends SumiffiikQuery<StateEntity> {
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = CODE)
     private String code;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
     private String name;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = DESCRIPTION)
     private String description;
 
     public String getCode() {

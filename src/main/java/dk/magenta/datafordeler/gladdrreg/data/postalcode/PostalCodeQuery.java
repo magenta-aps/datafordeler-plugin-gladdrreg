@@ -15,10 +15,10 @@ public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
     public static final String CODE = "code";
     public static final String NAME = "name";
 
-    @QueryField(type = QueryField.FieldType.INT)
+    @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
     private String code;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
     private String name;
 
     public String getCode() {

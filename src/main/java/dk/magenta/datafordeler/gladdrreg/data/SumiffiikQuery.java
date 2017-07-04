@@ -16,10 +16,10 @@ public abstract class SumiffiikQuery<E extends Entity> extends CommonQuery<E> {
     public static final String SUMIFFIIK = "sumiffiik";
     public static final String SUMIFFIIK_DOMAIN = "sumiffiik_domain";
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = SUMIFFIIK)
     private String sumiffiik;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = SUMIFFIIK_DOMAIN)
     private String sumiffiik_domain;
 
     public String getSumiffiik() {

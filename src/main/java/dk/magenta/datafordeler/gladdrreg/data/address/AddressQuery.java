@@ -18,13 +18,13 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
     public static final String FLOOR = "floor";
     public static final String ROOM = "room";
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = HOUSE_NUMBER)
     private String houseNumber;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = FLOOR)
     private String floor;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = ROOM)
     private String room;
 
     public String getHouseNumber() {

@@ -21,16 +21,16 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
 
     // Contain all fields that are searchable
 
-    @QueryField(type = QueryField.FieldType.BOOLEAN)
+    @QueryField(type = QueryField.FieldType.BOOLEAN, queryName = ACTIVE)
     private Boolean active;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = NOTE)
     private String note;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = REGISTRATION_USER)
     private String registration_user;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = STATE)
     private String state;
 
     public boolean isActive() {

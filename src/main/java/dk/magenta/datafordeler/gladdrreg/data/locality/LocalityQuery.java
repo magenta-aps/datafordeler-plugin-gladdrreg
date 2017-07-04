@@ -21,19 +21,19 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
     public static final String TYPE = "type";
     public static final String LOCALITY_STATE = "localityState";
 
-    @QueryField(type = QueryField.FieldType.INT)
+    @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
     private String code;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = ABBREV)
     private String abbrev;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
     private String name;
 
-    @QueryField(type = QueryField.FieldType.INT)
+    @QueryField(type = QueryField.FieldType.INT, queryName = TYPE)
     private Integer type;
 
-    @QueryField(type = QueryField.FieldType.INT)
+    @QueryField(type = QueryField.FieldType.INT, queryName = LOCALITY_STATE)
     private Integer localityState;
 
     public String getCode() {

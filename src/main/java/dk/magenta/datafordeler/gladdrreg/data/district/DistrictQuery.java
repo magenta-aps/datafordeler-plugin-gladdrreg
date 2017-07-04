@@ -16,13 +16,13 @@ public class DistrictQuery extends SumiffiikQuery<DistrictEntity> {
     public static final String ABBREV = "abbrev";
     public static final String NAME = "name";
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = CODE)
     private String code;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = ABBREV)
     private String abbrev;
 
-    @QueryField(type = QueryField.FieldType.STRING)
+    @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
     private String name;
 
     public String getCode() {
