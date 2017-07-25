@@ -1,18 +1,21 @@
 package dk.magenta.datafordeler.gladdrreg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.magenta.datafordeler.core.plugin.Communicator;
-import dk.magenta.datafordeler.core.plugin.HttpCommunicator;
-import dk.magenta.datafordeler.core.plugin.Plugin;
-import dk.magenta.datafordeler.core.plugin.RegisterManager;
+import dk.magenta.datafordeler.core.exception.DataFordelerException;
+import dk.magenta.datafordeler.core.exception.WrongSubclassException;
+import dk.magenta.datafordeler.core.plugin.*;
+import dk.magenta.datafordeler.core.util.ItemInputStream;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.configuration.GladdregConfigurationManager;
+import dk.magenta.datafordeler.gladdrreg.data.CommonEntityManager;
+import dk.magenta.datafordeler.gladdrreg.synchronization.Event;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.OffsetDateTime;
@@ -80,8 +83,16 @@ public class GladdregRegisterManager extends RegisterManager {
     }
 
     @Override
-    protected URI getEventInterface() {
+    protected URI getEventInterface(EntityManager entityManager) {
         return expandBaseURI(this.getBaseEndpoint(), "/getNewEvents");
+    }
+
+    @Override
+    protected ItemInputStream<Event> parseEventResponse(InputStream responseContent, EntityManager entityManager) throws DataFordelerException {
+        if (!(entityManager instanceof CommonEntityManager)) {
+            throw new WrongSubclassException(CommonEntityManager.class, entityManager);
+        }
+        return ItemInputStream.parseJsonStream(responseContent, Event.class, "events", this.getObjectMapper());
     }
 
     @Override
@@ -102,10 +113,6 @@ public class GladdregRegisterManager extends RegisterManager {
     }
 
     public String getPullCronSchedule() {
-        System.out.println(this);
-        System.out.println(this.configurationManager);
-        System.out.println(this.configurationManager.getConfiguration());
-        System.out.println(this.configurationManager.getConfiguration().getPullCronSchedule());
         return this.configurationManager.getConfiguration().getPullCronSchedule();
     }
 
