@@ -8,7 +8,7 @@ import dk.magenta.datafordeler.core.plugin.*;
 import dk.magenta.datafordeler.core.util.ItemInputStream;
 import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.configuration.GladdregConfigurationManager;
-import dk.magenta.datafordeler.gladdrreg.data.CommonEntityManager;
+import dk.magenta.datafordeler.gladdrreg.data.GladdrregEntityManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.time.format.DateTimeFormatter;
  * Created by lars on 16-05-17.
  */
 @Component
-public class GladdregRegisterManager extends RegisterManager {
+public class GladdrregRegisterManager extends RegisterManager {
 
     private HttpCommunicator commonFetcher;
 
@@ -36,11 +36,11 @@ public class GladdregRegisterManager extends RegisterManager {
     private GladdregConfigurationManager configurationManager;
 
     @Autowired
-    private GladdregPlugin plugin;
+    private GladdrregPlugin plugin;
 
     private Logger log = LogManager.getLogger("GladdregRegisterManager");
 
-    public GladdregRegisterManager() {
+    public GladdrregRegisterManager() {
         this.commonFetcher = new HttpCommunicator();
     }
 
@@ -89,8 +89,8 @@ public class GladdregRegisterManager extends RegisterManager {
 
     @Override
     protected ItemInputStream<Event> parseEventResponse(InputStream responseContent, EntityManager entityManager) throws DataFordelerException {
-        if (!(entityManager instanceof CommonEntityManager)) {
-            throw new WrongSubclassException(CommonEntityManager.class, entityManager);
+        if (!(entityManager instanceof GladdrregEntityManager)) {
+            throw new WrongSubclassException(GladdrregEntityManager.class, entityManager);
         }
         return ItemInputStream.parseJsonStream(responseContent, Event.class, "events", this.getObjectMapper());
     }
