@@ -3,7 +3,10 @@ package dk.magenta.datafordeler.gladdrreg.data.municipality;
 import dk.magenta.datafordeler.core.exception.AccessDeniedException;
 import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
+import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.user.DafoUserDetails;
+import dk.magenta.datafordeler.gladdrreg.GladdregPlugin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/gladdrreg/municipality/1/rest")
 public class MunicipalityEntityService extends FapiService<MunicipalityEntity, MunicipalityQuery> {
+
+    @Autowired
+    private GladdregPlugin gladdregPlugin;
 
     @Override
     public int getVersion() {
@@ -28,6 +34,11 @@ public class MunicipalityEntityService extends FapiService<MunicipalityEntity, M
     @Override
     protected Class<MunicipalityEntity> getEntityClass() {
         return MunicipalityEntity.class;
+    }
+
+    @Override
+    public Plugin getPlugin() {
+        return this.gladdregPlugin;
     }
 
     @Override
