@@ -15,4 +15,8 @@ public class AddressEntity extends Entity<AddressEntity, AddressRegistration> {
     @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="type")
     public static final String schema = "Address";
 
+    @Override
+    protected AddressRegistration createEmptyRegistration() {
+        return new AddressRegistration();
+    }
 }
