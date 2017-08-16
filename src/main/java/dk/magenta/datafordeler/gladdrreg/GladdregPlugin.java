@@ -3,6 +3,7 @@ package dk.magenta.datafordeler.gladdrreg;
 import dk.magenta.datafordeler.core.configuration.ConfigurationManager;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.plugin.RegisterManager;
+import dk.magenta.datafordeler.core.plugin.RolesDefinition;
 import dk.magenta.datafordeler.gladdrreg.data.address.AddressEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.bnumber.BNumberEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.district.DistrictEntityManager;
@@ -53,6 +54,8 @@ public class GladdregPlugin extends Plugin {
     @Autowired
     private StateEntityManager stateEntityManager;
 
+    private GladdrregRolesDefinition rolesDefinition = new GladdrregRolesDefinition();
+
     @PostConstruct
     public void init() {
         this.registerManager.addEntityManager(this.municipalityEntityManager);
@@ -80,4 +83,8 @@ public class GladdregPlugin extends Plugin {
         return this.configurationManager;
     }
 
+    @Override
+    public RolesDefinition getRolesDefinition() {
+        return this.rolesDefinition;
+    }
 }
