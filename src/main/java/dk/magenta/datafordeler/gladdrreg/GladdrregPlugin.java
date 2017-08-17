@@ -22,13 +22,13 @@ import javax.annotation.PostConstruct;
  * Created by lars on 16-05-17.
  */
 @Component
-public class GladdregPlugin extends Plugin {
+public class GladdrregPlugin extends Plugin {
 
     @Autowired
     private GladdregConfigurationManager configurationManager;
 
     @Autowired
-    private GladdregRegisterManager registerManager;
+    private GladdrregRegisterManager registerManager;
 
     @Autowired
     private MunicipalityEntityManager municipalityEntityManager;

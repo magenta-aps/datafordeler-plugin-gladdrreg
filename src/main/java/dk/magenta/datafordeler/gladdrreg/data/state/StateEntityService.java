@@ -5,7 +5,7 @@ import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.user.DafoUserDetails;
-import dk.magenta.datafordeler.gladdrreg.GladdregPlugin;
+import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StateEntityService extends FapiService<StateEntity, StateQuery> {
 
     @Autowired
-    private GladdregPlugin gladdregPlugin;
+    private GladdrregPlugin gladdregPlugin;
 
     @Override
     public int getVersion() {
