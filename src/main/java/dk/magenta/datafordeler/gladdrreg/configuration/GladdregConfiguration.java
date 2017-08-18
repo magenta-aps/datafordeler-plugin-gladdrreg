@@ -1,6 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.configuration;
 
-import dk.magenta.datafordeler.gladdrreg.GladdregPlugin;
+import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
 import dk.magenta.datafordeler.core.configuration.Configuration;
 
 import javax.persistence.Column;
@@ -16,7 +16,7 @@ public class GladdregConfiguration implements Configuration {
 
     @Id
     @Column(name = "id")
-    private final String plugin = GladdregPlugin.class.getName();
+    private final String plugin = GladdrregPlugin.class.getName();
 
     // Midnight every january 1st, eg. never
     @Column

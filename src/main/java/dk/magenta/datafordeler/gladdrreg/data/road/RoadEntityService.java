@@ -3,7 +3,10 @@ package dk.magenta.datafordeler.gladdrreg.data.road;
 import dk.magenta.datafordeler.core.exception.AccessDeniedException;
 import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
+import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.user.DafoUserDetails;
+import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/gladdrreg/road/1/rest")
 public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
+
+    @Autowired
+    private GladdrregPlugin gladdregPlugin;
 
     @Override
     public int getVersion() {
@@ -28,6 +34,11 @@ public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
     @Override
     protected Class<RoadEntity> getEntityClass() {
         return RoadEntity.class;
+    }
+
+    @Override
+    public Plugin getPlugin() {
+        return this.gladdregPlugin;
     }
 
     @Override

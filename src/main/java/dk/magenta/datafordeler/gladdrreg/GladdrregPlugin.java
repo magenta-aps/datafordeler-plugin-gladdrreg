@@ -3,6 +3,7 @@ package dk.magenta.datafordeler.gladdrreg;
 import dk.magenta.datafordeler.core.configuration.ConfigurationManager;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.plugin.RegisterManager;
+import dk.magenta.datafordeler.core.plugin.RolesDefinition;
 import dk.magenta.datafordeler.gladdrreg.data.address.AddressEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.bnumber.BNumberEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.district.DistrictEntityManager;
@@ -21,13 +22,13 @@ import javax.annotation.PostConstruct;
  * Created by lars on 16-05-17.
  */
 @Component
-public class GladdregPlugin extends Plugin {
+public class GladdrregPlugin extends Plugin {
 
     @Autowired
     private GladdregConfigurationManager configurationManager;
 
     @Autowired
-    private GladdregRegisterManager registerManager;
+    private GladdrregRegisterManager registerManager;
 
     @Autowired
     private MunicipalityEntityManager municipalityEntityManager;
@@ -52,6 +53,8 @@ public class GladdregPlugin extends Plugin {
 
     @Autowired
     private StateEntityManager stateEntityManager;
+
+    private GladdrregRolesDefinition rolesDefinition = new GladdrregRolesDefinition();
 
     @PostConstruct
     public void init() {
@@ -80,4 +83,8 @@ public class GladdregPlugin extends Plugin {
         return this.configurationManager;
     }
 
+    @Override
+    public RolesDefinition getRolesDefinition() {
+        return this.rolesDefinition;
+    }
 }
