@@ -15,4 +15,8 @@ public class LocalityEntity extends Entity<LocalityEntity, LocalityRegistration>
     @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="type")
     public static final String schema = "Locality";
 
+    @Override
+    protected LocalityRegistration createEmptyRegistration() {
+        return new LocalityRegistration();
+    }
 }
