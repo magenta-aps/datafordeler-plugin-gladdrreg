@@ -15,4 +15,8 @@ public class MunicipalityEntity extends Entity<MunicipalityEntity, MunicipalityR
     @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="type")
     public static final String schema = "Municipality";
 
+    @Override
+    protected MunicipalityRegistration createEmptyRegistration() {
+        return new MunicipalityRegistration();
+    }
 }

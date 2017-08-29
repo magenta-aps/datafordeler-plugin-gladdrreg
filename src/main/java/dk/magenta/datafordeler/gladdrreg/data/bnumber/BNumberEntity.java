@@ -15,4 +15,8 @@ public class BNumberEntity extends Entity<BNumberEntity, BNumberRegistration> {
     @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="type")
     public static final String schema = "BNumber";
 
+    @Override
+    protected BNumberRegistration createEmptyRegistration() {
+        return new BNumberRegistration();
+    }
 }

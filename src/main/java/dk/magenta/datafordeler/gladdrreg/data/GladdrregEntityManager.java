@@ -30,7 +30,7 @@ import java.util.*;
  * Created by lars on 29-05-17.
  */
 @Component
-public abstract class CommonEntityManager extends EntityManager {
+public abstract class GladdrregEntityManager extends EntityManager {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -43,7 +43,7 @@ public abstract class CommonEntityManager extends EntityManager {
 
     protected abstract String getBaseName();
 
-    public CommonEntityManager() {
+    public GladdrregEntityManager() {
         this.commonFetcher = new HttpCommunicator();
         this.handledURISubstrings = new ArrayList<>();
     }
