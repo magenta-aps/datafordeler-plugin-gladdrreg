@@ -96,7 +96,7 @@ public abstract class GladdrregEntityManager extends EntityManager {
     }
 
     @Override
-    public List<? extends Registration> parseRegistration(JsonNode registrationData) throws ParseException {
+    public List<? extends Registration> parseRegistration(JsonNode registrationData) throws DataFordelerException {
         if (registrationData.has("registrationFrom")) { // Check whether the object is wrapped
             // Unwrapped case
             try {
