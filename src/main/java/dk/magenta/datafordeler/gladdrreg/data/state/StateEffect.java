@@ -11,6 +11,9 @@ import java.time.OffsetDateTime;
 @javax.persistence.Entity
 @Table(name="gladdrreg_state_effect")
 public class StateEffect extends Effect<StateRegistration, StateEffect, StateData> {
+    public StateEffect() {
+    }
+
     public StateEffect(StateRegistration registration, OffsetDateTime effectFrom, OffsetDateTime effectTo) {
         super(registration, effectFrom, effectTo);
     }
