@@ -104,7 +104,7 @@ public abstract class GladdrregEntityManager extends EntityManager {
             try {
                 return Collections.singletonList(this.getObjectMapper().treeToValue(registrationData, this.managedRegistrationClass));
             } catch (JsonProcessingException e) {
-                throw new ParseException("Error parsing registration "+registrationData);
+                throw new ParseException("Error parsing registration "+registrationData, e);
             }
         } else {
             // Wrapped case
