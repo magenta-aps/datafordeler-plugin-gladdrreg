@@ -27,12 +27,12 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
     @Column
     @JsonProperty
     @XmlElement
-    private String name;
+    private String b_type;
 
     @Column
     @JsonProperty
     @XmlElement
-    private String nickname;
+    private String b_callname;
 
     @JsonProperty
     @XmlElement
@@ -48,8 +48,8 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
     public Map<String, Object> asMap() {
         HashMap<String, Object> map = new HashMap<>(super.asMap());
         map.put("code", this.code);
-        map.put("name", this.name);
-        map.put("nickname", this.nickname);
+        map.put("b_type", this.b_type);
+        map.put("b_callname", this.b_callname);
         return map;
     }
 
