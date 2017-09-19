@@ -37,6 +37,11 @@ public class StateEntityService extends FapiService<StateEntity, StateQuery> {
     }
 
     @Override
+    protected Class<StateData> getDataClass() {
+        return StateData.class;
+    }
+
+    @Override
     public Plugin getPlugin() {
         return this.gladdregPlugin;
     }

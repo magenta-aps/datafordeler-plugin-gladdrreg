@@ -37,6 +37,11 @@ public class AddressEntityService extends FapiService<AddressEntity, AddressQuer
     }
 
     @Override
+    protected Class<AddressData> getDataClass() {
+        return AddressData.class;
+    }
+
+    @Override
     public Plugin getPlugin() {
         return this.gladdregPlugin;
     }

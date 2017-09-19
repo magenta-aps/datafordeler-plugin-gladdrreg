@@ -37,6 +37,11 @@ public class DistrictEntityService extends FapiService<DistrictEntity, DistrictQ
     }
 
     @Override
+    protected Class<DistrictData> getDataClass() {
+        return DistrictData.class;
+    }
+
+    @Override
     public Plugin getPlugin() {
         return this.gladdregPlugin;
     }

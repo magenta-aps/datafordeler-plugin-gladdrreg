@@ -1,15 +1,16 @@
 package dk.magenta.datafordeler.gladdrreg;
 
 import dk.magenta.datafordeler.core.configuration.ConfigurationManager;
+import dk.magenta.datafordeler.core.plugin.AreaRestrictionDefinition;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.plugin.RegisterManager;
 import dk.magenta.datafordeler.core.plugin.RolesDefinition;
+import dk.magenta.datafordeler.gladdrreg.configuration.GladdregConfigurationManager;
 import dk.magenta.datafordeler.gladdrreg.data.address.AddressEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.bnumber.BNumberEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.district.DistrictEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.locality.LocalityEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.municipality.MunicipalityEntityManager;
-import dk.magenta.datafordeler.gladdrreg.configuration.GladdregConfigurationManager;
 import dk.magenta.datafordeler.gladdrreg.data.postalcode.PostalCodeEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.road.RoadEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.state.StateEntityManager;
@@ -56,6 +57,8 @@ public class GladdrregPlugin extends Plugin {
 
     private GladdrregRolesDefinition rolesDefinition = new GladdrregRolesDefinition();
 
+    private AreaRestrictionDefinition areaRestrictionDefinition = new GladdrregAreaRestrictionDefinition(this);
+
     @PostConstruct
     public void init() {
         this.registerManager.addEntityManager(this.municipalityEntityManager);
@@ -87,4 +90,10 @@ public class GladdrregPlugin extends Plugin {
     public RolesDefinition getRolesDefinition() {
         return this.rolesDefinition;
     }
+
+    @Override
+    public AreaRestrictionDefinition getAreaRestrictionDefinition() {
+        return this.areaRestrictionDefinition;
+    }
+
 }

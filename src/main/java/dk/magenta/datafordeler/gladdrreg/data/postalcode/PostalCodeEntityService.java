@@ -37,6 +37,11 @@ public class PostalCodeEntityService extends FapiService<PostalCodeEntity, Posta
     }
 
     @Override
+    protected Class<PostalCodeData> getDataClass() {
+        return PostalCodeData.class;
+    }
+
+    @Override
     public Plugin getPlugin() {
         return this.gladdregPlugin;
     }

@@ -37,6 +37,11 @@ public class MunicipalityEntityService extends FapiService<MunicipalityEntity, M
     }
 
     @Override
+    protected Class<MunicipalityData> getDataClass() {
+        return MunicipalityData.class;
+    }
+
+    @Override
     public Plugin getPlugin() {
         return this.gladdregPlugin;
     }

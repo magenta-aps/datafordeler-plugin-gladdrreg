@@ -1,10 +1,10 @@
 package dk.magenta.datafordeler.gladdrreg.data;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.fapi.QueryField;
-import dk.magenta.datafordeler.core.util.ListHashMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -81,5 +81,11 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
         this.setNote(parameters.getFirst(NOTE));
         this.setRegistration_user(parameters.getFirst(REGISTRATION_USER));
         this.setState(parameters.getFirst(STATE));
+    }
+
+    @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = new LookupDefinition(this);
+        return lookupDefinition;
     }
 }

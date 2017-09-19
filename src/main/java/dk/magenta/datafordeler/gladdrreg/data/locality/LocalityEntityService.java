@@ -37,6 +37,11 @@ public class LocalityEntityService extends FapiService<LocalityEntity, LocalityQ
     }
 
     @Override
+    protected Class<LocalityData> getDataClass() {
+        return LocalityData.class;
+    }
+
+    @Override
     public Plugin getPlugin() {
         return this.gladdregPlugin;
     }
