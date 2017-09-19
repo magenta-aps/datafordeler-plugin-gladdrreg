@@ -1,9 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg.data.address;
 
-import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
-import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
 import java.util.HashMap;
@@ -58,6 +57,21 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
         map.put(FLOOR, this.floor);
         map.put(ROOM, this.room);
         return map;
+    }
+
+    @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = super.getLookupDefinition();
+        if (this.houseNumber != null) {
+            lookupDefinition.put("houseNumber", this.houseNumber, String.class);
+        }
+        if (this.floor != null) {
+            lookupDefinition.put("floor", this.floor, String.class);
+        }
+        if (this.room != null) {
+            lookupDefinition.put("room", this.room, String.class);
+        }
+        return lookupDefinition;
     }
 
     @Override

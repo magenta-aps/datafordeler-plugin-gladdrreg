@@ -95,5 +95,4 @@ public class GladdrregPlugin extends Plugin {
     public AreaRestrictionDefinition getAreaRestrictionDefinition() {
         return this.areaRestrictionDefinition;
     }
-
 }
