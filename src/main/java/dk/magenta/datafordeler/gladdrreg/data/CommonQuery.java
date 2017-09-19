@@ -83,9 +83,4 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
         this.setState(parameters.getFirst(STATE));
     }
 
-    @Override
-    public LookupDefinition getLookupDefinition() {
-        LookupDefinition lookupDefinition = new LookupDefinition(this);
-        return lookupDefinition;
-    }
 }
