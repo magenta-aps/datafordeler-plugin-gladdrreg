@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data.bnumber;
 
+import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
@@ -56,6 +57,21 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
         map.put(NAME, this.name);
         map.put(NICKNAME, this.nickname);
         return map;
+    }
+
+    @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = super.getLookupDefinition();
+        if (this.code != null) {
+            lookupDefinition.put("code", this.code, String.class);
+        }
+        if (this.name != null) {
+            lookupDefinition.put("name", this.name, String.class);
+        }
+        if (this.nickname != null) {
+            lookupDefinition.put("nickname", this.nickname, String.class);
+        }
+        return lookupDefinition;
     }
 
     @Override

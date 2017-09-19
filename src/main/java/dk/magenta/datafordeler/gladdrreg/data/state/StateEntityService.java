@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data.state;
 
+import dk.magenta.datafordeler.core.database.DataItem;
 import dk.magenta.datafordeler.core.exception.AccessDeniedException;
 import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
@@ -34,6 +35,11 @@ public class StateEntityService extends FapiService<StateEntity, StateQuery> {
     @Override
     protected Class<StateEntity> getEntityClass() {
         return StateEntity.class;
+    }
+
+    @Override
+    protected Class<? extends DataItem> getDataClass() {
+        return StateData.class;
     }
 
     @Override

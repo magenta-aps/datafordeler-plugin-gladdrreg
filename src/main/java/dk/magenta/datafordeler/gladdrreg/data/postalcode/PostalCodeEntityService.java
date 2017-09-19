@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data.postalcode;
 
+import dk.magenta.datafordeler.core.database.DataItem;
 import dk.magenta.datafordeler.core.exception.AccessDeniedException;
 import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
@@ -34,6 +35,11 @@ public class PostalCodeEntityService extends FapiService<PostalCodeEntity, Posta
     @Override
     protected Class<PostalCodeEntity> getEntityClass() {
         return PostalCodeEntity.class;
+    }
+
+    @Override
+    protected Class<? extends DataItem> getDataClass() {
+        return PostalCodeData.class;
     }
 
     @Override

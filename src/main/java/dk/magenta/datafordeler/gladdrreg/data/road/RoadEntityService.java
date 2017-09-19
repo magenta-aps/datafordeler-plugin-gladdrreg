@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data.road;
 
+import dk.magenta.datafordeler.core.database.DataItem;
 import dk.magenta.datafordeler.core.exception.AccessDeniedException;
 import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
@@ -34,6 +35,11 @@ public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
     @Override
     protected Class<RoadEntity> getEntityClass() {
         return RoadEntity.class;
+    }
+
+    @Override
+    protected Class<? extends DataItem> getDataClass() {
+        return RoadData.class;
     }
 
     @Override

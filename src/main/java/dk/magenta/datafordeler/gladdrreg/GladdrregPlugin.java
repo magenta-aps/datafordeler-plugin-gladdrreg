@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg;
 
 import dk.magenta.datafordeler.core.configuration.ConfigurationManager;
+import dk.magenta.datafordeler.core.plugin.AreaRestrictionDefinition;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.plugin.RegisterManager;
 import dk.magenta.datafordeler.core.plugin.RolesDefinition;
@@ -86,5 +87,10 @@ public class GladdrregPlugin extends Plugin {
     @Override
     public RolesDefinition getRolesDefinition() {
         return this.rolesDefinition;
+    }
+
+    @Override
+    public AreaRestrictionDefinition getAreaRestrictionDefinition() {
+        return null;
     }
 }

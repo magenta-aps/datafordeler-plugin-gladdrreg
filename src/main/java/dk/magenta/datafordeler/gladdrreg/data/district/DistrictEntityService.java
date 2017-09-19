@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data.district;
 
+import dk.magenta.datafordeler.core.database.DataItem;
 import dk.magenta.datafordeler.core.exception.AccessDeniedException;
 import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
@@ -34,6 +35,11 @@ public class DistrictEntityService extends FapiService<DistrictEntity, DistrictQ
     @Override
     protected Class<DistrictEntity> getEntityClass() {
         return DistrictEntity.class;
+    }
+
+    @Override
+    protected Class<? extends DataItem> getDataClass() {
+        return DistrictData.class;
     }
 
     @Override

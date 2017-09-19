@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data.bnumber;
 
+import dk.magenta.datafordeler.core.database.DataItem;
 import dk.magenta.datafordeler.core.exception.AccessDeniedException;
 import dk.magenta.datafordeler.core.exception.AccessRequiredException;
 import dk.magenta.datafordeler.core.fapi.FapiService;
@@ -34,6 +35,11 @@ public class BNumberEntityService extends FapiService<BNumberEntity, BNumberQuer
     @Override
     protected Class<BNumberEntity> getEntityClass() {
         return BNumberEntity.class;
+    }
+
+    @Override
+    protected Class<? extends DataItem> getDataClass() {
+        return BNumberData.class;
     }
 
     @Override

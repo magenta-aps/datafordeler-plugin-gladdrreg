@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data.road;
 
+import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
@@ -82,6 +83,27 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
         map.put(ALTERNATE_NAME, this.alternateName);
         map.put(CPR_NAME, this.cprName);
         return map;
+    }
+
+    @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = super.getLookupDefinition();
+        if (this.code != null) {
+            lookupDefinition.put("code", this.code, String.class);
+        }
+        if (this.name != null) {
+            lookupDefinition.put("name", this.name, String.class);
+        }
+        if (this.shortName != null) {
+            lookupDefinition.put("shortName", this.shortName, String.class);
+        }
+        if (this.alternateName != null) {
+            lookupDefinition.put("alternateName", this.alternateName, String.class);
+        }
+        if (this.cprName != null) {
+            lookupDefinition.put("cprName", this.cprName, String.class);
+        }
+        return lookupDefinition;
     }
 
     @Override
