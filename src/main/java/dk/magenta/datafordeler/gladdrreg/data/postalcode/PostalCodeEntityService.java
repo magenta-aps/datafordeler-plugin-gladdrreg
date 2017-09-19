@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by lars on 19-05-17.
  */
 @RestController
-@RequestMapping("/gladdrreg/postcode/1/rest")
+@RequestMapping("/gladdrreg/postalcode/1/rest")
 public class PostalCodeEntityService extends FapiService<PostalCodeEntity, PostalCodeQuery> {
 
     @Autowired
@@ -38,7 +38,7 @@ public class PostalCodeEntityService extends FapiService<PostalCodeEntity, Posta
     }
 
     @Override
-    protected Class<? extends DataItem> getDataClass() {
+    protected Class<PostalCodeData> getDataClass() {
         return PostalCodeData.class;
     }
 

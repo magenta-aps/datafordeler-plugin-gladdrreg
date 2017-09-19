@@ -38,7 +38,7 @@ public class AddressEntityService extends FapiService<AddressEntity, AddressQuer
     }
 
     @Override
-    protected Class<? extends DataItem> getDataClass() {
+    protected Class<AddressData> getDataClass() {
         return AddressData.class;
     }
 

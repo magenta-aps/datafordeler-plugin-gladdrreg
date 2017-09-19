@@ -38,7 +38,7 @@ public class StateEntityService extends FapiService<StateEntity, StateQuery> {
     }
 
     @Override
-    protected Class<? extends DataItem> getDataClass() {
+    protected Class<StateData> getDataClass() {
         return StateData.class;
     }
 

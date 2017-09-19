@@ -38,7 +38,7 @@ public class BNumberEntityService extends FapiService<BNumberEntity, BNumberQuer
     }
 
     @Override
-    protected Class<? extends DataItem> getDataClass() {
+    protected Class<BNumberData> getDataClass() {
         return BNumberData.class;
     }
 

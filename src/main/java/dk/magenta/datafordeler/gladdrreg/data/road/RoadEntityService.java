@@ -38,7 +38,7 @@ public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
     }
 
     @Override
-    protected Class<? extends DataItem> getDataClass() {
+    protected Class<RoadData> getDataClass() {
         return RoadData.class;
     }
 

@@ -38,7 +38,7 @@ public class LocalityEntityService extends FapiService<LocalityEntity, LocalityQ
     }
 
     @Override
-    protected Class<? extends DataItem> getDataClass() {
+    protected Class<LocalityData> getDataClass() {
         return LocalityData.class;
     }
 
