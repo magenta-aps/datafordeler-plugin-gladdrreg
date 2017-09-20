@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dk.magenta.datafordeler.core.database.DataItem;
 import dk.magenta.datafordeler.core.database.Effect;
 import dk.magenta.datafordeler.core.database.Identification;
+import org.hibernate.Session;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
@@ -12,7 +13,6 @@ import javax.persistence.MappedSuperclass;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
 import java.util.Map;
-import org.hibernate.Session;
 
 /**
  * Created by lars on 19-05-17.
