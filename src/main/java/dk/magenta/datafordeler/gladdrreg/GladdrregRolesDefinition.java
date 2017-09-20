@@ -61,4 +61,9 @@ public class GladdrregRolesDefinition extends RolesDefinition {
 
         return roles;
     }
+
+
+    public ReadServiceRole getDefaultReadRole() {
+        return READ_GLADDRREG_ROLE;
+    }
 }

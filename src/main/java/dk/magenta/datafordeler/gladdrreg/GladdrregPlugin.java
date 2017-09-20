@@ -55,9 +55,14 @@ public class GladdrregPlugin extends Plugin {
     @Autowired
     private StateEntityManager stateEntityManager;
 
-    private GladdrregRolesDefinition rolesDefinition = new GladdrregRolesDefinition();
+    private GladdrregRolesDefinition rolesDefinition;
 
-    private AreaRestrictionDefinition areaRestrictionDefinition = new GladdrregAreaRestrictionDefinition(this);
+    private AreaRestrictionDefinition areaRestrictionDefinition;
+
+    public GladdrregPlugin() {
+        this.rolesDefinition = new GladdrregRolesDefinition();
+        this.areaRestrictionDefinition = new GladdrregAreaRestrictionDefinition(this);
+    }
 
     @PostConstruct
     public void init() {

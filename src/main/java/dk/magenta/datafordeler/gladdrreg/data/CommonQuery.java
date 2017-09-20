@@ -76,6 +76,24 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
     }
 
     @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = super.getLookupDefinition();
+        if (this.active != null) {
+            lookupDefinition.put("active", this.active, Boolean.class);
+        }
+        if (this.note != null) {
+            lookupDefinition.put("note", this.note, String.class);
+        }
+        if (this.registration_user != null) {
+            lookupDefinition.put("registration_user", this.registration_user, String.class);
+        }
+        if (this.state != null) {
+            lookupDefinition.put("state", this.state, String.class);
+        }
+        return lookupDefinition;
+    }
+
+    @Override
     public void setFromParameters(ParameterMap parameters) {
         this.setActive(Query.booleanFromString(parameters.getFirst(ACTIVE)));
         this.setNote(parameters.getFirst(NOTE));

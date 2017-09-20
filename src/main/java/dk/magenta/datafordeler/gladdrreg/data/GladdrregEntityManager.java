@@ -3,9 +3,7 @@ package dk.magenta.datafordeler.gladdrreg.data;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.magenta.datafordeler.core.database.EntityReference;
-import dk.magenta.datafordeler.core.database.Registration;
-import dk.magenta.datafordeler.core.database.RegistrationReference;
+import dk.magenta.datafordeler.core.database.*;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.exception.ParseException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
@@ -97,12 +95,25 @@ public abstract class GladdrregEntityManager extends EntityManager {
 
     @Override
     public List<? extends Registration> parseRegistration(JsonNode registrationData) throws DataFordelerException {
+        OffsetDateTime timestamp = OffsetDateTime.now();
         // Check whether the object is wrapped
         if (registrationData.has("registrationFrom") ||
                 registrationData.has("registreringFra")) {
             // Unwrapped case
             try {
-                return Collections.singletonList(this.getObjectMapper().treeToValue(registrationData, this.managedRegistrationClass));
+                Registration r = this.getObjectMapper().treeToValue(registrationData, this.managedRegistrationClass);
+                for (Object oEffect : r.getEffects()) {
+                    Effect effect = (Effect) oEffect;
+                    for (Object oDataItem : effect.getDataItems()) {
+                        DataItem dataItem = (DataItem) oDataItem;
+                        RecordData recordData = new RecordData(timestamp);
+                        recordData.setSourceData(objectMapper.valueToTree(dataItem).toString());
+                        dataItem.addRecordData(recordData);
+                    }
+                }
+
+                r.wireEffects();
+                return Collections.singletonList(r);
             } catch (JsonProcessingException e) {
                 throw new ParseException("Error parsing registration "+registrationData, e);
             }
