@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.magenta.datafordeler.core.database.*;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.exception.ParseException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
@@ -33,6 +34,9 @@ public abstract class GladdrregEntityManager extends EntityManager {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private XmlMapper xmlMapper;
+
     private HttpCommunicator commonFetcher;
 
     protected Logger log = LogManager.getLogger(this.getClass().getSimpleName());
@@ -59,9 +63,12 @@ public abstract class GladdrregEntityManager extends EntityManager {
     }
 
     @Override
-    protected ObjectMapper getObjectMapper() {
+    public ObjectMapper getObjectMapper() {
         return this.objectMapper;
     }
+
+    @Override
+    public XmlMapper getXmlMapper() { return xmlMapper; }
 
     @Override
     protected Communicator getRegistrationFetcher() {
