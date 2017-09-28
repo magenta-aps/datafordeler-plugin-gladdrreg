@@ -10,6 +10,7 @@ import dk.magenta.datafordeler.core.database.Registration;
 import dk.magenta.datafordeler.core.database.SessionManager;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.io.Event;
+import dk.magenta.datafordeler.core.io.ImportMetadata;
 import dk.magenta.datafordeler.core.io.PluginSourceData;
 import dk.magenta.datafordeler.core.plugin.EntityManager;
 import dk.magenta.datafordeler.core.util.InputStreamReader;
@@ -132,7 +133,8 @@ public class QueryTest {
         Event event = new Event();
         event.setSchema(schema);
         event.setData(testData);
-        this.engine.handleEvent(event, this.plugin.getRegisterManager().getPlugin());
+        ImportMetadata importMetadata = new ImportMetadata();
+        this.engine.handleEvent(event, this.plugin.getRegisterManager().getPlugin(), importMetadata);
 
     }
 

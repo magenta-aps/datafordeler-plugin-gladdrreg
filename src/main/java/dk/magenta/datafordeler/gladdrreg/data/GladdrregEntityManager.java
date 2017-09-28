@@ -7,6 +7,7 @@ import dk.magenta.datafordeler.core.database.*;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.exception.ParseException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
+import dk.magenta.datafordeler.core.io.ImportMetadata;
 import dk.magenta.datafordeler.core.io.Receipt;
 import dk.magenta.datafordeler.core.plugin.Communicator;
 import dk.magenta.datafordeler.core.plugin.EntityManager;
@@ -94,7 +95,7 @@ public abstract class GladdrregEntityManager extends EntityManager {
     }
 
     @Override
-    public List<? extends Registration> parseRegistration(JsonNode registrationData) throws DataFordelerException {
+    public List<? extends Registration> parseRegistration(JsonNode registrationData, ImportMetadata importMetadata) throws DataFordelerException {
         OffsetDateTime timestamp = OffsetDateTime.now();
         // Check whether the object is wrapped
         if (registrationData.has("registrationFrom") ||
@@ -108,22 +109,25 @@ public abstract class GladdrregEntityManager extends EntityManager {
                         DataItem dataItem = (DataItem) oDataItem;
                         RecordData recordData = new RecordData(timestamp);
                         recordData.setSourceData(objectMapper.valueToTree(dataItem).toString());
+                        dataItem.setLastUpdated(importMetadata.getImportTime());
                         dataItem.addRecordData(recordData);
                     }
                 }
 
                 r.wireEffects();
+                System.out.println("Returning singletonlist");
                 return Collections.singletonList(r);
             } catch (JsonProcessingException e) {
                 throw new ParseException("Error parsing registration "+registrationData, e);
             }
         } else {
             // Wrapped case
-            Map<String, List<? extends Registration>> map = this.parseRegistrationList(registrationData);
+            Map<String, List<? extends Registration>> map = this.parseRegistrationList(registrationData, importMetadata);
             ArrayList<Registration> list = new ArrayList<>();
             for (String key : map.keySet()) {
                 list.addAll(map.get(key));
             }
+            System.out.println("Returning list");
             return list;
         }
     }
