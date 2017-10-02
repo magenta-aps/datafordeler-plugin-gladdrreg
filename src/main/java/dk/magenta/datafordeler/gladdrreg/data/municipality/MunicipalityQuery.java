@@ -1,9 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg.data.municipality;
 
-import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
-import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
 import java.util.HashMap;
@@ -58,6 +57,21 @@ public class MunicipalityQuery extends SumiffiikQuery<MunicipalityEntity> {
         map.put(ABBREV, this.abbrev);
         map.put(NAME, this.name);
         return map;
+    }
+
+    @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = super.getLookupDefinition();
+        if (this.code != null) {
+            lookupDefinition.put("code", this.code, Integer.class);
+        }
+        if (this.name != null) {
+            lookupDefinition.put("name", this.name, String.class);
+        }
+        if (this.abbrev != null) {
+            lookupDefinition.put("abbrev", this.abbrev, String.class);
+        }
+        return lookupDefinition;
     }
 
     @Override

@@ -37,6 +37,11 @@ public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
     }
 
     @Override
+    protected Class<RoadData> getDataClass() {
+        return RoadData.class;
+    }
+
+    @Override
     public Plugin getPlugin() {
         return this.gladdregPlugin;
     }

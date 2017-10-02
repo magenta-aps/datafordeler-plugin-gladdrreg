@@ -7,7 +7,6 @@ import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.user.DafoUserDetails;
 import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +33,11 @@ public class DistrictEntityService extends FapiService<DistrictEntity, DistrictQ
     @Override
     protected Class<DistrictEntity> getEntityClass() {
         return DistrictEntity.class;
+    }
+
+    @Override
+    protected Class<DistrictData> getDataClass() {
+        return DistrictData.class;
     }
 
     @Override

@@ -1,9 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg.data.state;
 
-import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
-import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
 import java.util.HashMap;
@@ -58,6 +57,21 @@ public class StateQuery extends SumiffiikQuery<StateEntity> {
         map.put(NAME, this.name);
         map.put(DESCRIPTION, this.description);
         return map;
+    }
+
+    @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = super.getLookupDefinition();
+        if (this.code != null) {
+            lookupDefinition.put("code", this.code, String.class);
+        }
+        if (this.name != null) {
+            lookupDefinition.put("name", this.name, String.class);
+        }
+        if (this.description != null) {
+            lookupDefinition.put("description", this.description, String.class);
+        }
+        return lookupDefinition;
     }
 
     @Override

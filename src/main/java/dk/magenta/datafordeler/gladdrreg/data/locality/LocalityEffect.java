@@ -11,6 +11,10 @@ import java.time.OffsetDateTime;
 @javax.persistence.Entity
 @Table(name="gladdrreg_locality_effect")
 public class LocalityEffect extends Effect<LocalityRegistration, LocalityEffect, LocalityData> {
+    public LocalityEffect() {
+
+    }
+
     public LocalityEffect(LocalityRegistration registration, OffsetDateTime effectFrom, OffsetDateTime effectTo) {
         super(registration, effectFrom, effectTo);
     }

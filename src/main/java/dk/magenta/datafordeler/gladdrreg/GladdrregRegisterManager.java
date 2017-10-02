@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
 import dk.magenta.datafordeler.core.io.Event;
+import dk.magenta.datafordeler.core.io.PluginSourceData;
 import dk.magenta.datafordeler.core.plugin.*;
 import dk.magenta.datafordeler.core.util.ItemInputStream;
 import dk.magenta.datafordeler.core.util.ListHashMap;
@@ -20,6 +21,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by lars on 16-05-17.
@@ -84,14 +87,26 @@ public class GladdrregRegisterManager extends RegisterManager {
 
     @Override
     public URI getEventInterface(EntityManager entityManager) {
+        return this.getEventInterface();
+    }
+
+    public URI getEventInterface() {
         return expandBaseURI(this.getBaseEndpoint(), "/getNewEvents");
+    }
+
+    public List<ItemInputStream<? extends PluginSourceData>> pullEvents() throws DataFordelerException {
+        Communicator eventCommunicator = this.getEventFetcher();
+        InputStream responseBody = eventCommunicator.fetch(this.getEventInterface());
+        return Collections.singletonList(this.parseEventResponse(responseBody, null));
     }
 
     @Override
     protected ItemInputStream<Event> parseEventResponse(InputStream responseContent, EntityManager entityManager) throws DataFordelerException {
-        if (!(entityManager instanceof GladdrregEntityManager)) {
+        if (entityManager != null && !(entityManager instanceof GladdrregEntityManager)) {
             throw new WrongSubclassException(GladdrregEntityManager.class, entityManager);
         }
+
+
         return ItemInputStream.parseJsonStream(responseContent, Event.class, "events", this.getObjectMapper());
     }
 

@@ -1,9 +1,9 @@
 package dk.magenta.datafordeler.gladdrreg.data;
 
 import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
-import dk.magenta.datafordeler.core.util.ListHashMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +44,18 @@ public abstract class SumiffiikQuery<E extends Entity> extends CommonQuery<E> {
         map.put("sumiffiik", this.sumiffiik);
         map.put("sumiffiik_domain", this.sumiffiik_domain);
         return map;
+    }
+
+    @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = super.getLookupDefinition();
+        if (this.sumiffiik != null) {
+            lookupDefinition.put("sumiffiik", this.sumiffiik, String.class);
+        }
+        if (this.sumiffiik_domain != null) {
+            lookupDefinition.put("sumiffiik_domain", this.sumiffiik_domain, String.class);
+        }
+        return lookupDefinition;
     }
 
     @Override

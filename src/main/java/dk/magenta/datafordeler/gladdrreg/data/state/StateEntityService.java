@@ -7,7 +7,6 @@ import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.user.DafoUserDetails;
 import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +33,11 @@ public class StateEntityService extends FapiService<StateEntity, StateQuery> {
     @Override
     protected Class<StateEntity> getEntityClass() {
         return StateEntity.class;
+    }
+
+    @Override
+    protected Class<StateData> getDataClass() {
+        return StateData.class;
     }
 
     @Override

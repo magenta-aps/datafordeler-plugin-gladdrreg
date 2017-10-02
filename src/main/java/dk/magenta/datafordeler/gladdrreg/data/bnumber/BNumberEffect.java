@@ -11,6 +11,10 @@ import java.time.OffsetDateTime;
 @javax.persistence.Entity
 @Table(name="gladdrreg_bnumber_effect")
 public class BNumberEffect extends Effect<BNumberRegistration, BNumberEffect, BNumberData> {
+    public BNumberEffect() {
+
+    }
+
     public BNumberEffect(BNumberRegistration registration, OffsetDateTime effectFrom, OffsetDateTime effectTo) {
         super(registration, effectFrom, effectTo);
     }

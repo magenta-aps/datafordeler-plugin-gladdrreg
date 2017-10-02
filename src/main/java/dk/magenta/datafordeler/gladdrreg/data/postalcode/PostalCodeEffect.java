@@ -11,6 +11,10 @@ import java.time.OffsetDateTime;
 @javax.persistence.Entity
 @Table(name="gladdrreg_postalcode_effect")
 public class PostalCodeEffect extends Effect<PostalCodeRegistration, PostalCodeEffect, PostalCodeData> {
+    public PostalCodeEffect() {
+
+    }
+
     public PostalCodeEffect(PostalCodeRegistration registration, OffsetDateTime effectFrom, OffsetDateTime effectTo) {
         super(registration, effectFrom, effectTo);
     }

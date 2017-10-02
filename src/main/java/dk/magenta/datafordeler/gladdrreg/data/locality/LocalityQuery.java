@@ -1,10 +1,9 @@
 package dk.magenta.datafordeler.gladdrreg.data.locality;
 
-import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.fapi.QueryField;
-import dk.magenta.datafordeler.core.util.ListHashMap;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
 import java.util.HashMap;
@@ -85,6 +84,27 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
         map.put(TYPE, this.type);
         map.put(LOCALITY_STATE, this.localityState);
         return map;
+    }
+
+    @Override
+    public LookupDefinition getLookupDefinition() {
+        LookupDefinition lookupDefinition = super.getLookupDefinition();
+        if (this.code != null) {
+            lookupDefinition.put("code", this.code, Integer.class);
+        }
+        if (this.name != null) {
+            lookupDefinition.put("name", this.name, String.class);
+        }
+        if (this.abbrev != null) {
+            lookupDefinition.put("abbrev", this.abbrev, String.class);
+        }
+        if (this.type != null) {
+            lookupDefinition.put("type", this.type, Integer.class);
+        }
+        if (this.localityState != null) {
+            lookupDefinition.put("localityState", this.localityState, Integer.class);
+        }
+        return lookupDefinition;
     }
 
     @Override

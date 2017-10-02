@@ -11,6 +11,10 @@ import java.time.OffsetDateTime;
 @javax.persistence.Entity
 @Table(name="gladdrreg_road_effect")
 public class RoadEffect extends Effect<RoadRegistration, RoadEffect, RoadData> {
+    public RoadEffect() {
+
+    }
+
     public RoadEffect(RoadRegistration registration, OffsetDateTime effectFrom, OffsetDateTime effectTo) {
         super(registration, effectFrom, effectTo);
     }

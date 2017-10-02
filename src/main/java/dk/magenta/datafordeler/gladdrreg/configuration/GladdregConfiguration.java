@@ -1,7 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.configuration;
 
-import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
 import dk.magenta.datafordeler.core.configuration.Configuration;
+import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
