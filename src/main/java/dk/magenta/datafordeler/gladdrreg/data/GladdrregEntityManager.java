@@ -102,8 +102,9 @@ public abstract class GladdrregEntityManager extends EntityManager {
                 registrationData.has("registreringFra")) {
             // Unwrapped case
             try {
-                Registration r = this.getObjectMapper().treeToValue(registrationData, this.managedRegistrationClass);
-                for (Object oEffect : r.getEffects()) {
+                Registration registration = this.getObjectMapper().treeToValue(registrationData, this.managedRegistrationClass);
+                registration.setLastImportTime(importMetadata.getImportTime());
+                for (Object oEffect : registration.getEffects()) {
                     Effect effect = (Effect) oEffect;
                     for (Object oDataItem : effect.getDataItems()) {
                         DataItem dataItem = (DataItem) oDataItem;
@@ -114,9 +115,9 @@ public abstract class GladdrregEntityManager extends EntityManager {
                     }
                 }
 
-                r.wireEffects();
+                registration.wireEffects();
                 System.out.println("Returning singletonlist");
-                return Collections.singletonList(r);
+                return Collections.singletonList(registration);
             } catch (JsonProcessingException e) {
                 throw new ParseException("Error parsing registration "+registrationData, e);
             }
