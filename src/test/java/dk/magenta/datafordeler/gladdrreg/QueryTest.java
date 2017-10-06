@@ -187,8 +187,8 @@ public class QueryTest {
         String type = "address";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -199,8 +199,8 @@ public class QueryTest {
 
 
         searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -271,8 +271,8 @@ public class QueryTest {
         String type = "bnumber";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -282,8 +282,8 @@ public class QueryTest {
         Assert.assertEquals(0, results.size());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -344,8 +344,8 @@ public class QueryTest {
         String type = "district";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -355,8 +355,8 @@ public class QueryTest {
         Assert.assertEquals(0, results.size());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -445,8 +445,8 @@ public class QueryTest {
         String type = "locality";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -456,8 +456,8 @@ public class QueryTest {
         Assert.assertEquals(0, results.size());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -519,8 +519,8 @@ public class QueryTest {
         String type = "municipality";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -530,8 +530,8 @@ public class QueryTest {
         Assert.assertEquals(0, results.size());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -593,8 +593,8 @@ public class QueryTest {
         String type = "postalcode";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -604,8 +604,8 @@ public class QueryTest {
         Assert.assertEquals(0, results.size());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -663,8 +663,8 @@ public class QueryTest {
         String type = "road";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -674,8 +674,8 @@ public class QueryTest {
         Assert.assertEquals(0, results.size());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -736,8 +736,8 @@ public class QueryTest {
         String type = "state";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -747,8 +747,8 @@ public class QueryTest {
         Assert.assertEquals(0, results.size());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
