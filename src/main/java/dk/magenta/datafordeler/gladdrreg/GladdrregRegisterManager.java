@@ -1,6 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dk.magenta.datafordeler.core.database.Entity;
+import dk.magenta.datafordeler.core.database.SessionManager;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
 import dk.magenta.datafordeler.core.io.Event;
@@ -12,6 +14,7 @@ import dk.magenta.datafordeler.gladdrreg.configuration.GladdregConfigurationMana
 import dk.magenta.datafordeler.gladdrreg.data.GladdrregEntityManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +26,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lars on 16-05-17.
@@ -40,6 +44,9 @@ public class GladdrregRegisterManager extends RegisterManager {
 
     @Autowired
     private GladdrregPlugin plugin;
+
+    @Autowired
+    private SessionManager sessionManager;
 
     private Logger log = LogManager.getLogger("GladdregRegisterManager");
 
@@ -64,6 +71,11 @@ public class GladdrregRegisterManager extends RegisterManager {
     @Override
     public Plugin getPlugin() {
         return this.plugin;
+    }
+
+    @Override
+    public SessionManager getSessionManager() {
+        return this.sessionManager;
     }
 
     private URI baseEndpoint;
@@ -94,10 +106,10 @@ public class GladdrregRegisterManager extends RegisterManager {
         return expandBaseURI(this.getBaseEndpoint(), "/getNewEvents");
     }
 
-    public List<ItemInputStream<? extends PluginSourceData>> pullEvents() throws DataFordelerException {
+    public Map<EntityManager, ItemInputStream<? extends PluginSourceData>> pullEvents() throws DataFordelerException {
         Communicator eventCommunicator = this.getEventFetcher();
         InputStream responseBody = eventCommunicator.fetch(this.getEventInterface());
-        return Collections.singletonList(this.parseEventResponse(responseBody, null));
+        return Collections.singletonMap(null, this.parseEventResponse(responseBody, null));
     }
 
     @Override
@@ -129,6 +141,19 @@ public class GladdrregRegisterManager extends RegisterManager {
 
     public String getPullCronSchedule() {
         return this.configurationManager.getConfiguration().getPullCronSchedule();
+    }
+
+    @Override
+    public void setLastUpdated(EntityManager entityManager, OffsetDateTime timestamp) {
+        Session session = this.getSessionManager().getSessionFactory().openSession();
+        if (entityManager == null) {
+            for (EntityManager e : this.entityManagers) {
+                e.setLastUpdated(session, timestamp);
+            }
+        } else {
+            entityManager.setLastUpdated(session, timestamp);
+        }
+        session.close();
     }
 
 }

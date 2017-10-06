@@ -2,23 +2,16 @@ package dk.magenta.datafordeler.gladdrreg;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import dk.magenta.datafordeler.core.Application;
 import dk.magenta.datafordeler.core.Engine;
-import dk.magenta.datafordeler.core.database.QueryManager;
-import dk.magenta.datafordeler.core.database.Registration;
 import dk.magenta.datafordeler.core.database.SessionManager;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.io.Event;
 import dk.magenta.datafordeler.core.io.ImportMetadata;
-import dk.magenta.datafordeler.core.io.PluginSourceData;
-import dk.magenta.datafordeler.core.plugin.EntityManager;
 import dk.magenta.datafordeler.core.util.InputStreamReader;
-import dk.magenta.datafordeler.core.util.ItemInputStream;
-import dk.magenta.datafordeler.core.util.XmlMapperConfiguration;
-import dk.magenta.datafordeler.core.user.DafoUserManager;
 import dk.magenta.datafordeler.gladdrreg.data.GladdrregEntityManager;
-import dk.magenta.datafordeler.gladdrreg.data.address.*;
+import dk.magenta.datafordeler.gladdrreg.data.address.AddressEntity;
+import dk.magenta.datafordeler.gladdrreg.data.address.AddressEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.bnumber.BNumberEntity;
 import dk.magenta.datafordeler.gladdrreg.data.bnumber.BNumberEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.district.DistrictEntity;
@@ -34,10 +27,7 @@ import dk.magenta.datafordeler.gladdrreg.data.road.RoadEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.state.StateEntity;
 import dk.magenta.datafordeler.gladdrreg.data.state.StateEntityManager;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -53,13 +43,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.List;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
@@ -79,14 +64,7 @@ public class QueryTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private QueryManager queryManager;
-
-    @Autowired
     private SessionManager sessionManager;
-
-
-
-
 
     @SpyBean
     private AddressEntityManager addressEntityManager;
