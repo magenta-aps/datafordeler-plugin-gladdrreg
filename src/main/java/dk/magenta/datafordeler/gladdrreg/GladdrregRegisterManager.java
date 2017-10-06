@@ -106,6 +106,10 @@ public class GladdrregRegisterManager extends RegisterManager {
         return expandBaseURI(this.getBaseEndpoint(), "/getNewEvents");
     }
 
+    public boolean pullsEventsCommonly() {
+        return true;
+    }
+
     public Map<EntityManager, ItemInputStream<? extends PluginSourceData>> pullEvents() throws DataFordelerException {
         Communicator eventCommunicator = this.getEventFetcher();
         InputStream responseBody = eventCommunicator.fetch(this.getEventInterface());
