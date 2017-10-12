@@ -110,10 +110,10 @@ public class GladdrregRegisterManager extends RegisterManager {
         return true;
     }
 
-    public Map<EntityManager, ItemInputStream<? extends PluginSourceData>> pullEvents() throws DataFordelerException {
+    public ItemInputStream<? extends PluginSourceData> pullEvents() throws DataFordelerException {
         Communicator eventCommunicator = this.getEventFetcher();
         InputStream responseBody = eventCommunicator.fetch(this.getEventInterface());
-        return Collections.singletonMap(null, this.parseEventResponse(responseBody, null));
+        return this.parseEventResponse(responseBody, null);
     }
 
     @Override

@@ -29,25 +29,45 @@ public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
     @XmlElement
     private String name;
 
+    public String getName() {
+        return this.name;
+    }
+
     @Column
     @JsonProperty("shortname")
     @XmlElement
     private String shortName;
+
+    public String getShortName() {
+        return this.shortName;
+    }
 
     @Column
     @JsonProperty("alternate_name")
     @XmlElement
     private String alternateName;
 
+    public String getAlternateName() {
+        return this.alternateName;
+    }
+
     @Column
     @JsonProperty("cpr_name")
     @XmlElement
     private String cprName;
 
+    public String getCprName() {
+        return this.cprName;
+    }
+
     @ManyToOne
     @JsonProperty
     @XmlElement
     private Identification location;
+
+    public Identification getLocation() {
+        return this.location;
+    }
 
     @ManyToOne
     @JsonProperty

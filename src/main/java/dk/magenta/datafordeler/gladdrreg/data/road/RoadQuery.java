@@ -7,6 +7,7 @@ import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by lars on 19-05-17.
@@ -18,6 +19,7 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
     public static final String SHORT_NAME = "short_name";
     public static final String ALTERNATE_NAME = "alternate_name";
     public static final String CPR_NAME = "cpr_name";
+    public static final String MUNICIPALITY_ID = "municipality_identification";
 
     @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
     private String code;
@@ -33,6 +35,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = CPR_NAME)
     private String cprName;
+
+    @QueryField(type = QueryField.FieldType.STRING, queryName = MUNICIPALITY_ID)
+    private String municipalityIdentifier;
 
     public String getCode() {
         return code;
@@ -74,6 +79,14 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
         this.cprName = cprName;
     }
 
+    public String getMunicipalityIdentifier() {
+        return this.municipalityIdentifier;
+    }
+
+    public void setMunicipalityIdentifier(String municipalityIdentifier) {
+        this.municipalityIdentifier = municipalityIdentifier;
+    }
+
     @Override
     public Map<String, Object> getSearchParameters() {
         HashMap<String, Object> map = new HashMap<>(super.getSearchParameters());
@@ -89,7 +102,7 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, String.class);
+            lookupDefinition.put("code", this.code, Integer.class);
         }
         if (this.name != null) {
             lookupDefinition.put("name", this.name, String.class);
@@ -102,6 +115,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
         }
         if (this.cprName != null) {
             lookupDefinition.put("cprName", this.cprName, String.class);
+        }
+        if (this.municipalityIdentifier != null) {
+            lookupDefinition.put("municipality.uuid", this.municipalityIdentifier, UUID.class);
         }
         return lookupDefinition;
     }

@@ -21,15 +21,27 @@ public class MunicipalityData extends SumiffiikData<MunicipalityEffect, Municipa
     @XmlElement
     private int code;
 
+    public int getCode() {
+        return this.code;
+    }
+
     @Column
     @JsonProperty
     @XmlElement
     private String abbrev;
 
+    public String getAbbrev() {
+        return this.abbrev;
+    }
+
     @Column
     @JsonProperty
     @XmlElement
     private String name;
+
+    public String getName() {
+        return this.name;
+    }
 
     @Override
     public Map<String, Object> asMap() {

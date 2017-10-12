@@ -21,10 +21,18 @@ public class PostalCodeData extends SumiffiikData<PostalCodeEffect, PostalCodeDa
     @XmlElement
     private int code;
 
+    public int getCode() {
+        return this.code;
+    }
+
     @Column
     @JsonProperty
     @XmlElement
     private String name;
+
+    public String getName() {
+        return this.name;
+    }
 
     @Override
     public Map<String, Object> asMap() {

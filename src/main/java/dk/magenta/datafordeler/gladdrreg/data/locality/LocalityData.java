@@ -61,6 +61,37 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @XmlElement
     private Identification postalCode;
 
+    public int getCode() {
+        return this.code;
+    }
+
+    public String getAbbrev() {
+        return this.abbrev;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getType() {
+        return this.type;
+    }
+
+    public int getLocalityState() {
+        return this.localityState;
+    }
+
+    public Identification getMunicipality() {
+        return this.municipality;
+    }
+
+    public Identification getDistrict() {
+        return this.district;
+    }
+
+    public Identification getPostalCode() {
+        return this.postalCode;
+    }
 
     @Override
     public Map<String, Object> asMap() {
