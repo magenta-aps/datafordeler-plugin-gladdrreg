@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
 import javax.persistence.Column;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
@@ -13,7 +14,9 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="gladdrreg_district_data")
+@Table(name="gladdrreg_district_data", indexes = {
+        @Index(name = "gladdrreg_district_code", columnList = "code")
+})
 public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
 
     @Column

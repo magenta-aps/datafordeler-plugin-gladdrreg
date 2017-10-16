@@ -6,6 +6,7 @@ import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
 import javax.persistence.Column;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
@@ -16,7 +17,9 @@ import java.util.Map;
  * Created by lars on 16-05-17.
  */
 @javax.persistence.Entity
-@Table(name="gladdrreg_address_data")
+@Table(name="gladdrreg_address_data", indexes = {
+        @Index(name = "gladdrreg_address_road", columnList = "road_id")
+})
 public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
 
     @Column
