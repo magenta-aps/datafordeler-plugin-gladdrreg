@@ -5,9 +5,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.magenta.datafordeler.core.database.*;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
+import dk.magenta.datafordeler.core.exception.DataStreamException;
 import dk.magenta.datafordeler.core.exception.ParseException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
 import dk.magenta.datafordeler.core.io.ImportMetadata;
+import dk.magenta.datafordeler.core.io.PluginSourceData;
 import dk.magenta.datafordeler.core.io.Receipt;
 import dk.magenta.datafordeler.core.plugin.Communicator;
 import dk.magenta.datafordeler.core.plugin.EntityManager;
@@ -95,6 +97,29 @@ public abstract class GladdrregEntityManager extends EntityManager {
     }
 
     @Override
+    public List<? extends Registration> parseRegistration(PluginSourceData registrationData, ImportMetadata importMetadata) throws DataFordelerException {
+        try {
+            return this.parseRegistration(objectMapper.readTree(registrationData.getData()), importMetadata);
+        } catch (IOException e) {
+            throw new DataStreamException(e);
+        }
+    }
+
+    @Override
+    public List<? extends Registration> parseRegistration(InputStream registrationData, ImportMetadata importMetadata) throws DataFordelerException {
+        try {
+            return this.parseRegistration(objectMapper.readTree(registrationData), importMetadata);
+        } catch (IOException e) {
+            throw new DataStreamException(e);
+        } finally {
+            try {
+                registrationData.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public List<? extends Registration> parseRegistration(JsonNode registrationData, ImportMetadata importMetadata) throws DataFordelerException {
         OffsetDateTime timestamp = OffsetDateTime.now();
         // Check whether the object is wrapped
@@ -123,10 +148,11 @@ public abstract class GladdrregEntityManager extends EntityManager {
             }
         } else {
             // Wrapped case
-            Map<String, List<? extends Registration>> map = this.parseRegistrationList(registrationData, importMetadata);
+            Iterator<String> keyIterator = registrationData.fieldNames();
             ArrayList<Registration> list = new ArrayList<>();
-            for (String key : map.keySet()) {
-                list.addAll(map.get(key));
+            while (keyIterator.hasNext()) {
+                String key = keyIterator.next();
+                list.addAll(this.parseRegistration(registrationData.get(key), importMetadata));
             }
             System.out.println("Returning list");
             return list;

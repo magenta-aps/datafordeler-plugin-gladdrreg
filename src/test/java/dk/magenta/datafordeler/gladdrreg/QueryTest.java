@@ -113,7 +113,6 @@ public class QueryTest {
         event.setData(testData);
         ImportMetadata importMetadata = new ImportMetadata();
         this.engine.handleEvent(event, this.plugin.getRegisterManager().getPlugin(), importMetadata);
-
     }
 
     public void loadAddress() throws Exception {
@@ -227,6 +226,7 @@ public class QueryTest {
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         JsonNode jsonBody = objectMapper.readTree(response.getBody());
+        System.out.println(jsonBody);
         JsonNode results = jsonBody.get("results");
         Assert.assertTrue(results.isArray());
         Assert.assertEquals(1, results.size());
