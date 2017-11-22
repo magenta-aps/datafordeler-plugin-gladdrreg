@@ -106,6 +106,7 @@ public class GladdrregRegisterManager extends RegisterManager {
         return expandBaseURI(this.getBaseEndpoint(), "/getNewEvents");
     }
 
+    @Override
     public boolean pullsEventsCommonly() {
         return true;
     }
