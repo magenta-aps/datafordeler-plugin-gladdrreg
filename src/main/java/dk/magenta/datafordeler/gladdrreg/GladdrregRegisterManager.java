@@ -1,7 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.magenta.datafordeler.core.database.Entity;
 import dk.magenta.datafordeler.core.database.SessionManager;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
@@ -24,9 +23,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lars on 16-05-17.

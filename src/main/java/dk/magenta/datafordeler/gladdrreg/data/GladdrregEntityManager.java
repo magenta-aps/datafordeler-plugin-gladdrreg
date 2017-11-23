@@ -141,7 +141,6 @@ public abstract class GladdrregEntityManager extends EntityManager {
                 }
 
                 registration.wireEffects();
-                System.out.println("Returning singletonlist");
                 return Collections.singletonList(registration);
             } catch (JsonProcessingException e) {
                 throw new ParseException("Error parsing registration "+registrationData, e);
@@ -154,7 +153,6 @@ public abstract class GladdrregEntityManager extends EntityManager {
                 String key = keyIterator.next();
                 list.addAll(this.parseRegistration(registrationData.get(key), importMetadata));
             }
-            System.out.println("Returning list");
             return list;
         }
     }
