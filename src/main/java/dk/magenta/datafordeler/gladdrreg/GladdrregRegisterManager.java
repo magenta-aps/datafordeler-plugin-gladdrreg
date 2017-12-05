@@ -5,6 +5,7 @@ import dk.magenta.datafordeler.core.database.SessionManager;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
 import dk.magenta.datafordeler.core.io.Event;
+import dk.magenta.datafordeler.core.io.ImportMetadata;
 import dk.magenta.datafordeler.core.io.PluginSourceData;
 import dk.magenta.datafordeler.core.plugin.*;
 import dk.magenta.datafordeler.core.util.ItemInputStream;
@@ -145,8 +146,9 @@ public class GladdrregRegisterManager extends RegisterManager {
     }
 
     @Override
-    public void setLastUpdated(EntityManager entityManager, OffsetDateTime timestamp) {
+    public void setLastUpdated(EntityManager entityManager, ImportMetadata importMetadata) {
         Session session = this.getSessionManager().getSessionFactory().openSession();
+        OffsetDateTime timestamp = importMetadata.getImportTime();
         if (entityManager == null) {
             for (EntityManager e : this.entityManagers) {
                 e.setLastUpdated(session, timestamp);
