@@ -51,15 +51,6 @@ public class GladdrregRegisterManager extends RegisterManager {
         this.commonFetcher = new HttpCommunicator();
     }
 
-    @PostConstruct
-    public void init() {
-        try {
-            this.baseEndpoint = new URI(this.configurationManager.getConfiguration().getRegisterAddress());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     protected Logger getLog() {
         return this.log;
@@ -75,14 +66,15 @@ public class GladdrregRegisterManager extends RegisterManager {
         return this.sessionManager;
     }
 
-    private URI baseEndpoint;
-
     @Override
     public URI getBaseEndpoint() {
-        return this.baseEndpoint;
+        try {
+            return new URI(this.configurationManager.getConfiguration().getRegisterAddress());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
-
 
     @Override
     protected Communicator getEventFetcher() {
