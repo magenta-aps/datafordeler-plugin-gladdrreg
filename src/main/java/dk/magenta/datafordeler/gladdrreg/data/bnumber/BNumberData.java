@@ -18,7 +18,9 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_bnumber_data", indexes = {
-        @Index(name = "gladdrreg_bnumber_code", columnList = "code")
+        @Index(name = "gladdrreg_bnumber_code", columnList = "code"),
+        @Index(name = "gladdrreg_bnumber_type", columnList = "b_type"),
+        @Index(name = "gladdrreg_bnumber_name", columnList = "b_callname")
 })
 public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
 

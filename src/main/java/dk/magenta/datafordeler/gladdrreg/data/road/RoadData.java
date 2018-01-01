@@ -2,13 +2,11 @@ package dk.magenta.datafordeler.gladdrreg.data.road;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
-import javax.persistence.Column;
-import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +16,13 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_road_data", indexes = {
-        @Index(name = "gladdrreg_road_code", columnList = "code")
+        @Index(name = "gladdrreg_road_code", columnList = "code"),
+        @Index(name = "gladdrreg_road_name", columnList = "name"),
+        @Index(name = "gladdrreg_road_shortName", columnList = "shortName"),
+        @Index(name = "gladdrreg_road_alternateName", columnList = "alternateName"),
+        @Index(name = "gladdrreg_road_cprName", columnList = "cprName"),
+        @Index(name = "gladdrreg_road_location", columnList = "location" + DatabaseEntry.REF),
+        @Index(name = "gladdrreg_road_municipality", columnList = "municipality" + DatabaseEntry.REF)
 })
 public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
 
@@ -64,6 +68,7 @@ public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
     }
 
     @ManyToOne
+    @JoinColumn(name = "location" + DatabaseEntry.REF)
     @JsonProperty
     @XmlElement
     private Identification location;
@@ -73,6 +78,7 @@ public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
     }
 
     @ManyToOne
+    @JoinColumn(name = "municipality" + DatabaseEntry.REF)
     @JsonProperty
     @XmlElement
     private Identification municipality;
