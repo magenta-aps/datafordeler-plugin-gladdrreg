@@ -26,61 +26,88 @@ import java.util.Map;
 })
 public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
 
-    @Column
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "vejkode";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_CODE)
     private int code;
 
-    @Column
+
+    public static final String DB_FIELD_NAME = "name";
+    public static final String IO_FIELD_NAME = "navn";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_NAME)
     private String name;
 
     public String getName() {
         return this.name;
     }
 
-    @Column
+
+    public static final String DB_FIELD_SHORTNAME = "shortName";
+    public static final String IO_FIELD_SHORTNAME = "kortNavn";
+
     @JsonProperty("shortname")
     @XmlElement
+    @Column(name = DB_FIELD_SHORTNAME)
     private String shortName;
 
     public String getShortName() {
         return this.shortName;
     }
 
-    @Column
+
+    public static final String DB_FIELD_ALTNAME = "alternateName";
+    public static final String IO_FIELD_ALTNAME = "alternativtNavn";
+
     @JsonProperty("alternate_name")
     @XmlElement
+    @Column(name = DB_FIELD_ALTNAME)
     private String alternateName;
 
     public String getAlternateName() {
         return this.alternateName;
     }
 
-    @Column
+
+    public static final String DB_FIELD_CPRNAME = "cprName";
+    public static final String IO_FIELD_CPRNAME = "cprNavn";
+
     @JsonProperty("cpr_name")
     @XmlElement
+    @Column(name = DB_FIELD_CPRNAME)
     private String cprName;
 
     public String getCprName() {
         return this.cprName;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "location" + DatabaseEntry.REF)
+
+    public static final String DB_FIELD_LOCATION = "location";
+    public static final String IO_FIELD_LOCATION = "lokation";
+
     @JsonProperty
     @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_LOCATION + DatabaseEntry.REF)
     private Identification location;
+
+
+    public static final String DB_FIELD_MUNICIPALITY = "municipality";
+    public static final String IO_FIELD_MUNICIPALITY = "kommune";
 
     public Identification getLocation() {
         return this.location;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "municipality" + DatabaseEntry.REF)
     @JsonProperty
     @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
     private Identification municipality;
 
     @Override

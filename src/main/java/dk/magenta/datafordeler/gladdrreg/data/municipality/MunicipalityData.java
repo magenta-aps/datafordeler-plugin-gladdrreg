@@ -21,27 +21,39 @@ import java.util.Map;
 })
 public class MunicipalityData extends SumiffiikData<MunicipalityEffect, MunicipalityData> {
 
-    @Column
+
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "kommunekode";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_CODE)
     private int code;
 
     public int getCode() {
         return this.code;
     }
 
-    @Column
+
+    public static final String DB_FIELD_ABBREV = "abbrev";
+    public static final String IO_FIELD_ABBREV = "forkortelse";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_ABBREV)
     private String abbrev;
 
     public String getAbbrev() {
         return this.abbrev;
     }
 
-    @Column
+
+    public static final String DB_FIELD_NAME = "name";
+    public static final String IO_FIELD_NAME = "navn";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_NAME)
     private String name;
 
     public String getName() {

@@ -21,19 +21,30 @@ import java.util.Map;
 })
 public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
 
-    @Column
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "bnummer";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_CODE)
     private int code;
 
-    @Column
+
+    public static final String DB_FIELD_ABBREV = "abbrev";
+    public static final String IO_FIELD_ABBREV = "forkortelse";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_ABBREV)
     private String abbrev;
 
-    @Column
+
+    public static final String DB_FIELD_NAME = "name";
+    public static final String IO_FIELD_NAME = "navn";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_NAME)
     private String name;
 
     @Override

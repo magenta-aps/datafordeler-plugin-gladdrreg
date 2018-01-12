@@ -2,13 +2,11 @@ package dk.magenta.datafordeler.gladdrreg.data.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
-import javax.persistence.Column;
-import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,34 +23,60 @@ import java.util.Map;
 })
 public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
 
-    @Column
+    public static final String DB_FIELD_HOUSENUMBER = "houseNumber";
+    public static final String IO_FIELD_HOUSENUMBER = "husnummer";
+
+    @Column(name = DB_FIELD_HOUSENUMBER)
     @JsonProperty("house_number")
     @XmlElement
     private String houseNumber;
 
-    @Column
+
+    public static final String DB_FIELD_FLOOR = "floor";
+    public static final String IO_FIELD_FLOOR = "etage";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_FLOOR)
     private String floor;
 
-    @Column
+
+    public static final String DB_FIELD_ROOM = "room";
+    public static final String IO_FIELD_ROOM = "værelse";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_ROOM)
     private String room;
 
-    @ManyToOne
+
+    public static final String DB_FIELD_BNUMBER = "bNumber";
+    public static final String IO_FIELD_BNUMBER = "bNummer";
+
     @JsonProperty("b_number")
     @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_BNUMBER + DatabaseEntry.REF)
     private Identification bNumber;
 
-    @ManyToOne
+
+    public static final String DB_FIELD_ROAD = "road";
+    public static final String IO_FIELD_ROAD = "vej";
+
     @JsonProperty
     @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_ROAD + DatabaseEntry.REF)
     private Identification road;
 
-    @ManyToOne
+
+    public static final String DB_FIELD_MUNICIPALITY = "municipality";
+    public static final String IO_FIELD_MUNICIPALITY = "kommune";
+
     @JsonProperty
     @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
     private Identification municipality;
 
     @Override

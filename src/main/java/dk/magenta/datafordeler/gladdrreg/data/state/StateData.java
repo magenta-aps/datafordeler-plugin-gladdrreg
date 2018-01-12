@@ -21,17 +21,26 @@ import java.util.Map;
 })
 public class StateData extends SumiffiikData<StateEffect, StateData> {
 
-    @Column
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "kode";
+
+    @Column(name = DB_FIELD_CODE)
     @JsonProperty
     @XmlElement
     private String code;
 
-    @Column
+    public static final String DB_FIELD_NAME = "name";
+    public static final String IO_FIELD_NAME = "navn";
+
+    @Column(name = DB_FIELD_NAME)
     @JsonProperty
     @XmlElement
     private String name;
 
-    @Column
+    public static final String DB_FIELD_DESCRIPTION = "description";
+    public static final String IO_FIELD_DESCRIPTION = "beskrivelse";
+
+    @Column(name = DB_FIELD_DESCRIPTION)
     @JsonProperty
     @XmlElement
     private String description;

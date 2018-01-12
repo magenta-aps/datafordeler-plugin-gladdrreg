@@ -20,18 +20,24 @@ import java.util.Map;
 })
 public class PostalCodeData extends SumiffiikData<PostalCodeEffect, PostalCodeData> {
 
-    @Column
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "postnummer";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_CODE)
     private int code;
 
     public int getCode() {
         return this.code;
     }
 
-    @Column
+    public static final String DB_FIELD_NAME = "name";
+    public static final String IO_FIELD_NAME = "navn";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_NAME)
     private String name;
 
     public String getName() {
