@@ -16,10 +16,10 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_address_data", indexes = {
-        @Index(name = "gladdrreg_address_road", columnList = "road_id"),
-        @Index(name = "gladdrreg_address_housenumber", columnList = "houseNumber"),
-        @Index(name = "gladdrreg_address_floor", columnList = "floor"),
-        @Index(name = "gladdrreg_address_room", columnList = "room")
+        @Index(name = "gladdrreg_address_road", columnList = AddressData.DB_FIELD_ROAD + DatabaseEntry.REF),
+        @Index(name = "gladdrreg_address_housenumber", columnList = AddressData.DB_FIELD_HOUSENUMBER),
+        @Index(name = "gladdrreg_address_floor", columnList = AddressData.DB_FIELD_FLOOR),
+        @Index(name = "gladdrreg_address_room", columnList = AddressData.DB_FIELD_ROOM)
 })
 public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
 

@@ -16,13 +16,13 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_road_data", indexes = {
-        @Index(name = "gladdrreg_road_code", columnList = "code"),
-        @Index(name = "gladdrreg_road_name", columnList = "name"),
-        @Index(name = "gladdrreg_road_shortName", columnList = "shortName"),
-        @Index(name = "gladdrreg_road_alternateName", columnList = "alternateName"),
-        @Index(name = "gladdrreg_road_cprName", columnList = "cprName"),
-        @Index(name = "gladdrreg_road_location", columnList = "location" + DatabaseEntry.REF),
-        @Index(name = "gladdrreg_road_municipality", columnList = "municipality" + DatabaseEntry.REF)
+        @Index(name = "gladdrreg_road_code", columnList = RoadData.DB_FIELD_CODE),
+        @Index(name = "gladdrreg_road_name", columnList = RoadData.DB_FIELD_NAME),
+        @Index(name = "gladdrreg_road_shortName", columnList = RoadData.DB_FIELD_SHORTNAME),
+        @Index(name = "gladdrreg_road_alternateName", columnList = RoadData.DB_FIELD_ALTNAME),
+        @Index(name = "gladdrreg_road_cprName", columnList = RoadData.DB_FIELD_CPRNAME),
+        @Index(name = "gladdrreg_road_location", columnList = RoadData.DB_FIELD_LOCATION + DatabaseEntry.REF),
+        @Index(name = "gladdrreg_road_municipality", columnList = RoadData.DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
 })
 public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
 

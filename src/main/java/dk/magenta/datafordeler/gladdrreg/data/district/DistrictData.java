@@ -15,9 +15,9 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_district_data", indexes = {
-        @Index(name = "gladdrreg_district_code", columnList = "code"),
-        @Index(name = "gladdrreg_district_abbrev", columnList = "abbrev"),
-        @Index(name = "gladdrreg_district_name", columnList = "name")
+        @Index(name = "gladdrreg_district_code", columnList = DistrictData.DB_FIELD_CODE),
+        @Index(name = "gladdrreg_district_abbrev", columnList = DistrictData.DB_FIELD_ABBREV),
+        @Index(name = "gladdrreg_district_name", columnList = DistrictData.DB_FIELD_NAME)
 })
 public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
 

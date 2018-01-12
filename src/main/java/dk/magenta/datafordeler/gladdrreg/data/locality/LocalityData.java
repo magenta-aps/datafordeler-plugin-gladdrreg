@@ -16,11 +16,11 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_locality_data", indexes = {
-        @Index(name = "gladdrreg_locality_code", columnList = "code"),
-        @Index(name = "gladdrreg_locality_abbrev", columnList = "abbrev"),
-        @Index(name = "gladdrreg_locality_name", columnList = "name"),
-        @Index(name = "gladdrreg_locality_type", columnList = "type"),
-        @Index(name = "gladdrreg_locality_localityState", columnList = "localityState")
+        @Index(name = "gladdrreg_locality_code", columnList = LocalityData.DB_FIELD_CODE),
+        @Index(name = "gladdrreg_locality_abbrev", columnList = LocalityData.DB_FIELD_ABBREV),
+        @Index(name = "gladdrreg_locality_name", columnList = LocalityData.DB_FIELD_NAME),
+        @Index(name = "gladdrreg_locality_type", columnList = LocalityData.DB_FIELD_TYPE),
+        @Index(name = "gladdrreg_locality_localityState", columnList = LocalityData.DB_FIELD_STATE)
 })
 public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
 
