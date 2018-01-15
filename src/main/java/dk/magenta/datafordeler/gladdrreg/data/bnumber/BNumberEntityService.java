@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BNumberEntityService extends FapiService<BNumberEntity, BNumberQuery> {
 
     public BNumberEntityService() {
-        this.setOutputWrapper(new GladdrregOutputWrapper<>());
+        this.setOutputWrapper(new BNumberOutputWrapper());
     }
 
     @Autowired

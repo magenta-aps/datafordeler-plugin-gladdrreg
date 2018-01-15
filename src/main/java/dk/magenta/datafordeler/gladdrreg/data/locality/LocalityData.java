@@ -34,6 +34,10 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @Column(name = DB_FIELD_CODE)
     private int code;
 
+    public int getCode() {
+        return this.code;
+    }
+
 
     public static final String DB_FIELD_ABBREV = "abbrev";
     public static final String IO_FIELD_ABBREV = "forkortelse";
@@ -42,6 +46,10 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @XmlElement
     @Column(name = DB_FIELD_ABBREV)
     private String abbrev;
+
+    public String getAbbrev() {
+        return this.abbrev;
+    }
 
 
     public static final String DB_FIELD_NAME = "name";
@@ -52,6 +60,10 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @Column(name = DB_FIELD_NAME)
     private String name;
 
+    public String getName() {
+        return this.name;
+    }
+
 
     public static final String DB_FIELD_TYPE = "type";
     public static final String IO_FIELD_TYPE = "type";
@@ -60,6 +72,10 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @XmlElement
     @Column(name = DB_FIELD_TYPE)
     private int type;
+
+    public int getType() {
+        return this.type;
+    }
 
 
     public static final String DB_FIELD_STATE = "localityState";
@@ -70,6 +86,9 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @Column(name = DB_FIELD_STATE)
     private int localityState;
 
+    public int getLocalityState() {
+        return this.localityState;
+    }
 
 
     public static final String DB_FIELD_MUNICIPALITY = "municipality";
@@ -81,6 +100,10 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @JoinColumn(name = DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
     private Identification municipality;
 
+    public Identification getMunicipality() {
+        return this.municipality;
+    }
+
 
     public static final String DB_FIELD_DISTRICT = "district";
     public static final String IO_FIELD_DISTRICT = "distrikt";
@@ -90,6 +113,10 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @ManyToOne
     @JoinColumn(name = DB_FIELD_DISTRICT + DatabaseEntry.REF)
     private Identification district;
+
+    public Identification getDistrict() {
+        return this.district;
+    }
 
 
     public static final String DB_FIELD_POSTALCODE = "postalCode";
@@ -101,38 +128,10 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
     @JoinColumn(name = DB_FIELD_POSTALCODE + DatabaseEntry.REF)
     private Identification postalCode;
 
-
-    public int getCode() {
-        return this.code;
-    }
-
-    public String getAbbrev() {
-        return this.abbrev;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getType() {
-        return this.type;
-    }
-
-    public int getLocalityState() {
-        return this.localityState;
-    }
-
-    public Identification getMunicipality() {
-        return this.municipality;
-    }
-
-    public Identification getDistrict() {
-        return this.district;
-    }
-
     public Identification getPostalCode() {
         return this.postalCode;
     }
+
 
     @Override
     public Map<String, Object> asMap() {
@@ -167,23 +166,6 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
         if (references.containsKey("postalCode")) {
             this.postalCode = references.get("postalCode");
         }
-    }
-
-    @Override
-    public void output(ObjectMapper mapper, ObjectNode map) {
-        super.output(mapper, map);
-        map.put(IO_FIELD_CODE, this.code);
-        map.put(IO_FIELD_TYPE, this.type);
-        map.put(IO_FIELD_STATE, this.localityState);
-        if (this.abbrev != null) {
-            map.put(IO_FIELD_ABBREV, this.abbrev);
-        }
-        if (this.name != null) {
-            map.put(IO_FIELD_NAME, this.name);
-        }
-        map.set(IO_FIELD_DISTRICT, this.serializeIdentification(mapper, this.district));
-        map.set(IO_FIELD_MUNICIPALITY, this.serializeIdentification(mapper, this.municipality));
-        map.set(IO_FIELD_POSTALCODE, this.serializeIdentification(mapper, this.postalCode));
     }
 
 }

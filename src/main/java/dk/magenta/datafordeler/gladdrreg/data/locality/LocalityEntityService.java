@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LocalityEntityService extends FapiService<LocalityEntity, LocalityQuery> {
 
     public LocalityEntityService() {
-        this.setOutputWrapper(new GladdrregOutputWrapper<>());
+        this.setOutputWrapper(new LocalityOutputWrapper());
     }
 
     @Autowired

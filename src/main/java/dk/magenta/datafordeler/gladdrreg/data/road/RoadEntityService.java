@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
 
     public RoadEntityService() {
-        this.setOutputWrapper(new GladdrregOutputWrapper<>());
+        this.setOutputWrapper(new RoadOutputWrapper());
     }
 
     @Autowired

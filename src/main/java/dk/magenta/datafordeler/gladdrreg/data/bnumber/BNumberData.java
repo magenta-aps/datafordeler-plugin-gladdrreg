@@ -32,6 +32,10 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
     @Column(name = DB_FIELD_CODE)
     private String code;
 
+    public String getCode() {
+        return this.code;
+    }
+
 
     public static final String DB_FIELD_TYPE = "b_type";
     public static final String IO_FIELD_TYPE = "type";
@@ -41,6 +45,9 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
     @Column(name = DB_FIELD_TYPE)
     private String b_type;
 
+    public String getType() {
+        return this.b_type;
+    }
 
     public static final String DB_FIELD_CALLNAME = "b_callname";
     public static final String IO_FIELD_CALLNAME = "kaldenavn";
@@ -49,6 +56,10 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
     @XmlElement
     @Column(name = DB_FIELD_CALLNAME)
     private String b_callname;
+
+    public String getCallname() {
+        return this.b_callname;
+    }
 
 
     public static final String DB_FIELD_LOCATION = "houseNumber";
@@ -60,6 +71,10 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
     @JoinColumn(name = DB_FIELD_LOCATION + DatabaseEntry.REF)
     private Identification location;
 
+    public Identification getLocation() {
+        return this.location;
+    }
+
 
     public static final String DB_FIELD_MUNICIPALITY = "municipality";
     public static final String IO_FIELD_MUNICIPALITY = "kommune";
@@ -69,6 +84,10 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
     @ManyToOne
     @JoinColumn(name = DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
     private Identification municipality;
+
+    public Identification getMunicipality() {
+        return this.municipality;
+    }
 
 
     @Override
@@ -100,19 +119,4 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
         }
     }
 
-    @Override
-    public void output(ObjectMapper mapper, ObjectNode map) {
-        super.output(mapper, map);
-        map.put(IO_FIELD_CODE, this.code);
-        if (this.b_type != null) {
-            map.put(IO_FIELD_TYPE, this.b_type);
-        }
-        if (this.b_callname != null) {
-            map.put(IO_FIELD_CALLNAME, this.b_callname);
-        }
-        if (this.location != null) {
-            map.set(IO_FIELD_LOCATION, this.serializeIdentification(mapper, this.location));
-        }
-        map.set(IO_FIELD_MUNICIPALITY, this.serializeIdentification(mapper, this.municipality));
-    }
 }

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DistrictEntityService extends FapiService<DistrictEntity, DistrictQuery> {
 
     public DistrictEntityService() {
-        this.setOutputWrapper(new GladdrregOutputWrapper<>());
+        this.setOutputWrapper(new DistrictOutputWrapper());
     }
 
     @Autowired

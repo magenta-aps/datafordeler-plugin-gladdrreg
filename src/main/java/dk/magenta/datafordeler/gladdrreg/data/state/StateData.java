@@ -31,6 +31,11 @@ public class StateData extends SumiffiikData<StateEffect, StateData> {
     @XmlElement
     private String code;
 
+    public String getCode() {
+        return this.code;
+    }
+
+
     public static final String DB_FIELD_NAME = "name";
     public static final String IO_FIELD_NAME = "navn";
 
@@ -38,6 +43,11 @@ public class StateData extends SumiffiikData<StateEffect, StateData> {
     @JsonProperty
     @XmlElement
     private String name;
+
+    public String getName() {
+        return this.name;
+    }
+
 
     public static final String DB_FIELD_DESCRIPTION = "description";
     public static final String IO_FIELD_DESCRIPTION = "beskrivelse";
@@ -47,6 +57,11 @@ public class StateData extends SumiffiikData<StateEffect, StateData> {
     @XmlElement
     private String description;
 
+    public String getDescription() {
+        return this.description;
+    }
+
+
     @Override
     public Map<String, Object> asMap() {
         HashMap<String, Object> map = new HashMap<>(super.asMap());
@@ -54,18 +69,6 @@ public class StateData extends SumiffiikData<StateEffect, StateData> {
         map.put("name", this.name);
         map.put("description", this.description);
         return map;
-    }
-
-    @Override
-    public void output(ObjectMapper mapper, ObjectNode map) {
-        super.output(mapper, map);
-        map.put(IO_FIELD_CODE, this.code);
-        if (this.name != null) {
-            map.put(IO_FIELD_NAME, this.name);
-        }
-        if (this.description != null) {
-            map.put(IO_FIELD_DESCRIPTION, this.description);
-        }
     }
 
 }

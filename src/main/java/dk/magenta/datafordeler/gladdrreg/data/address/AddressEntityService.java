@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddressEntityService extends FapiService<AddressEntity, AddressQuery> {
 
     public AddressEntityService() {
-        this.setOutputWrapper(new GladdrregOutputWrapper<>());
+        this.setOutputWrapper(new AddressOutputWrapper());
     }
 
     @Autowired

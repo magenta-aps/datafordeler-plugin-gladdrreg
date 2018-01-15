@@ -71,16 +71,4 @@ public class MunicipalityData extends SumiffiikData<MunicipalityEffect, Municipa
         return map;
     }
 
-    @Override
-    public void output(ObjectMapper mapper, ObjectNode map) {
-        super.output(mapper, map);
-        map.put(IO_FIELD_CODE, this.code);
-        if (this.abbrev != null) {
-            map.put(IO_FIELD_ABBREV, this.abbrev);
-        }
-        if (this.name != null) {
-            map.put(IO_FIELD_NAME, this.name);
-        }
-    }
-
 }

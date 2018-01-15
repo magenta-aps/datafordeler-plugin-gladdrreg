@@ -33,6 +33,10 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
     @XmlElement
     private String houseNumber;
 
+    public String getHouseNumber() {
+        return this.houseNumber;
+    }
+
 
     public static final String DB_FIELD_FLOOR = "floor";
     public static final String IO_FIELD_FLOOR = "etage";
@@ -42,6 +46,10 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
     @Column(name = DB_FIELD_FLOOR)
     private String floor;
 
+    public String getFloor() {
+        return this.floor;
+    }
+
 
     public static final String DB_FIELD_ROOM = "room";
     public static final String IO_FIELD_ROOM = "værelse";
@@ -50,6 +58,10 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
     @XmlElement
     @Column(name = DB_FIELD_ROOM)
     private String room;
+
+    public String getRoom() {
+        return this.room;
+    }
 
 
     public static final String DB_FIELD_BNUMBER = "bNumber";
@@ -61,6 +73,10 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
     @JoinColumn(name = DB_FIELD_BNUMBER + DatabaseEntry.REF)
     private Identification bNumber;
 
+    public Identification getbNumber() {
+        return this.bNumber;
+    }
+
 
     public static final String DB_FIELD_ROAD = "road";
     public static final String IO_FIELD_ROAD = "vej";
@@ -71,6 +87,10 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
     @JoinColumn(name = DB_FIELD_ROAD + DatabaseEntry.REF)
     private Identification road;
 
+    public Identification getRoad() {
+        return this.road;
+    }
+
 
     public static final String DB_FIELD_MUNICIPALITY = "municipality";
     public static final String IO_FIELD_MUNICIPALITY = "kommune";
@@ -80,6 +100,11 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
     @ManyToOne
     @JoinColumn(name = DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
     private Identification municipality;
+
+    public Identification getMunicipality() {
+        return this.municipality;
+    }
+
 
     @Override
     public Map<String, Object> asMap() {
@@ -118,20 +143,4 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
         }
     }
 
-    @Override
-    public void output(ObjectMapper mapper, ObjectNode map) {
-        super.output(mapper, map);
-        if (this.houseNumber != null) {
-            map.put(IO_FIELD_HOUSENUMBER, this.houseNumber);
-        }
-        if (this.floor != null) {
-            map.put(IO_FIELD_FLOOR, this.floor);
-        }
-        if (this.room != null) {
-            map.put(IO_FIELD_ROOM, this.room);
-        }
-        map.set(IO_FIELD_BNUMBER, this.serializeIdentification(mapper, this.bNumber));
-        map.set(IO_FIELD_MUNICIPALITY, this.serializeIdentification(mapper, this.municipality));
-        map.set(IO_FIELD_ROAD, this.serializeIdentification(mapper, this.road));
-    }
 }

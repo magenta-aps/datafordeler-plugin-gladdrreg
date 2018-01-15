@@ -31,6 +31,10 @@ public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
     @Column(name = DB_FIELD_CODE)
     private int code;
 
+    public int getCode() {
+        return this.code;
+    }
+
 
     public static final String DB_FIELD_ABBREV = "abbrev";
     public static final String IO_FIELD_ABBREV = "forkortelse";
@@ -39,6 +43,10 @@ public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
     @XmlElement
     @Column(name = DB_FIELD_ABBREV)
     private String abbrev;
+
+    public String getAbbrev() {
+        return this.abbrev;
+    }
 
 
     public static final String DB_FIELD_NAME = "name";
@@ -49,6 +57,11 @@ public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
     @Column(name = DB_FIELD_NAME)
     private String name;
 
+    public String getName() {
+        return this.name;
+    }
+
+
     @Override
     public Map<String, Object> asMap() {
         HashMap<String, Object> map = new HashMap<>(super.asMap());
@@ -58,15 +71,4 @@ public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
         return map;
     }
 
-    @Override
-    public void output(ObjectMapper mapper, ObjectNode map) {
-        super.output(mapper, map);
-        map.put(IO_FIELD_CODE, this.code);
-        if (this.abbrev != null) {
-            map.put(IO_FIELD_ABBREV, this.abbrev);
-        }
-        if (this.name != null) {
-            map.put(IO_FIELD_NAME, this.name);
-        }
-    }
 }

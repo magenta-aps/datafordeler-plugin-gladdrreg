@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StateEntityService extends FapiService<StateEntity, StateQuery> {
 
     public StateEntityService() {
-        this.setOutputWrapper(new GladdrregOutputWrapper<>());
+        this.setOutputWrapper(new StateOutputWrapper());
     }
 
     @Autowired

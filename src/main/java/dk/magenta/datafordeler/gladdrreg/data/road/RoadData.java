@@ -36,6 +36,10 @@ public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
     @Column(name = DB_FIELD_CODE)
     private int code;
 
+    public int getCode() {
+        return this.code;
+    }
+
 
     public static final String DB_FIELD_NAME = "name";
     public static final String IO_FIELD_NAME = "navn";
@@ -112,6 +116,11 @@ public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
     @JoinColumn(name = DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
     private Identification municipality;
 
+    public Identification getMunicipality() {
+        return this.municipality;
+    }
+
+
     @Override
     public Map<String, Object> asMap() {
         HashMap<String, Object> map = new HashMap<>(super.asMap());
@@ -144,23 +153,4 @@ public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
         }
     }
 
-    @Override
-    public void output(ObjectMapper mapper, ObjectNode map) {
-        super.output(mapper, map);
-        map.put(IO_FIELD_CODE, this.code);
-        if (this.name != null) {
-            map.put(IO_FIELD_NAME, this.name);
-        }
-        if (this.cprName != null) {
-            map.put(IO_FIELD_CPRNAME, this.cprName);
-        }
-        if (this.shortName != null) {
-            map.put(IO_FIELD_SHORTNAME, this.shortName);
-        }
-        if (this.alternateName != null) {
-            map.put(IO_FIELD_ALTNAME, this.alternateName);
-        }
-        map.set(IO_FIELD_LOCATION, this.serializeIdentification(mapper, this.location));
-        map.set(IO_FIELD_MUNICIPALITY, this.serializeIdentification(mapper, this.municipality));
-    }
 }

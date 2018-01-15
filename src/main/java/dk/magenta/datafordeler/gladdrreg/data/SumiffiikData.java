@@ -26,6 +26,11 @@ public class SumiffiikData<V extends Effect, D extends DataItem> extends CommonD
     @XmlElement
     private String sumiffiik;
 
+    public String getSumiffiik() {
+        return this.sumiffiik;
+    }
+
+
     public static final String DB_FIELD_DOMAIN = "sumiffiik_domain";
     public static final String IO_FIELD_DOMAIN = "sumiffiik";
 
@@ -33,6 +38,11 @@ public class SumiffiikData<V extends Effect, D extends DataItem> extends CommonD
     @JsonProperty
     @XmlElement
     private String sumiffiik_domain;
+
+    public String getSumiffiik_domain() {
+        return this.sumiffiik_domain;
+    }
+
 
     @Override
     public Map<String, Object> asMap() {
@@ -42,11 +52,4 @@ public class SumiffiikData<V extends Effect, D extends DataItem> extends CommonD
         return map;
     }
 
-    @Override
-    public void output(ObjectMapper mapper, ObjectNode map) {
-        super.output(mapper, map);
-        ObjectNode sumiffiik = mapper.createObjectNode();
-        sumiffiik.put(IO_FIELD_SUMIFFIIK, this.sumiffiik);
-        sumiffiik.put(IO_FIELD_DOMAIN, this.sumiffiik_domain);
-    }
 }

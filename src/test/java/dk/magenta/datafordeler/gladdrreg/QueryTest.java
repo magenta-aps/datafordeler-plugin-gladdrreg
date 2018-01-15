@@ -757,8 +757,4 @@ public class QueryTest {
         Assert.assertEquals(1, results.size());
     }
 
-
-
-
-
 }

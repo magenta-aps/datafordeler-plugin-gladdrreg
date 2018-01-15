@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostalCodeEntityService extends FapiService<PostalCodeEntity, PostalCodeQuery> {
 
     public PostalCodeEntityService() {
-        this.setOutputWrapper(new GladdrregOutputWrapper<>());
+        this.setOutputWrapper(new PostalcodeOutputWrapper());
     }
 
     @Autowired
