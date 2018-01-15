@@ -1,5 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.road;
 
+import dk.magenta.datafordeler.core.database.DatabaseEntry;
+import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
@@ -102,22 +104,22 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, Integer.class);
+            lookupDefinition.put(RoadData.DB_FIELD_CODE, this.code, Integer.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+            lookupDefinition.put(RoadData.DB_FIELD_NAME, this.name, String.class);
         }
         if (this.shortName != null) {
-            lookupDefinition.put("shortName", this.shortName, String.class);
+            lookupDefinition.put(RoadData.DB_FIELD_SHORTNAME, this.shortName, String.class);
         }
         if (this.alternateName != null) {
-            lookupDefinition.put("alternateName", this.alternateName, String.class);
+            lookupDefinition.put(RoadData.DB_FIELD_ALTNAME, this.alternateName, String.class);
         }
         if (this.cprName != null) {
-            lookupDefinition.put("cprName", this.cprName, String.class);
+            lookupDefinition.put(RoadData.DB_FIELD_CPRNAME, this.cprName, String.class);
         }
         if (this.municipalityIdentifier != null) {
-            lookupDefinition.put("municipality.uuid", this.municipalityIdentifier, UUID.class);
+            lookupDefinition.put(RoadData.DB_FIELD_MUNICIPALITY + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.municipalityIdentifier, UUID.class);
         }
         return lookupDefinition;
     }

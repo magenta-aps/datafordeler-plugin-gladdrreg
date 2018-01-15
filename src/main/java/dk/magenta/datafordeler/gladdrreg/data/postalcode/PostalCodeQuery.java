@@ -50,10 +50,10 @@ public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, Integer.class);
+            lookupDefinition.put(PostalCodeData.DB_FIELD_CODE, this.code, Integer.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+            lookupDefinition.put(PostalCodeData.DB_FIELD_NAME, this.name, String.class);
         }
         return lookupDefinition;
     }

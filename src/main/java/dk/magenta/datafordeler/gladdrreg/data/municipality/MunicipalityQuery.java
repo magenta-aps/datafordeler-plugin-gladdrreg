@@ -63,13 +63,13 @@ public class MunicipalityQuery extends SumiffiikQuery<MunicipalityEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, Integer.class);
+            lookupDefinition.put(MunicipalityData.DB_FIELD_CODE, this.code, Integer.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+            lookupDefinition.put(MunicipalityData.DB_FIELD_NAME, this.name, String.class);
         }
         if (this.abbrev != null) {
-            lookupDefinition.put("abbrev", this.abbrev, String.class);
+            lookupDefinition.put(MunicipalityData.DB_FIELD_ABBREV, this.abbrev, String.class);
         }
         return lookupDefinition;
     }

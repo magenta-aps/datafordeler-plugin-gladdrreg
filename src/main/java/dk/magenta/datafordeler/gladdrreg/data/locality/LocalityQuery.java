@@ -6,6 +6,7 @@ import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,19 +91,19 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, Integer.class);
+            lookupDefinition.put(LocalityData.DB_FIELD_CODE, this.code, Integer.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+            lookupDefinition.put(LocalityData.DB_FIELD_NAME, this.name, String.class);
         }
         if (this.abbrev != null) {
-            lookupDefinition.put("abbrev", this.abbrev, String.class);
+            lookupDefinition.put(LocalityData.DB_FIELD_ABBREV, this.abbrev, String.class);
         }
         if (this.type != null) {
-            lookupDefinition.put("type", this.type, Integer.class);
+            lookupDefinition.put(LocalityData.DB_FIELD_TYPE, this.type, Integer.class);
         }
         if (this.localityState != null) {
-            lookupDefinition.put("localityState", this.localityState, Integer.class);
+            lookupDefinition.put(LocalityData.DB_FIELD_STATE, this.localityState, Integer.class);
         }
         return lookupDefinition;
     }

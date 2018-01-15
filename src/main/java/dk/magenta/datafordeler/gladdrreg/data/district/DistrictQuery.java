@@ -63,13 +63,13 @@ public class DistrictQuery extends SumiffiikQuery<DistrictEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, Integer.class);
+            lookupDefinition.put(DistrictData.DB_FIELD_CODE, this.code, Integer.class);
         }
         if (this.abbrev != null) {
-            lookupDefinition.put("abbrev", this.abbrev, String.class);
+            lookupDefinition.put(DistrictData.DB_FIELD_ABBREV, this.abbrev, String.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+            lookupDefinition.put(DistrictData.DB_FIELD_NAME, this.name, String.class);
         }
         return lookupDefinition;
     }

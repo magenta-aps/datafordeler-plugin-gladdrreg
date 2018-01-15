@@ -63,13 +63,13 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.houseNumber != null) {
-            lookupDefinition.put("houseNumber", this.houseNumber, String.class);
+            lookupDefinition.put(AddressData.DB_FIELD_HOUSENUMBER, this.houseNumber, String.class);
         }
         if (this.floor != null) {
-            lookupDefinition.put("floor", this.floor, String.class);
+            lookupDefinition.put(AddressData.DB_FIELD_FLOOR, this.floor, String.class);
         }
         if (this.room != null) {
-            lookupDefinition.put("room", this.room, String.class);
+            lookupDefinition.put(AddressData.DB_FIELD_ROOM, this.room, String.class);
         }
         return lookupDefinition;
     }

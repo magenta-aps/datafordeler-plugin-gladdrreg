@@ -63,13 +63,13 @@ public class StateQuery extends SumiffiikQuery<StateEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, String.class);
+            lookupDefinition.put(StateData.DB_FIELD_CODE, this.code, String.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+            lookupDefinition.put(StateData.DB_FIELD_NAME, this.name, String.class);
         }
         if (this.description != null) {
-            lookupDefinition.put("description", this.description, String.class);
+            lookupDefinition.put(StateData.DB_FIELD_DESCRIPTION, this.description, String.class);
         }
         return lookupDefinition;
     }

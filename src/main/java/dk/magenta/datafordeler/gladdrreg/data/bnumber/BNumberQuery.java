@@ -63,13 +63,13 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, String.class);
+            lookupDefinition.put(BNumberData.DB_FIELD_CODE, this.code, String.class);
         }
         if (this.type != null) {
-            lookupDefinition.put("b_type", this.type, String.class);
+            lookupDefinition.put(BNumberData.DB_FIELD_TYPE, this.type, String.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("b_callname", this.name, String.class);
+            lookupDefinition.put(BNumberData.DB_FIELD_CALLNAME, this.name, String.class);
         }
         return lookupDefinition;
     }
