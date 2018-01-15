@@ -2,6 +2,8 @@ package dk.magenta.datafordeler.gladdrreg.data.road;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
@@ -140,5 +142,25 @@ public class RoadData extends SumiffiikData<RoadEffect, RoadData> {
         if (references.containsKey("location")) {
             this.location = references.get("location");
         }
+    }
+
+    @Override
+    public void output(ObjectMapper mapper, ObjectNode map) {
+        super.output(mapper, map);
+        map.put(IO_FIELD_CODE, this.code);
+        if (this.name != null) {
+            map.put(IO_FIELD_NAME, this.name);
+        }
+        if (this.cprName != null) {
+            map.put(IO_FIELD_CPRNAME, this.cprName);
+        }
+        if (this.shortName != null) {
+            map.put(IO_FIELD_SHORTNAME, this.shortName);
+        }
+        if (this.alternateName != null) {
+            map.put(IO_FIELD_ALTNAME, this.alternateName);
+        }
+        map.set(IO_FIELD_LOCATION, this.serializeIdentification(mapper, this.location));
+        map.set(IO_FIELD_MUNICIPALITY, this.serializeIdentification(mapper, this.municipality));
     }
 }

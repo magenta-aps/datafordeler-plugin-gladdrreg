@@ -1,6 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg.data.district;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
 import javax.persistence.Column;
@@ -22,7 +24,7 @@ import java.util.Map;
 public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
 
     public static final String DB_FIELD_CODE = "code";
-    public static final String IO_FIELD_CODE = "bnummer";
+    public static final String IO_FIELD_CODE = "kode";
 
     @JsonProperty
     @XmlElement
@@ -54,5 +56,17 @@ public class DistrictData extends SumiffiikData<DistrictEffect, DistrictData> {
         map.put("abbrev", this.abbrev);
         map.put("name", this.name);
         return map;
+    }
+
+    @Override
+    public void output(ObjectMapper mapper, ObjectNode map) {
+        super.output(mapper, map);
+        map.put(IO_FIELD_CODE, this.code);
+        if (this.abbrev != null) {
+            map.put(IO_FIELD_ABBREV, this.abbrev);
+        }
+        if (this.name != null) {
+            map.put(IO_FIELD_NAME, this.name);
+        }
     }
 }

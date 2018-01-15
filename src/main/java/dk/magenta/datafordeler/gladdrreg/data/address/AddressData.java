@@ -2,6 +2,8 @@ package dk.magenta.datafordeler.gladdrreg.data.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
@@ -114,5 +116,22 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
         if (references.containsKey("municipality")) {
             this.municipality = references.get("municipality");
         }
+    }
+
+    @Override
+    public void output(ObjectMapper mapper, ObjectNode map) {
+        super.output(mapper, map);
+        if (this.houseNumber != null) {
+            map.put(IO_FIELD_HOUSENUMBER, this.houseNumber);
+        }
+        if (this.floor != null) {
+            map.put(IO_FIELD_FLOOR, this.floor);
+        }
+        if (this.room != null) {
+            map.put(IO_FIELD_ROOM, this.room);
+        }
+        map.set(IO_FIELD_BNUMBER, this.serializeIdentification(mapper, this.bNumber));
+        map.set(IO_FIELD_MUNICIPALITY, this.serializeIdentification(mapper, this.municipality));
+        map.set(IO_FIELD_ROAD, this.serializeIdentification(mapper, this.road));
     }
 }

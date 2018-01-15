@@ -2,6 +2,8 @@ package dk.magenta.datafordeler.gladdrreg.data.locality;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
@@ -61,7 +63,7 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
 
 
     public static final String DB_FIELD_STATE = "localityState";
-    public static final String IO_FIELD_STATE = "bnummer";
+    public static final String IO_FIELD_STATE = "tilstand";
 
     @JsonProperty("locality_state")
     @XmlElement
@@ -165,6 +167,23 @@ public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
         if (references.containsKey("postalCode")) {
             this.postalCode = references.get("postalCode");
         }
+    }
+
+    @Override
+    public void output(ObjectMapper mapper, ObjectNode map) {
+        super.output(mapper, map);
+        map.put(IO_FIELD_CODE, this.code);
+        map.put(IO_FIELD_TYPE, this.type);
+        map.put(IO_FIELD_STATE, this.localityState);
+        if (this.abbrev != null) {
+            map.put(IO_FIELD_ABBREV, this.abbrev);
+        }
+        if (this.name != null) {
+            map.put(IO_FIELD_NAME, this.name);
+        }
+        map.set(IO_FIELD_DISTRICT, this.serializeIdentification(mapper, this.district));
+        map.set(IO_FIELD_MUNICIPALITY, this.serializeIdentification(mapper, this.municipality));
+        map.set(IO_FIELD_POSTALCODE, this.serializeIdentification(mapper, this.postalCode));
     }
 
 }

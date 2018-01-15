@@ -1,6 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg.data.municipality;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
 import javax.persistence.Column;
@@ -67,6 +69,18 @@ public class MunicipalityData extends SumiffiikData<MunicipalityEffect, Municipa
         map.put("abbrev", this.abbrev);
         map.put("name", this.name);
         return map;
+    }
+
+    @Override
+    public void output(ObjectMapper mapper, ObjectNode map) {
+        super.output(mapper, map);
+        map.put(IO_FIELD_CODE, this.code);
+        if (this.abbrev != null) {
+            map.put(IO_FIELD_ABBREV, this.abbrev);
+        }
+        if (this.name != null) {
+            map.put(IO_FIELD_NAME, this.name);
+        }
     }
 
 }

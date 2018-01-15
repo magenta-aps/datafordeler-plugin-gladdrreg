@@ -1,6 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg.data.postalcode;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
 import javax.persistence.Column;
@@ -50,5 +52,14 @@ public class PostalCodeData extends SumiffiikData<PostalCodeEffect, PostalCodeDa
         map.put("code", this.code);
         map.put("name", this.name);
         return map;
+    }
+
+    @Override
+    public void output(ObjectMapper mapper, ObjectNode map) {
+        super.output(mapper, map);
+        map.put(IO_FIELD_CODE, this.code);
+        if (this.name != null) {
+            map.put(IO_FIELD_NAME, this.name);
+        }
     }
 }

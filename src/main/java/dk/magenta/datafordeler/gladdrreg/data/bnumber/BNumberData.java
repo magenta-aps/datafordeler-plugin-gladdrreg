@@ -2,6 +2,8 @@ package dk.magenta.datafordeler.gladdrreg.data.bnumber;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
@@ -32,7 +34,7 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
 
 
     public static final String DB_FIELD_TYPE = "b_type";
-    public static final String IO_FIELD_TYPE = "husnummer";
+    public static final String IO_FIELD_TYPE = "type";
 
     @JsonProperty
     @XmlElement
@@ -41,7 +43,7 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
 
 
     public static final String DB_FIELD_CALLNAME = "b_callname";
-    public static final String IO_FIELD_CALLNAME = "husnummer";
+    public static final String IO_FIELD_CALLNAME = "kaldenavn";
 
     @JsonProperty
     @XmlElement
@@ -50,7 +52,7 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
 
 
     public static final String DB_FIELD_LOCATION = "houseNumber";
-    public static final String IO_FIELD_LOCATION = "husnummer";
+    public static final String IO_FIELD_LOCATION = "lokation";
 
     @JsonProperty
     @XmlElement
@@ -96,5 +98,21 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
         if (references.containsKey("location")) {
             this.location = references.get("location");
         }
+    }
+
+    @Override
+    public void output(ObjectMapper mapper, ObjectNode map) {
+        super.output(mapper, map);
+        map.put(IO_FIELD_CODE, this.code);
+        if (this.b_type != null) {
+            map.put(IO_FIELD_TYPE, this.b_type);
+        }
+        if (this.b_callname != null) {
+            map.put(IO_FIELD_CALLNAME, this.b_callname);
+        }
+        if (this.location != null) {
+            map.set(IO_FIELD_LOCATION, this.serializeIdentification(mapper, this.location));
+        }
+        map.set(IO_FIELD_MUNICIPALITY, this.serializeIdentification(mapper, this.municipality));
     }
 }
