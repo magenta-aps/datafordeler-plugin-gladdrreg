@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public class AddressQuery extends SumiffiikQuery<AddressEntity> {
 
-    public static final String HOUSE_NUMBER = "houseNumber";
-    public static final String FLOOR = "floor";
-    public static final String ROOM = "room";
+    public static final String HOUSE_NUMBER = AddressData.IO_FIELD_HOUSENUMBER;
+    public static final String FLOOR = AddressData.IO_FIELD_FLOOR;
+    public static final String ROOM = AddressData.IO_FIELD_ROOM;
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = HOUSE_NUMBER)
     private String houseNumber;
@@ -32,6 +32,9 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
 
     public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
+        if (houseNumber != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getFloor() {
@@ -40,6 +43,9 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
 
     public void setFloor(String floor) {
         this.floor = floor;
+        if (floor != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getRoom() {
@@ -48,6 +54,9 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
 
     public void setRoom(String room) {
         this.room = room;
+        if (room != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override

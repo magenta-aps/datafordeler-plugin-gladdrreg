@@ -16,12 +16,12 @@ import java.util.UUID;
  */
 public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
-    public static final String CODE = "code";
-    public static final String NAME = "name";
-    public static final String SHORT_NAME = "short_name";
-    public static final String ALTERNATE_NAME = "alternate_name";
-    public static final String CPR_NAME = "cpr_name";
-    public static final String MUNICIPALITY_ID = "municipality_identification";
+    public static final String CODE = RoadData.IO_FIELD_CODE;
+    public static final String NAME = RoadData.IO_FIELD_NAME;
+    public static final String SHORT_NAME = RoadData.IO_FIELD_SHORTNAME;
+    public static final String ALTERNATE_NAME = RoadData.IO_FIELD_ALTNAME;
+    public static final String CPR_NAME = RoadData.IO_FIELD_CPRNAME;
+    public static final String MUNICIPALITY_ID = RoadData.IO_FIELD_MUNICIPALITY;
 
     @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
     private String code;
@@ -47,6 +47,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
     public void setCode(String code) {
         this.code = code;
+        if (code != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getName() {
@@ -55,6 +58,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
     public void setName(String name) {
         this.name = name;
+        if (name != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getShortName() {
@@ -63,6 +69,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
     public void setShortName(String shortName) {
         this.shortName = shortName;
+        if (shortName != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getAlternateName() {
@@ -71,6 +80,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
     public void setAlternateName(String alternateName) {
         this.alternateName = alternateName;
+        if (alternateName != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getCprName() {
@@ -79,6 +91,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
     public void setCprName(String cprName) {
         this.cprName = cprName;
+        if (cprName != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getMunicipalityIdentifier() {
@@ -87,6 +102,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
     public void setMunicipalityIdentifier(String municipalityIdentifier) {
         this.municipalityIdentifier = municipalityIdentifier;
+        if (municipalityIdentifier != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override

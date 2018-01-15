@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public class DistrictQuery extends SumiffiikQuery<DistrictEntity> {
 
-    public static final String CODE = "code";
-    public static final String ABBREV = "abbrev";
-    public static final String NAME = "name";
+    public static final String CODE = DistrictData.IO_FIELD_CODE;
+    public static final String ABBREV = DistrictData.IO_FIELD_ABBREV;
+    public static final String NAME = DistrictData.IO_FIELD_NAME;
 
     @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
     private String code;
@@ -32,6 +32,9 @@ public class DistrictQuery extends SumiffiikQuery<DistrictEntity> {
 
     public void setCode(String code) {
         this.code = code;
+        if (code != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getAbbrev() {
@@ -40,6 +43,9 @@ public class DistrictQuery extends SumiffiikQuery<DistrictEntity> {
 
     public void setAbbrev(String abbrev) {
         this.abbrev = abbrev;
+        if (abbrev != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getName() {
@@ -48,6 +54,9 @@ public class DistrictQuery extends SumiffiikQuery<DistrictEntity> {
 
     public void setName(String name) {
         this.name = name;
+        if (name != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override

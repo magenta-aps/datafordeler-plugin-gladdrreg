@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public class StateQuery extends SumiffiikQuery<StateEntity> {
 
-    public static final String CODE = "code";
-    public static final String NAME = "name";
-    public static final String DESCRIPTION = "description";
+    public static final String CODE = StateData.IO_FIELD_CODE;
+    public static final String NAME = StateData.IO_FIELD_NAME;
+    public static final String DESCRIPTION = StateData.IO_FIELD_DESCRIPTION;
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = CODE)
     private String code;
@@ -32,6 +32,9 @@ public class StateQuery extends SumiffiikQuery<StateEntity> {
 
     public void setCode(String code) {
         this.code = code;
+        if (code != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getName() {
@@ -40,6 +43,9 @@ public class StateQuery extends SumiffiikQuery<StateEntity> {
 
     public void setName(String name) {
         this.name = name;
+        if (name != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getDescription() {
@@ -48,6 +54,9 @@ public class StateQuery extends SumiffiikQuery<StateEntity> {
 
     public void setDescription(String description) {
         this.description = description;
+        if (description != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override

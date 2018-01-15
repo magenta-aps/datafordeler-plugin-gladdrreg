@@ -15,11 +15,11 @@ import java.util.Map;
  */
 public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
 
-    public static final String CODE = "code";
-    public static final String ABBREV = "abbrev";
-    public static final String NAME = "name";
-    public static final String TYPE = "type";
-    public static final String LOCALITY_STATE = "localityState";
+    public static final String CODE = LocalityData.IO_FIELD_CODE;
+    public static final String ABBREV = LocalityData.IO_FIELD_ABBREV;
+    public static final String NAME = LocalityData.IO_FIELD_NAME;
+    public static final String TYPE = LocalityData.IO_FIELD_TYPE;
+    public static final String LOCALITY_STATE = LocalityData.IO_FIELD_STATE;
 
     @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
     private String code;
@@ -42,6 +42,9 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
 
     public void setCode(String code) {
         this.code = code;
+        if (code != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getAbbrev() {
@@ -50,6 +53,9 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
 
     public void setAbbrev(String abbrev) {
         this.abbrev = abbrev;
+        if (abbrev != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getName() {
@@ -58,6 +64,9 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
 
     public void setName(String name) {
         this.name = name;
+        if (name != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public Integer getType() {
@@ -66,6 +75,9 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
 
     public void setType(Integer type) {
         this.type = type;
+        if (type != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public Integer getLocalityState() {
@@ -74,6 +86,9 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
 
     public void setLocalityState(Integer locality_state) {
         this.localityState = locality_state;
+        if (locality_state != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override

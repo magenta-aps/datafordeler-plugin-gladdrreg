@@ -39,6 +39,9 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
 
     public void setActive(Boolean active) {
         this.active = active;
+        if (active != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getNote() {
@@ -47,6 +50,9 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
 
     public void setNote(String note) {
         this.note = note;
+        if (note != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getRegistration_user() {
@@ -55,6 +61,9 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
 
     public void setRegistration_user(String registration_user) {
         this.registration_user = registration_user;
+        if (registration_user != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getState() {
@@ -63,6 +72,9 @@ public abstract class CommonQuery <E extends Entity> extends Query<E> {
 
     public void setState(String state) {
         this.state = state;
+        if (state != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override
