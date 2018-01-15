@@ -6,6 +6,7 @@ import dk.magenta.datafordeler.core.fapi.FapiService;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.user.DafoUserDetails;
 import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
+import dk.magenta.datafordeler.gladdrreg.data.GladdrregOutputWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/gladdrreg/state/1/rest")
 public class StateEntityService extends FapiService<StateEntity, StateQuery> {
+
+    public StateEntityService() {
+        this.setOutputWrapper(new StateOutputWrapper());
+    }
 
     @Autowired
     private GladdrregPlugin gladdregPlugin;

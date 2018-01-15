@@ -6,6 +6,7 @@ import dk.magenta.datafordeler.core.fapi.FapiService;
 import dk.magenta.datafordeler.core.plugin.Plugin;
 import dk.magenta.datafordeler.core.user.DafoUserDetails;
 import dk.magenta.datafordeler.gladdrreg.GladdrregPlugin;
+import dk.magenta.datafordeler.gladdrreg.data.GladdrregOutputWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/gladdrreg/district/1/rest")
 public class DistrictEntityService extends FapiService<DistrictEntity, DistrictQuery> {
+
+    public DistrictEntityService() {
+        this.setOutputWrapper(new DistrictOutputWrapper());
+    }
 
     @Autowired
     private GladdrregPlugin gladdregPlugin;

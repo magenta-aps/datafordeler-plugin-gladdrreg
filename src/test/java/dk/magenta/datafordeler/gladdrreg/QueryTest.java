@@ -167,7 +167,7 @@ public class QueryTest {
         String type = "address";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("houseNumber", "5");
+        searchParameters.add("husnummer", "5");
         ResponseEntity<String> response;
 
         response = restSearch(searchParameters, type);
@@ -177,6 +177,12 @@ public class QueryTest {
         Assert.assertTrue(results.isArray());
         Assert.assertEquals(1, results.size());
         Assert.assertEquals("6921fbb1-ddd7-4c7c-bb98-bbf63ace6a3a", results.get(0).get("UUID").asText());
+
+
+        searchParameters = new ParameterMap();
+        searchParameters.add("number", "5");
+        response = restSearch(searchParameters, type);
+        Assert.assertEquals(400, response.getStatusCode().value());
     }
 
     @Test
@@ -187,7 +193,7 @@ public class QueryTest {
 
         ParameterMap searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -199,7 +205,7 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -219,7 +225,7 @@ public class QueryTest {
         String type = "bnumber";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("code", "293");
+        searchParameters.add("bnummer", "293");
         ResponseEntity<String> response;
 
 
@@ -233,7 +239,7 @@ public class QueryTest {
         Assert.assertEquals("53191b3a-ba25-44d0-8381-4d1b86d4c38d", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "testhus");
+        searchParameters.add("kaldenavn", "testhus");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -243,7 +249,7 @@ public class QueryTest {
         Assert.assertEquals("53191b3a-ba25-44d0-8381-4d1b86d4c38d", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "test*");
+        searchParameters.add("kaldenavn", "test*");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -253,7 +259,7 @@ public class QueryTest {
         Assert.assertEquals("53191b3a-ba25-44d0-8381-4d1b86d4c38d", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "*hus");
+        searchParameters.add("kaldenavn", "*hus");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -261,6 +267,12 @@ public class QueryTest {
         Assert.assertTrue(results.isArray());
         Assert.assertEquals(1, results.size());
         Assert.assertEquals("53191b3a-ba25-44d0-8381-4d1b86d4c38d", results.get(0).get("UUID").asText());
+
+
+        searchParameters = new ParameterMap();
+        searchParameters.add("code", "293");
+        response = restSearch(searchParameters, type);
+        Assert.assertEquals(400, response.getStatusCode().value());
     }
 
 
@@ -272,7 +284,7 @@ public class QueryTest {
 
         ParameterMap searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -283,7 +295,7 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -304,7 +316,7 @@ public class QueryTest {
         String type = "district";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("name", "Aasiaat");
+        searchParameters.add("navn", "Aasiaat");
         ResponseEntity<String> response;
 
         response = restSearch(searchParameters, type);
@@ -317,7 +329,7 @@ public class QueryTest {
 
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "Aas*");
+        searchParameters.add("navn", "Aas*");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -327,7 +339,7 @@ public class QueryTest {
         Assert.assertEquals("92b6e52f-fb29-4249-bceb-4a8c410c3d65", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("abbrev", "AAS");
+        searchParameters.add("forkortelse", "AAS");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -335,6 +347,12 @@ public class QueryTest {
         Assert.assertTrue(results.isArray());
         Assert.assertEquals(1, results.size());
         Assert.assertEquals("92b6e52f-fb29-4249-bceb-4a8c410c3d65", results.get(0).get("UUID").asText());
+
+
+        searchParameters = new ParameterMap();
+        searchParameters.add("name", "Aasiaat");
+        response = restSearch(searchParameters, type);
+        Assert.assertEquals(400, response.getStatusCode().value());
     }
 
     @Test
@@ -345,7 +363,7 @@ public class QueryTest {
 
         ParameterMap searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -356,7 +374,7 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -376,7 +394,7 @@ public class QueryTest {
         String type = "locality";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("code", "500");
+        searchParameters.add("lokalitetskode", "500");
         ResponseEntity<String> response;
 
         response = restSearch(searchParameters, type);
@@ -388,7 +406,7 @@ public class QueryTest {
         Assert.assertEquals("4d9cd2a0-89f1-4acc-a259-4fd139006d87", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "Paamiut");
+        searchParameters.add("navn", "Paamiut");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -398,7 +416,7 @@ public class QueryTest {
         Assert.assertEquals("4d9cd2a0-89f1-4acc-a259-4fd139006d87", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "Paa*");
+        searchParameters.add("navn", "Paa*");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -408,7 +426,7 @@ public class QueryTest {
         Assert.assertEquals("4d9cd2a0-89f1-4acc-a259-4fd139006d87", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("abbrev", "PAA");
+        searchParameters.add("forkortelse", "PAA");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -428,7 +446,7 @@ public class QueryTest {
         Assert.assertEquals("4d9cd2a0-89f1-4acc-a259-4fd139006d87", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("localityState", "15");
+        searchParameters.add("tilstand", "15");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -436,6 +454,12 @@ public class QueryTest {
         Assert.assertTrue(results.isArray());
         Assert.assertEquals(1, results.size());
         Assert.assertEquals("4d9cd2a0-89f1-4acc-a259-4fd139006d87", results.get(0).get("UUID").asText());
+
+
+        searchParameters = new ParameterMap();
+        searchParameters.add("name", "Paamiut");
+        response = restSearch(searchParameters, type);
+        Assert.assertEquals(400, response.getStatusCode().value());
     }
 
     @Test
@@ -446,7 +470,7 @@ public class QueryTest {
 
         ParameterMap searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -457,7 +481,7 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -475,7 +499,7 @@ public class QueryTest {
         String type = "municipality";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("name", "Kommune Kujalleq");
+        searchParameters.add("navn", "Kommune Kujalleq");
         ResponseEntity<String> response;
 
         response = restSearch(searchParameters, type);
@@ -487,7 +511,7 @@ public class QueryTest {
         Assert.assertEquals("f792151b-f509-4173-aa5d-2f237cca1784", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "*Kujalleq");
+        searchParameters.add("navn", "*Kujalleq");
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -499,7 +523,7 @@ public class QueryTest {
 
 
         searchParameters = new ParameterMap();
-        searchParameters.add("code", "955");
+        searchParameters.add("kommunekode", "955");
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -509,6 +533,11 @@ public class QueryTest {
         Assert.assertEquals(1, results.size());
         Assert.assertEquals("f792151b-f509-4173-aa5d-2f237cca1784", results.get(0).get("UUID").asText());
 
+
+        searchParameters = new ParameterMap();
+        searchParameters.add("name", "Kommune Kujalleq");
+        response = restSearch(searchParameters, type);
+        Assert.assertEquals(400, response.getStatusCode().value());
     }
 
 
@@ -520,7 +549,7 @@ public class QueryTest {
 
         ParameterMap searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -531,7 +560,7 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -549,7 +578,7 @@ public class QueryTest {
         String type = "postalcode";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("name", "Mestersvig");
+        searchParameters.add("navn", "Mestersvig");
         ResponseEntity<String> response;
 
         response = restSearch(searchParameters, type);
@@ -561,7 +590,19 @@ public class QueryTest {
         Assert.assertEquals("a0c543c9-5588-42ef-9497-ab765fa3f8c0", results.get(0).get("UUID").asText());
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "Mester*");
+        searchParameters.add("navn", "Mester*");
+
+        response = restSearch(searchParameters, type);
+        Assert.assertEquals(200, response.getStatusCode().value());
+        jsonBody = objectMapper.readTree(response.getBody());
+        results = jsonBody.get("results");
+        Assert.assertTrue(results.isArray());
+        Assert.assertEquals(1, results.size());
+        Assert.assertEquals("a0c543c9-5588-42ef-9497-ab765fa3f8c0", results.get(0).get("UUID").asText());
+
+
+        searchParameters = new ParameterMap();
+        searchParameters.add("postnummer", "3982");
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -574,15 +615,8 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("code", "3982");
-
         response = restSearch(searchParameters, type);
-        Assert.assertEquals(200, response.getStatusCode().value());
-        jsonBody = objectMapper.readTree(response.getBody());
-        results = jsonBody.get("results");
-        Assert.assertTrue(results.isArray());
-        Assert.assertEquals(1, results.size());
-        Assert.assertEquals("a0c543c9-5588-42ef-9497-ab765fa3f8c0", results.get(0).get("UUID").asText());
-
+        Assert.assertEquals(400, response.getStatusCode().value());
     }
 
 
@@ -594,7 +628,7 @@ public class QueryTest {
 
         ParameterMap searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -605,7 +639,7 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -622,7 +656,7 @@ public class QueryTest {
         String type = "road";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("name", "Aadarujuup Aqquserna");
+        searchParameters.add("navn", "Aadarujuup Aqquserna");
         ResponseEntity<String> response;
 
         response = restSearch(searchParameters, type);
@@ -635,7 +669,7 @@ public class QueryTest {
 
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "Aadarujuup*");
+        searchParameters.add("navn", "Aadarujuup*");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -646,7 +680,7 @@ public class QueryTest {
 
 
         searchParameters = new ParameterMap();
-        searchParameters.add("shortname", "Aadarujuup Aqq.");
+        searchParameters.add("kortNavn", "Aadarujuup Aqq.");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -654,6 +688,12 @@ public class QueryTest {
         Assert.assertTrue(results.isArray());
         Assert.assertEquals(1, results.size());
         Assert.assertEquals("e4dc6c09-baae-40b1-8696-57771b2f7a81", results.get(0).get("UUID").asText());
+
+
+        searchParameters = new ParameterMap();
+        searchParameters.add("name", "Aadarujuup Aqquserna");
+        response = restSearch(searchParameters, type);
+        Assert.assertEquals(400, response.getStatusCode().value());
     }
 
     @Test
@@ -664,7 +704,7 @@ public class QueryTest {
 
         ParameterMap searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -675,7 +715,7 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -693,7 +733,7 @@ public class QueryTest {
         String type = "state";
 
         ParameterMap searchParameters = new ParameterMap();
-        searchParameters.add("name", "Eftersyn");
+        searchParameters.add("navn", "Eftersyn");
         ResponseEntity<String> response;
 
         response = restSearch(searchParameters, type);
@@ -706,7 +746,7 @@ public class QueryTest {
 
 
         searchParameters = new ParameterMap();
-        searchParameters.add("name", "Efter*");
+        searchParameters.add("navn", "Efter*");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -717,7 +757,7 @@ public class QueryTest {
 
 
         searchParameters = new ParameterMap();
-        searchParameters.add("code", "2");
+        searchParameters.add("kode", "2");
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -725,6 +765,12 @@ public class QueryTest {
         Assert.assertTrue(results.isArray());
         Assert.assertEquals(1, results.size());
         Assert.assertEquals("2e4b5cdc-5c85-4951-b41e-50138792daee", results.get(0).get("UUID").asText());
+
+
+        searchParameters = new ParameterMap();
+        searchParameters.add("name", "Eftersyn");
+        response = restSearch(searchParameters, type);
+        Assert.assertEquals(400, response.getStatusCode().value());
 
     }
 
@@ -737,7 +783,7 @@ public class QueryTest {
 
         ParameterMap searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.plusSeconds(5).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
 
         ResponseEntity<String> response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
@@ -748,7 +794,7 @@ public class QueryTest {
 
         searchParameters = new ParameterMap();
         searchParameters.add("registreringFra", now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
-        searchParameters.add("recordAfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        searchParameters.add("opdateretEfter", now.minusDays(1).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         response = restSearch(searchParameters, type);
         Assert.assertEquals(200, response.getStatusCode().value());
         jsonBody = objectMapper.readTree(response.getBody());
@@ -756,9 +802,5 @@ public class QueryTest {
         Assert.assertTrue(results.isArray());
         Assert.assertEquals(1, results.size());
     }
-
-
-
-
 
 }

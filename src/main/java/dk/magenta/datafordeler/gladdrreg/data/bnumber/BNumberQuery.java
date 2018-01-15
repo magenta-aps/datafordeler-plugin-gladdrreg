@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
 
-    public static final String CODE = "code";
-    public static final String TYPE = "type";
-    public static final String NAME = "name";
+    public static final String CODE = BNumberData.IO_FIELD_CODE;
+    public static final String TYPE = BNumberData.IO_FIELD_TYPE;
+    public static final String NAME = BNumberData.IO_FIELD_CALLNAME;
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = CODE)
     private String code;
@@ -32,6 +32,9 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
 
     public void setCode(String code) {
         this.code = code;
+        if (code != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getType() {
@@ -40,6 +43,9 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
 
     public void setType(String type) {
         this.type = type;
+        if (type != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getName() {
@@ -48,6 +54,9 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
 
     public void setName(String name) {
         this.name = name;
+        if (name != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override
@@ -63,13 +72,13 @@ public class BNumberQuery extends SumiffiikQuery<BNumberEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, String.class);
+            lookupDefinition.put(BNumberData.DB_FIELD_CODE, this.code, String.class);
         }
         if (this.type != null) {
-            lookupDefinition.put("b_type", this.type, String.class);
+            lookupDefinition.put(BNumberData.DB_FIELD_TYPE, this.type, String.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("b_callname", this.name, String.class);
+            lookupDefinition.put(BNumberData.DB_FIELD_CALLNAME, this.name, String.class);
         }
         return lookupDefinition;
     }

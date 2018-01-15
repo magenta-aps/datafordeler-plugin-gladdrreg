@@ -1,6 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg.data.state;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
 import javax.persistence.Column;
@@ -15,26 +17,50 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_state_data", indexes = {
-        @Index(name = "gladdrreg_state_code", columnList = "code"),
-        @Index(name = "gladdrreg_state_name", columnList = "name"),
-        @Index(name = "gladdrreg_state_description", columnList = "description")
+        @Index(name = "gladdrreg_state_code", columnList = StateData.DB_FIELD_CODE),
+        @Index(name = "gladdrreg_state_name", columnList = StateData.DB_FIELD_NAME),
+        @Index(name = "gladdrreg_state_description", columnList = StateData.DB_FIELD_DESCRIPTION)
 })
 public class StateData extends SumiffiikData<StateEffect, StateData> {
 
-    @Column
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "kode";
+
+    @Column(name = DB_FIELD_CODE)
     @JsonProperty
     @XmlElement
     private String code;
 
-    @Column
+    public String getCode() {
+        return this.code;
+    }
+
+
+    public static final String DB_FIELD_NAME = "name";
+    public static final String IO_FIELD_NAME = "navn";
+
+    @Column(name = DB_FIELD_NAME)
     @JsonProperty
     @XmlElement
     private String name;
 
-    @Column
+    public String getName() {
+        return this.name;
+    }
+
+
+    public static final String DB_FIELD_DESCRIPTION = "description";
+    public static final String IO_FIELD_DESCRIPTION = "beskrivelse";
+
+    @Column(name = DB_FIELD_DESCRIPTION)
     @JsonProperty
     @XmlElement
     private String description;
+
+    public String getDescription() {
+        return this.description;
+    }
+
 
     @Override
     public Map<String, Object> asMap() {
