@@ -62,7 +62,7 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
     }
 
 
-    public static final String DB_FIELD_LOCATION = "houseNumber";
+    public static final String DB_FIELD_LOCATION = "location"; /////////////
     public static final String IO_FIELD_LOCATION = "lokation";
 
     @JsonProperty
