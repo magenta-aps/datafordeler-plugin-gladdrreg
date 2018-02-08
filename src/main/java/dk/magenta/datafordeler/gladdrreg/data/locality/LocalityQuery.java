@@ -1,14 +1,15 @@
 package dk.magenta.datafordeler.gladdrreg.data.locality;
 
+import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by lars on 19-05-17.
@@ -91,6 +92,12 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
         }
     }
 
+    private String municipality;
+
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
+    }
+
     @Override
     public Map<String, Object> getSearchParameters() {
         HashMap<String, Object> map = new HashMap<>(super.getSearchParameters());
@@ -119,6 +126,9 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
         }
         if (this.localityState != null) {
             lookupDefinition.put(LocalityData.DB_FIELD_STATE, this.localityState, Integer.class);
+        }
+        if (this.municipality != null) {
+            lookupDefinition.put(LocalityData.DB_FIELD_MUNICIPALITY + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.municipality, UUID.class);
         }
         return lookupDefinition;
     }
