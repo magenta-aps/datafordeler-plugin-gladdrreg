@@ -1,5 +1,6 @@
 package dk.magenta.datafordeler.gladdrreg.data.address;
 
+import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
@@ -7,6 +8,7 @@ import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by lars on 19-05-17.
@@ -59,6 +61,18 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
         }
     }
 
+    private String road;
+
+    public void setRoad(String road) {
+        this.road = road;
+    }
+
+    private String bnr;
+
+    public void setBnr(String bnr) {
+        this.bnr = bnr;
+    }
+
     @Override
     public Map<String, Object> getSearchParameters() {
         HashMap<String, Object> map = new HashMap<>(super.getSearchParameters());
@@ -79,6 +93,12 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
         }
         if (this.room != null) {
             lookupDefinition.put(AddressData.DB_FIELD_ROOM, this.room, String.class);
+        }
+        if (this.road != null) {
+            lookupDefinition.put(AddressData.DB_FIELD_ROAD + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.road, UUID.class);
+        }
+        if (this.bnr != null) {
+            lookupDefinition.put(AddressData.DB_FIELD_BNUMBER + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.bnr, UUID.class);
         }
         return lookupDefinition;
     }

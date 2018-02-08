@@ -107,6 +107,12 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
         }
     }
 
+    private String locality;
+
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
+
     @Override
     public Map<String, Object> getSearchParameters() {
         HashMap<String, Object> map = new HashMap<>(super.getSearchParameters());
@@ -138,6 +144,9 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
         }
         if (this.municipalityIdentifier != null) {
             lookupDefinition.put(RoadData.DB_FIELD_MUNICIPALITY + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.municipalityIdentifier, UUID.class);
+        }
+        if (this.locality != null) {
+            lookupDefinition.put(RoadData.DB_FIELD_LOCATION + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.locality, UUID.class);
         }
         return lookupDefinition;
     }
