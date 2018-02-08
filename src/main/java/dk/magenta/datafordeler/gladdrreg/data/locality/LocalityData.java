@@ -2,13 +2,13 @@ package dk.magenta.datafordeler.gladdrreg.data.locality;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
-import javax.persistence.Column;
-import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,87 +18,120 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_locality_data", indexes = {
-        @Index(name = "gladdrreg_locality_code", columnList = "code"),
-        @Index(name = "gladdrreg_locality_abbrev", columnList = "abbrev"),
-        @Index(name = "gladdrreg_locality_name", columnList = "name"),
-        @Index(name = "gladdrreg_locality_type", columnList = "type"),
-        @Index(name = "gladdrreg_locality_localityState", columnList = "localityState")
+        @Index(name = "gladdrreg_locality_code", columnList = LocalityData.DB_FIELD_CODE),
+        @Index(name = "gladdrreg_locality_abbrev", columnList = LocalityData.DB_FIELD_ABBREV),
+        @Index(name = "gladdrreg_locality_name", columnList = LocalityData.DB_FIELD_NAME),
+        @Index(name = "gladdrreg_locality_type", columnList = LocalityData.DB_FIELD_TYPE),
+        @Index(name = "gladdrreg_locality_localityState", columnList = LocalityData.DB_FIELD_STATE)
 })
 public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
 
-    @Column
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "lokalitetskode";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_CODE)
     private int code;
-
-    @Column
-    @JsonProperty
-    @XmlElement
-    private String abbrev;
-
-    @Column
-    @JsonProperty
-    @XmlElement
-    private String name;
-
-    @Column
-    @JsonProperty
-    @XmlElement
-    private int type;
-
-    @Column
-    @JsonProperty("locality_state")
-    @XmlElement
-    private int localityState;
-
-
-
-    @ManyToOne
-    @JsonProperty(required = false)
-    @XmlElement
-    private Identification municipality;
-
-    @ManyToOne
-    @JsonProperty(required = false)
-    @XmlElement
-    private Identification district;
-
-    @ManyToOne
-    @JsonProperty(value="postal_code", required = false)
-    @XmlElement
-    private Identification postalCode;
 
     public int getCode() {
         return this.code;
     }
 
+
+    public static final String DB_FIELD_ABBREV = "abbrev";
+    public static final String IO_FIELD_ABBREV = "forkortelse";
+
+    @JsonProperty
+    @XmlElement
+    @Column(name = DB_FIELD_ABBREV)
+    private String abbrev;
+
     public String getAbbrev() {
         return this.abbrev;
     }
+
+
+    public static final String DB_FIELD_NAME = "name";
+    public static final String IO_FIELD_NAME = "navn";
+
+    @JsonProperty
+    @XmlElement
+    @Column(name = DB_FIELD_NAME)
+    private String name;
 
     public String getName() {
         return this.name;
     }
 
+
+    public static final String DB_FIELD_TYPE = "type";
+    public static final String IO_FIELD_TYPE = "type";
+
+    @JsonProperty
+    @XmlElement
+    @Column(name = DB_FIELD_TYPE)
+    private int type;
+
     public int getType() {
         return this.type;
     }
+
+
+    public static final String DB_FIELD_STATE = "localityState";
+    public static final String IO_FIELD_STATE = "tilstand";
+
+    @JsonProperty("locality_state")
+    @XmlElement
+    @Column(name = DB_FIELD_STATE)
+    private int localityState;
 
     public int getLocalityState() {
         return this.localityState;
     }
 
+
+    public static final String DB_FIELD_MUNICIPALITY = "municipality";
+    public static final String IO_FIELD_MUNICIPALITY = "kommune";
+
+    @JsonProperty(required = false)
+    @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
+    private Identification municipality;
+
     public Identification getMunicipality() {
         return this.municipality;
     }
+
+
+    public static final String DB_FIELD_DISTRICT = "district";
+    public static final String IO_FIELD_DISTRICT = "distrikt";
+
+    @JsonProperty(required = false)
+    @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_DISTRICT + DatabaseEntry.REF)
+    private Identification district;
 
     public Identification getDistrict() {
         return this.district;
     }
 
+
+    public static final String DB_FIELD_POSTALCODE = "postalCode";
+    public static final String IO_FIELD_POSTALCODE = "postnummer";
+
+    @JsonProperty(value="postal_code", required = false)
+    @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_POSTALCODE + DatabaseEntry.REF)
+    private Identification postalCode;
+
     public Identification getPostalCode() {
         return this.postalCode;
     }
+
 
     @Override
     public Map<String, Object> asMap() {

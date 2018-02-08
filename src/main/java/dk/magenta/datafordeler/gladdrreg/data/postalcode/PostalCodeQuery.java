@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.postalcode;
 
 import dk.magenta.datafordeler.core.database.LookupDefinition;
+import dk.magenta.datafordeler.core.exception.InvalidClientInputException;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
@@ -13,8 +14,8 @@ import java.util.Map;
  */
 public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
 
-    public static final String CODE = "code";
-    public static final String NAME = "name";
+    public static final String CODE = PostalCodeData.IO_FIELD_CODE;
+    public static final String NAME = PostalCodeData.IO_FIELD_NAME;
 
     @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
     private String code;
@@ -28,6 +29,9 @@ public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
 
     public void setCode(String code) {
         this.code = code;
+        if (code != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getName() {
@@ -36,6 +40,9 @@ public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
 
     public void setName(String name) {
         this.name = name;
+        if (name != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override
@@ -50,10 +57,10 @@ public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
         if (this.code != null) {
-            lookupDefinition.put("code", this.code, Integer.class);
+            lookupDefinition.put(PostalCodeData.DB_FIELD_CODE, this.code, Integer.class);
         }
         if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+            lookupDefinition.put(PostalCodeData.DB_FIELD_NAME, this.name, String.class);
         }
         return lookupDefinition;
     }

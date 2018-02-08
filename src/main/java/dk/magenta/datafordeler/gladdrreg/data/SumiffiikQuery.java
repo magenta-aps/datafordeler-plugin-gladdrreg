@@ -28,6 +28,9 @@ public abstract class SumiffiikQuery<E extends Entity> extends CommonQuery<E> {
 
     public void setSumiffiik(String sumiffiik) {
         this.sumiffiik = sumiffiik;
+        if (sumiffiik != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     public String getSumiffiik_domain() {
@@ -36,6 +39,9 @@ public abstract class SumiffiikQuery<E extends Entity> extends CommonQuery<E> {
 
     public void setSumiffiik_domain(String sumiffiik_domain) {
         this.sumiffiik_domain = sumiffiik_domain;
+        if (sumiffiik_domain != null) {
+            this.increaseDataParamCount();
+        }
     }
 
     @Override

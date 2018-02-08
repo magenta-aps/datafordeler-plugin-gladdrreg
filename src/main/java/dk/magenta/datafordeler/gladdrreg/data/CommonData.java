@@ -2,12 +2,16 @@ package dk.magenta.datafordeler.gladdrreg.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.core.database.DataItem;
+import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Effect;
 import dk.magenta.datafordeler.core.database.Identification;
 import org.hibernate.Session;
 
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.xml.bind.annotation.XmlElement;
@@ -20,25 +24,58 @@ import java.util.Map;
 @MappedSuperclass
 public class CommonData<V extends Effect, D extends DataItem> extends DataItem<V, D> {
 
-    @Column
+    public static final String DB_FIELD_ACTIVE = "active";
+    public static final String IO_FIELD_ACTIVE = "aktiv";
+
+    @Column(name = DB_FIELD_ACTIVE)
     @JsonProperty
     @XmlElement
     private boolean active;
 
-    @Column
+    public boolean isActive() {
+        return this.active;
+    }
+
+
+    public static final String DB_FIELD_NOTE = "note";
+    public static final String IO_FIELD_NOTE = "note";
+
+    @Column(name = DB_FIELD_NOTE)
     @JsonProperty
     @XmlElement
     private String note;
 
-    @Column
+    public String getNote() {
+        return this.note;
+    }
+
+
+    public static final String DB_FIELD_USER = "registration_user";
+    public static final String IO_FIELD_USER = "registration_user";
+
+    @Column(name = DB_FIELD_USER)
     @JsonProperty
     @XmlElement
     private String registration_user;
 
+    public String getRegistration_user() {
+        return this.registration_user;
+    }
+
+
+    public static final String DB_FIELD_STATE = "state";
+    public static final String IO_FIELD_STATE = "tilstand";
+
     @ManyToOne
     @JsonProperty
     @XmlElement
+    @JoinColumn(name = DB_FIELD_STATE + DatabaseEntry.REF)
     private Identification state;
+
+    public Identification getState() {
+        return this.state;
+    }
+
 
     @Override
     public Map<String, Object> asMap() {
