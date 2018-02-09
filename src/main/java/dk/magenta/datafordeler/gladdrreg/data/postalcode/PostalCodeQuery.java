@@ -6,7 +6,9 @@ import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,29 +20,40 @@ public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
     public static final String NAME = PostalCodeData.IO_FIELD_NAME;
 
     @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
-    private String code;
+    private List<String> code = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
-    private String name;
+    private List<String> name = new ArrayList<>();
 
-    public String getCode() {
+
+    public List<String> getCode() {
         return code;
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code.clear();
+        this.addCode(code);
+    }
+
+    public void addCode(String code) {
         if (code != null) {
+            this.code.add(code);
             this.increaseDataParamCount();
         }
     }
 
-    public String getName() {
+    public List<String> getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.clear();
+        this.addName(name);
+    }
+
+    public void addName(String name) {
         if (name != null) {
+            this.name.add(name);
             this.increaseDataParamCount();
         }
     }
@@ -56,10 +69,10 @@ public class PostalCodeQuery extends SumiffiikQuery<PostalCodeEntity> {
     @Override
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
-        if (this.code != null) {
+        if (this.code != null && !this.code.isEmpty()) {
             lookupDefinition.put(PostalCodeData.DB_FIELD_CODE, this.code, Integer.class);
         }
-        if (this.name != null) {
+        if (this.name != null && !this.name.isEmpty()) {
             lookupDefinition.put(PostalCodeData.DB_FIELD_NAME, this.name, String.class);
         }
         return lookupDefinition;
