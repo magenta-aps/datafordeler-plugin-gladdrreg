@@ -22,7 +22,8 @@ import java.util.Map;
         @Index(name = "gladdrreg_locality_abbrev", columnList = LocalityData.DB_FIELD_ABBREV),
         @Index(name = "gladdrreg_locality_name", columnList = LocalityData.DB_FIELD_NAME),
         @Index(name = "gladdrreg_locality_type", columnList = LocalityData.DB_FIELD_TYPE),
-        @Index(name = "gladdrreg_locality_localityState", columnList = LocalityData.DB_FIELD_STATE)
+        @Index(name = "gladdrreg_locality_localityState", columnList = LocalityData.DB_FIELD_STATE),
+        @Index(name = "gladdrreg_locality_municipality", columnList = LocalityData.DB_FIELD_MUNICIPALITY + DatabaseEntry.REF),
 })
 public class LocalityData extends SumiffiikData<LocalityEffect, LocalityData> {
 
