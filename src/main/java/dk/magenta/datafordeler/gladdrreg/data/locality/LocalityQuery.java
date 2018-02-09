@@ -7,9 +7,7 @@ import dk.magenta.datafordeler.core.fapi.Query;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by lars on 19-05-17.
@@ -23,13 +21,13 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
     public static final String LOCALITY_STATE = LocalityData.IO_FIELD_STATE;
 
     @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
-    private String code;
+    private List<String> code = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = ABBREV)
-    private String abbrev;
+    private List<String> abbrev = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
-    private String name;
+    private List<String> name = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.INT, queryName = TYPE)
     private Integer type;
@@ -37,35 +35,50 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
     @QueryField(type = QueryField.FieldType.INT, queryName = LOCALITY_STATE)
     private Integer localityState;
 
-    public String getCode() {
+    public List<String> getCode() {
         return code;
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code.clear();
+        this.addCode(code);
+    }
+
+    public void addCode(String code) {
         if (code != null) {
+            this.code.add(code);
             this.increaseDataParamCount();
         }
     }
 
-    public String getAbbrev() {
+    public List<String> getAbbrev() {
         return abbrev;
     }
 
     public void setAbbrev(String abbrev) {
-        this.abbrev = abbrev;
+        this.abbrev.clear();
+        this.addAbbrev(abbrev);
+    }
+
+    public void addAbbrev(String abbrev) {
         if (abbrev != null) {
+            this.abbrev.add(abbrev);
             this.increaseDataParamCount();
         }
     }
 
-    public String getName() {
+    public List<String> getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.clear();
+        this.addName(name);
+    }
+
+    public void addName(String name) {
         if (name != null) {
+            this.name.add(name);
             this.increaseDataParamCount();
         }
     }
@@ -92,10 +105,22 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
         }
     }
 
-    private String municipality;
+    private List<String> municipality = new ArrayList<>();
+
+    public List<String> getMunicipality() {
+        return municipality;
+    }
 
     public void setMunicipality(String municipality) {
-        this.municipality = municipality;
+        this.municipality.clear();
+        this.addMunicipality(municipality);
+    }
+
+    public void addMunicipality(String municipality) {
+        if (municipality != null) {
+            this.municipality.add(municipality);
+            this.increaseDataParamCount();
+        }
     }
 
     @Override
@@ -112,13 +137,13 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
     @Override
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
-        if (this.code != null) {
+        if (this.code != null && !this.code.isEmpty()) {
             lookupDefinition.put(LocalityData.DB_FIELD_CODE, this.code, Integer.class);
         }
-        if (this.name != null) {
+        if (this.name != null && !this.name.isEmpty()) {
             lookupDefinition.put(LocalityData.DB_FIELD_NAME, this.name, String.class);
         }
-        if (this.abbrev != null) {
+        if (this.abbrev != null && !this.abbrev.isEmpty()) {
             lookupDefinition.put(LocalityData.DB_FIELD_ABBREV, this.abbrev, String.class);
         }
         if (this.type != null) {
@@ -127,7 +152,7 @@ public class LocalityQuery extends SumiffiikQuery<LocalityEntity> {
         if (this.localityState != null) {
             lookupDefinition.put(LocalityData.DB_FIELD_STATE, this.localityState, Integer.class);
         }
-        if (this.municipality != null) {
+        if (this.municipality != null && !this.municipality.isEmpty()) {
             lookupDefinition.put(LocalityData.DB_FIELD_MUNICIPALITY + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.municipality, UUID.class);
         }
         return lookupDefinition;

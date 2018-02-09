@@ -21,61 +21,85 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
     private List<String> houseNumber = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = FLOOR)
-    private String floor;
+    private List<String> floor = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = ROOM)
-    private String room;
+    private List<String> room = new ArrayList<>();
 
     public List<String> getHouseNumber() {
         return houseNumber;
     }
 
     public void setHouseNumber(String houseNumber) {
-        this.houseNumber = new ArrayList<>();
-        if (houseNumber != null) {
-            this.houseNumber.add(houseNumber);
-            this.increaseDataParamCount();
-        }
+        this.houseNumber.clear();
+        this.addHouseNumber(houseNumber);
     }
 
     public void addHouseNumber(String houseNumber) {
         if (houseNumber != null) {
             this.houseNumber.add(houseNumber);
+            this.increaseDataParamCount();
         }
     }
 
-    public String getFloor() {
+    public List<String> getFloor() {
         return floor;
     }
 
     public void setFloor(String floor) {
-        this.floor = floor;
+        this.floor.clear();
+        this.addFloor(floor);
+    }
+
+    public void addFloor(String floor) {
         if (floor != null) {
+            this.floor.add(floor);
             this.increaseDataParamCount();
         }
     }
 
-    public String getRoom() {
+    public List<String> getRoom() {
         return room;
     }
 
     public void setRoom(String room) {
-        this.room = room;
+        this.room.clear();
+        this.addRoom(room);
+    }
+
+    public void addRoom(String room) {
         if (room != null) {
+            this.room.add(room);
             this.increaseDataParamCount();
         }
     }
 
-    private String road;
+    private List<String> road = new ArrayList<>();
 
     public void setRoad(String road) {
-        this.road = road;
+        this.road.clear();
+        this.addRoad(road);
     }
 
-    private String bnr;
+    public void addRoad(String road) {
+        if (road != null) {
+            this.road.add(road);
+            this.increaseDataParamCount();
+        }
+    }
+
+    private List<String> bnr = new ArrayList<>();
 
     public void setBnr(String bnr) {
-        this.bnr = bnr;
+        this.bnr.clear();
+        this.addBnr(bnr);
+    }
+
+    public void addBnr(String bnr) {
+        if (bnr != null) {
+            this.bnr.add(bnr);
+            this.increaseDataParamCount();
+        }
     }
 
     @Override
@@ -93,16 +117,16 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
         if (this.houseNumber != null && !this.houseNumber.isEmpty()) {
             lookupDefinition.put(AddressData.DB_FIELD_HOUSENUMBER, this.houseNumber, String.class);
         }
-        if (this.floor != null) {
+        if (this.floor != null && !this.floor.isEmpty()) {
             lookupDefinition.put(AddressData.DB_FIELD_FLOOR, this.floor, String.class);
         }
-        if (this.room != null) {
+        if (this.room != null && !this.room.isEmpty()) {
             lookupDefinition.put(AddressData.DB_FIELD_ROOM, this.room, String.class);
         }
-        if (this.road != null) {
+        if (this.road != null && !this.road.isEmpty()) {
             lookupDefinition.put(AddressData.DB_FIELD_ROAD + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.road, UUID.class);
         }
-        if (this.bnr != null) {
+        if (this.bnr != null && !this.bnr.isEmpty()) {
             lookupDefinition.put(AddressData.DB_FIELD_BNUMBER + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.bnr, UUID.class);
         }
         return lookupDefinition;
