@@ -21,7 +21,8 @@ import java.util.Map;
         @Index(name = "gladdrreg_address_road", columnList = AddressData.DB_FIELD_ROAD + DatabaseEntry.REF),
         @Index(name = "gladdrreg_address_housenumber", columnList = AddressData.DB_FIELD_HOUSENUMBER),
         @Index(name = "gladdrreg_address_floor", columnList = AddressData.DB_FIELD_FLOOR),
-        @Index(name = "gladdrreg_address_room", columnList = AddressData.DB_FIELD_ROOM)
+        @Index(name = "gladdrreg_address_room", columnList = AddressData.DB_FIELD_ROOM),
+        @Index(name = "gladdrreg_address_bnr", columnList = AddressData.DB_FIELD_BNUMBER)
 })
 public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
 
