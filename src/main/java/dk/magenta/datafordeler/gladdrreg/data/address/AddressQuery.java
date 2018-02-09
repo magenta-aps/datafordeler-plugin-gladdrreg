@@ -6,9 +6,7 @@ import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by lars on 19-05-17.
@@ -20,7 +18,7 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
     public static final String ROOM = AddressData.IO_FIELD_ROOM;
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = HOUSE_NUMBER)
-    private String houseNumber;
+    private List<String> houseNumber = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = FLOOR)
     private String floor;
@@ -28,14 +26,21 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
     @QueryField(type = QueryField.FieldType.STRING, queryName = ROOM)
     private String room;
 
-    public String getHouseNumber() {
+    public List<String> getHouseNumber() {
         return houseNumber;
     }
 
     public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
+        this.houseNumber = new ArrayList<>();
         if (houseNumber != null) {
+            this.houseNumber.add(houseNumber);
             this.increaseDataParamCount();
+        }
+    }
+
+    public void addHouseNumber(String houseNumber) {
+        if (houseNumber != null) {
+            this.houseNumber.add(houseNumber);
         }
     }
 
@@ -85,7 +90,7 @@ public class AddressQuery extends SumiffiikQuery<AddressEntity> {
     @Override
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
-        if (this.houseNumber != null) {
+        if (this.houseNumber != null && !this.houseNumber.isEmpty()) {
             lookupDefinition.put(AddressData.DB_FIELD_HOUSENUMBER, this.houseNumber, String.class);
         }
         if (this.floor != null) {
