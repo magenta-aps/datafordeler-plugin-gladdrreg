@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.core.database.*;
 import dk.magenta.datafordeler.core.fapi.OutputWrapper;
+import dk.magenta.datafordeler.core.fapi.Query;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +20,7 @@ public abstract class GladdrregOutputWrapper<E extends Entity<E, R>, R extends R
     }
 
     @Override
-    public Object wrapResult(E input) {
+    public Object wrapResult(E input, Query query) {
         objectMapper = new ObjectMapper();
 
         // Root
