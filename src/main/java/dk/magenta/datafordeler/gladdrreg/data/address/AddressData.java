@@ -1,6 +1,7 @@
 package dk.magenta.datafordeler.gladdrreg.data.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -107,6 +108,24 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
     }
 
 
+
+    public static final String DB_FIELD_RESIDENCE = "residence";
+    public static final String IO_FIELD_RESIDENCE = "bolig";
+
+    @JsonProperty("residence")
+    @Column(name = DB_FIELD_RESIDENCE, nullable = true)
+    private Boolean residence;
+
+    public Boolean getResidence() {
+        return this.residence;
+    }
+
+    public void setResidence(Boolean residence) {
+        this.residence = residence;
+    }
+
+
+
     @Override
     public Map<String, Object> asMap() {
         HashMap<String, Object> map = new HashMap<>(super.asMap());
@@ -116,6 +135,7 @@ public class AddressData extends SumiffiikData<AddressEffect, AddressData> {
         map.put("bNumber", this.bNumber);
         map.put("road", this.road);
         map.put("municipality", this.municipality);
+        map.put("residence", this.residence);
         return map;
     }
 
