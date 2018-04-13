@@ -37,7 +37,7 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
     private List<String> cprName = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = MUNICIPALITY_ID)
-    private List<String> municipalityIdentifier;
+    private List<String> municipalityIdentifier = new ArrayList<>();
 
     public List<String> getCode() {
         return code;
