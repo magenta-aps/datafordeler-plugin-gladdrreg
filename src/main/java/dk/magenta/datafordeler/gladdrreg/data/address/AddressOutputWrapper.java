@@ -14,6 +14,7 @@ public class AddressOutputWrapper extends GladdrregOutputWrapper<AddressEntity, 
         this.put(objectNode, AddressData.IO_FIELD_BNUMBER, dataItem.getbNumber());
         this.put(objectNode, AddressData.IO_FIELD_MUNICIPALITY, dataItem.getMunicipality());
         this.put(objectNode, AddressData.IO_FIELD_ROAD, dataItem.getRoad());
+        this.put(objectNode, AddressData.IO_FIELD_RESIDENCE, dataItem.getResidence());
     }
 
 }
