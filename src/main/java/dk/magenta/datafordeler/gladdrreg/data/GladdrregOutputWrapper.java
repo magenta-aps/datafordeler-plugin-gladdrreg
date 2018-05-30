@@ -27,8 +27,7 @@ public abstract class GladdrregOutputWrapper<E extends Entity<E, R>, R extends R
         ObjectNode root = objectMapper.createObjectNode();
 
         root.put(Entity.IO_FIELD_UUID, input.getUUID().toString());
-        root.putPOJO("id", input.getIdentification());
-
+        root.put(Entity.IO_FIELD_DOMAIN, input.getDomain());
         ArrayNode registreringer = objectMapper.createArrayNode();
         root.set(Entity.IO_FIELD_REGISTRATIONS, registreringer);
 
