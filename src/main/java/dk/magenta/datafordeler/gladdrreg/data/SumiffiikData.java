@@ -32,7 +32,7 @@ public class SumiffiikData<V extends Effect, D extends DataItem> extends CommonD
 
 
     public static final String DB_FIELD_DOMAIN = "sumiffiik_domain";
-    public static final String IO_FIELD_DOMAIN = "sumiffiik";
+    public static final String IO_FIELD_DOMAIN = "sumiffiik_domain";
 
     @Column(name = DB_FIELD_DOMAIN)
     @JsonProperty
