@@ -97,18 +97,18 @@ public abstract class GladdrregEntityManager extends EntityManager {
     }
 
     @Override
-    public List<? extends Registration> parseRegistration(PluginSourceData registrationData, ImportMetadata importMetadata) throws DataFordelerException {
+    public List<? extends Registration> parseData(PluginSourceData registrationData, ImportMetadata importMetadata) throws DataFordelerException {
         try {
-            return this.parseRegistration(objectMapper.readTree(registrationData.getData()), importMetadata);
+            return this.parseData(objectMapper.readTree(registrationData.getData()), importMetadata);
         } catch (IOException e) {
             throw new DataStreamException(e);
         }
     }
 
     @Override
-    public List<? extends Registration> parseRegistration(InputStream registrationData, ImportMetadata importMetadata) throws DataFordelerException {
+    public List<? extends Registration> parseData(InputStream registrationData, ImportMetadata importMetadata) throws DataFordelerException {
         try {
-            return this.parseRegistration(objectMapper.readTree(registrationData), importMetadata);
+            return this.parseData(objectMapper.readTree(registrationData), importMetadata);
         } catch (IOException e) {
             throw new DataStreamException(e);
         } finally {
@@ -120,7 +120,7 @@ public abstract class GladdrregEntityManager extends EntityManager {
         }
     }
 
-    public List<? extends Registration> parseRegistration(JsonNode registrationData, ImportMetadata importMetadata) throws DataFordelerException {
+    public List<? extends Registration> parseData(JsonNode registrationData, ImportMetadata importMetadata) throws DataFordelerException {
         OffsetDateTime timestamp = OffsetDateTime.now();
         // Check whether the object is wrapped
         if (registrationData.has("registrationFrom") ||
@@ -141,7 +141,6 @@ public abstract class GladdrregEntityManager extends EntityManager {
                 }
 
                 registration.wireEffects();
-                System.out.println("Returning singletonlist");
                 return Collections.singletonList(registration);
             } catch (JsonProcessingException e) {
                 throw new ParseException("Error parsing registration "+registrationData, e);
@@ -152,9 +151,8 @@ public abstract class GladdrregEntityManager extends EntityManager {
             ArrayList<Registration> list = new ArrayList<>();
             while (keyIterator.hasNext()) {
                 String key = keyIterator.next();
-                list.addAll(this.parseRegistration(registrationData.get(key), importMetadata));
+                list.addAll(this.parseData(registrationData.get(key), importMetadata));
             }
-            System.out.println("Returning list");
             return list;
         }
     }

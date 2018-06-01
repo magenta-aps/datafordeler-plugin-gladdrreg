@@ -1,6 +1,8 @@
 package dk.magenta.datafordeler.gladdrreg.data.postalcode;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
 import javax.persistence.Column;
@@ -15,22 +17,29 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_postalcode_data", indexes = {
-        @Index(name = "gladdrreg_postalcode_code", columnList = "code")
+        @Index(name = "gladdrreg_postalcode_code", columnList = PostalCodeData.DB_FIELD_CODE),
+        @Index(name = "gladdrreg_postalcode_name", columnList = PostalCodeData.DB_FIELD_NAME)
 })
 public class PostalCodeData extends SumiffiikData<PostalCodeEffect, PostalCodeData> {
 
-    @Column
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "postnummer";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_CODE)
     private int code;
 
     public int getCode() {
         return this.code;
     }
 
-    @Column
+    public static final String DB_FIELD_NAME = "name";
+    public static final String IO_FIELD_NAME = "navn";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_NAME)
     private String name;
 
     public String getName() {
@@ -44,4 +53,5 @@ public class PostalCodeData extends SumiffiikData<PostalCodeEffect, PostalCodeDa
         map.put("name", this.name);
         return map;
     }
+
 }

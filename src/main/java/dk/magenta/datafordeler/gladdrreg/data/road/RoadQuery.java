@@ -1,90 +1,154 @@
 package dk.magenta.datafordeler.gladdrreg.data.road;
 
+import dk.magenta.datafordeler.core.database.DatabaseEntry;
+import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by lars on 19-05-17.
  */
 public class RoadQuery extends SumiffiikQuery<RoadEntity> {
 
-    public static final String CODE = "code";
-    public static final String NAME = "name";
-    public static final String SHORT_NAME = "short_name";
-    public static final String ALTERNATE_NAME = "alternate_name";
-    public static final String CPR_NAME = "cpr_name";
-    public static final String MUNICIPALITY_ID = "municipality_identification";
+    public static final String CODE = RoadData.IO_FIELD_CODE;
+    public static final String NAME = RoadData.IO_FIELD_NAME;
+    public static final String SHORT_NAME = RoadData.IO_FIELD_SHORTNAME;
+    public static final String ALTERNATE_NAME = RoadData.IO_FIELD_ALTNAME;
+    public static final String CPR_NAME = RoadData.IO_FIELD_CPRNAME;
+    public static final String MUNICIPALITY_ID = RoadData.IO_FIELD_MUNICIPALITY;
 
     @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
-    private String code;
+    private List<String> code = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
-    private String name;
+    private List<String> name = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = SHORT_NAME)
-    private String shortName;
+    private List<String> shortName = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = ALTERNATE_NAME)
-    private String alternateName;
+    private List<String> alternateName = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = CPR_NAME)
-    private String cprName;
+    private List<String> cprName = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = MUNICIPALITY_ID)
-    private String municipalityIdentifier;
+    private List<String> municipalityIdentifier = new ArrayList<>();
 
-    public String getCode() {
+    public List<String> getCode() {
         return code;
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code.clear();
+        this.addCode(code);
     }
 
-    public String getName() {
+    public void addCode(String code) {
+        if (code != null) {
+            this.code.add(code);
+            this.increaseDataParamCount();
+        }
+    }
+
+    public List<String> getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.clear();
+        this.addName(name);
     }
 
-    public String getShortName() {
+    public void addName(String name) {
+        if (name != null) {
+            this.name.add(name);
+            this.increaseDataParamCount();
+        }
+    }
+
+    public List<String> getShortName() {
         return shortName;
     }
 
     public void setShortName(String shortName) {
-        this.shortName = shortName;
+        this.shortName.clear();
+        this.addShortName(shortName);
     }
 
-    public String getAlternateName() {
+    public void addShortName(String shortName) {
+        if (shortName != null) {
+            this.shortName.add(shortName);
+            this.increaseDataParamCount();
+        }
+    }
+
+    public List<String> getAlternateName() {
         return alternateName;
     }
 
     public void setAlternateName(String alternateName) {
-        this.alternateName = alternateName;
+        this.alternateName.clear();
+        this.addAlternateName(alternateName);
     }
 
-    public String getCprName() {
+    public void addAlternateName(String alternateName) {
+        if (alternateName != null) {
+            this.alternateName.add(alternateName);
+            this.increaseDataParamCount();
+        }
+    }
+
+    public List<String> getCprName() {
         return cprName;
     }
 
     public void setCprName(String cprName) {
-        this.cprName = cprName;
+        this.cprName.clear();
+        this.addCprName(cprName);
     }
 
-    public String getMunicipalityIdentifier() {
+    public void addCprName(String cprName) {
+        if (cprName != null) {
+            this.cprName.add(cprName);
+            this.increaseDataParamCount();
+        }
+    }
+
+    public List<String> getMunicipalityIdentifier() {
         return this.municipalityIdentifier;
     }
 
     public void setMunicipalityIdentifier(String municipalityIdentifier) {
-        this.municipalityIdentifier = municipalityIdentifier;
+        this.municipalityIdentifier.clear();
+        this.addMunicipalityIdentifier(municipalityIdentifier);
+    }
+
+
+    public void addMunicipalityIdentifier(String municipalityIdentifier) {
+        if (municipalityIdentifier != null) {
+            this.municipalityIdentifier.add(municipalityIdentifier);
+            this.increaseDataParamCount();
+        }
+    }
+
+    private List<String> locality = new ArrayList<>();
+
+    public void setLocality(String locality) {
+        this.locality.clear();
+        this.addLocality(locality);
+    }
+
+
+    public void addLocality(String locality) {
+        if (locality != null) {
+            this.locality.add(locality);
+            this.increaseDataParamCount();
+        }
     }
 
     @Override
@@ -101,23 +165,26 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
     @Override
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
-        if (this.code != null) {
-            lookupDefinition.put("code", this.code, Integer.class);
+        if (this.code != null && !this.code.isEmpty()) {
+            lookupDefinition.put(RoadData.DB_FIELD_CODE, this.code, Integer.class);
         }
-        if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+        if (this.name != null && !this.name.isEmpty()) {
+            lookupDefinition.put(RoadData.DB_FIELD_NAME, this.name, String.class);
         }
-        if (this.shortName != null) {
-            lookupDefinition.put("shortName", this.shortName, String.class);
+        if (this.shortName != null && !this.shortName.isEmpty()) {
+            lookupDefinition.put(RoadData.DB_FIELD_SHORTNAME, this.shortName, String.class);
         }
-        if (this.alternateName != null) {
-            lookupDefinition.put("alternateName", this.alternateName, String.class);
+        if (this.alternateName != null && !this.alternateName.isEmpty()) {
+            lookupDefinition.put(RoadData.DB_FIELD_ALTNAME, this.alternateName, String.class);
         }
-        if (this.cprName != null) {
-            lookupDefinition.put("cprName", this.cprName, String.class);
+        if (this.cprName != null && !this.cprName.isEmpty()) {
+            lookupDefinition.put(RoadData.DB_FIELD_CPRNAME, this.cprName, String.class);
         }
-        if (this.municipalityIdentifier != null) {
-            lookupDefinition.put("municipality.uuid", this.municipalityIdentifier, UUID.class);
+        if (this.municipalityIdentifier != null && !this.municipalityIdentifier.isEmpty()) {
+            lookupDefinition.put(RoadData.DB_FIELD_MUNICIPALITY + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.municipalityIdentifier, UUID.class);
+        }
+        if (this.locality != null && !this.locality.isEmpty()) {
+            lookupDefinition.put(RoadData.DB_FIELD_LOCATION + LookupDefinition.separator + Identification.DB_FIELD_UUID, this.locality, UUID.class);
         }
         return lookupDefinition;
     }

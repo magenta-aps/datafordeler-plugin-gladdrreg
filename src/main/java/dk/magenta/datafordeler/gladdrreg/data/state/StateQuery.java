@@ -5,7 +5,9 @@ import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.fapi.QueryField;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikQuery;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,41 +15,65 @@ import java.util.Map;
  */
 public class StateQuery extends SumiffiikQuery<StateEntity> {
 
-    public static final String CODE = "code";
-    public static final String NAME = "name";
-    public static final String DESCRIPTION = "description";
+    public static final String CODE = StateData.IO_FIELD_CODE;
+    public static final String NAME = StateData.IO_FIELD_NAME;
+    public static final String DESCRIPTION = StateData.IO_FIELD_DESCRIPTION;
 
-    @QueryField(type = QueryField.FieldType.STRING, queryName = CODE)
-    private String code;
+    @QueryField(type = QueryField.FieldType.INT, queryName = CODE)
+    private List<String> code = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = NAME)
-    private String name;
+    private List<String> name = new ArrayList<>();
 
     @QueryField(type = QueryField.FieldType.STRING, queryName = DESCRIPTION)
-    private String description;
+    private List<String> description = new ArrayList<>();
 
-    public String getCode() {
+    public List<String> getCode() {
         return code;
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code.clear();
+        this.addCode(code);
     }
 
-    public String getName() {
+    public void addCode(String code) {
+        if (code != null) {
+            this.code.add(code);
+            this.increaseDataParamCount();
+        }
+    }
+
+    public List<String> getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.clear();
+        this.addName(name);
     }
 
-    public String getDescription() {
+    public void addName(String name) {
+        if (name != null) {
+            this.name.add(name);
+            this.increaseDataParamCount();
+        }
+    }
+
+    public List<String> getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description.clear();
+        this.addDescription(description);
+    }
+
+    public void addDescription(String description) {
+        if (description != null) {
+            this.description.add(description);
+            this.increaseDataParamCount();
+        }
     }
 
     @Override
@@ -62,14 +88,14 @@ public class StateQuery extends SumiffiikQuery<StateEntity> {
     @Override
     public LookupDefinition getLookupDefinition() {
         LookupDefinition lookupDefinition = super.getLookupDefinition();
-        if (this.code != null) {
-            lookupDefinition.put("code", this.code, String.class);
+        if (this.code != null && !this.code.isEmpty()) {
+            lookupDefinition.put(StateData.DB_FIELD_CODE, this.code, String.class);
         }
-        if (this.name != null) {
-            lookupDefinition.put("name", this.name, String.class);
+        if (this.name != null && !this.name.isEmpty()) {
+            lookupDefinition.put(StateData.DB_FIELD_NAME, this.name, String.class);
         }
-        if (this.description != null) {
-            lookupDefinition.put("description", this.description, String.class);
+        if (this.description != null && !this.description.isEmpty()) {
+            lookupDefinition.put(StateData.DB_FIELD_DESCRIPTION, this.description, String.class);
         }
         return lookupDefinition;
     }

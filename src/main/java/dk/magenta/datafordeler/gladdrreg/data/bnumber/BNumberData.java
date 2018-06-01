@@ -2,13 +2,13 @@ package dk.magenta.datafordeler.gladdrreg.data.bnumber;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.gladdrreg.data.SumiffiikData;
 
-import javax.persistence.Column;
-import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,34 +18,77 @@ import java.util.Map;
  */
 @javax.persistence.Entity
 @Table(name="gladdrreg_bnumber_data", indexes = {
-        @Index(name = "gladdrreg_bnumber_code", columnList = "code")
+        @Index(name = "gladdrreg_bnumber_code", columnList = BNumberData.DB_FIELD_CODE),
+        @Index(name = "gladdrreg_bnumber_type", columnList = BNumberData.DB_FIELD_TYPE),
+        @Index(name = "gladdrreg_bnumber_name", columnList = BNumberData.DB_FIELD_TYPE)
 })
 public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
 
-    @Column
+    public static final String DB_FIELD_CODE = "code";
+    public static final String IO_FIELD_CODE = "bnummer";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_CODE)
     private String code;
 
-    @Column
+    public String getCode() {
+        return this.code;
+    }
+
+
+    public static final String DB_FIELD_TYPE = "b_type";
+    public static final String IO_FIELD_TYPE = "type";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_TYPE)
     private String b_type;
 
-    @Column
+    public String getType() {
+        return this.b_type;
+    }
+
+    public static final String DB_FIELD_CALLNAME = "b_callname";
+    public static final String IO_FIELD_CALLNAME = "kaldenavn";
+
     @JsonProperty
     @XmlElement
+    @Column(name = DB_FIELD_CALLNAME)
     private String b_callname;
 
-    @JsonProperty
-    @XmlElement
-    @ManyToOne
-    private Identification location;
+    public String getCallname() {
+        return this.b_callname;
+    }
+
+
+    public static final String DB_FIELD_LOCATION = "location";
+    public static final String IO_FIELD_LOCATION = "lokation";
 
     @JsonProperty
     @XmlElement
     @ManyToOne
+    @JoinColumn(name = DB_FIELD_LOCATION + DatabaseEntry.REF)
+    private Identification location;
+
+    public Identification getLocation() {
+        return this.location;
+    }
+
+
+    public static final String DB_FIELD_MUNICIPALITY = "municipality";
+    public static final String IO_FIELD_MUNICIPALITY = "kommune";
+
+    @JsonProperty
+    @XmlElement
+    @ManyToOne
+    @JoinColumn(name = DB_FIELD_MUNICIPALITY + DatabaseEntry.REF)
     private Identification municipality;
+
+    public Identification getMunicipality() {
+        return this.municipality;
+    }
+
 
     @Override
     public Map<String, Object> asMap() {
@@ -75,4 +118,5 @@ public class BNumberData extends SumiffiikData<BNumberEffect, BNumberData> {
             this.location = references.get("location");
         }
     }
+
 }

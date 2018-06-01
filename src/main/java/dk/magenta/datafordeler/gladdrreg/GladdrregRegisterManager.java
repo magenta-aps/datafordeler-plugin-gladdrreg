@@ -1,11 +1,11 @@
 package dk.magenta.datafordeler.gladdrreg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.magenta.datafordeler.core.database.Entity;
 import dk.magenta.datafordeler.core.database.SessionManager;
 import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.exception.WrongSubclassException;
 import dk.magenta.datafordeler.core.io.Event;
+import dk.magenta.datafordeler.core.io.ImportMetadata;
 import dk.magenta.datafordeler.core.io.PluginSourceData;
 import dk.magenta.datafordeler.core.plugin.*;
 import dk.magenta.datafordeler.core.util.ItemInputStream;
@@ -24,9 +24,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lars on 16-05-17.
@@ -54,15 +51,6 @@ public class GladdrregRegisterManager extends RegisterManager {
         this.commonFetcher = new HttpCommunicator();
     }
 
-    @PostConstruct
-    public void init() {
-        try {
-            this.baseEndpoint = new URI(this.configurationManager.getConfiguration().getRegisterAddress());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     protected Logger getLog() {
         return this.log;
@@ -78,14 +66,15 @@ public class GladdrregRegisterManager extends RegisterManager {
         return this.sessionManager;
     }
 
-    private URI baseEndpoint;
-
     @Override
     public URI getBaseEndpoint() {
-        return this.baseEndpoint;
+        try {
+            return new URI(this.configurationManager.getConfiguration().getRegisterAddress());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
-
 
     @Override
     protected Communicator getEventFetcher() {
@@ -149,8 +138,9 @@ public class GladdrregRegisterManager extends RegisterManager {
     }
 
     @Override
-    public void setLastUpdated(EntityManager entityManager, OffsetDateTime timestamp) {
+    public void setLastUpdated(EntityManager entityManager, ImportMetadata importMetadata) {
         Session session = this.getSessionManager().getSessionFactory().openSession();
+        OffsetDateTime timestamp = importMetadata.getImportTime();
         if (entityManager == null) {
             for (EntityManager e : this.entityManagers) {
                 e.setLastUpdated(session, timestamp);
