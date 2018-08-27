@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.core.database.*;
+import dk.magenta.datafordeler.core.fapi.BaseQuery;
 import dk.magenta.datafordeler.core.fapi.OutputWrapper;
 import dk.magenta.datafordeler.core.fapi.Query;
 
@@ -20,7 +21,7 @@ public abstract class GladdrregOutputWrapper<E extends Entity<E, R>, R extends R
     }
 
     @Override
-    public Object wrapResult(E input, Query query) {
+    public Object wrapResult(E input, BaseQuery query) {
         objectMapper = new ObjectMapper();
 
         // Root
