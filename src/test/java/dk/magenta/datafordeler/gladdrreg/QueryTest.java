@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.magenta.datafordeler.core.Application;
 import dk.magenta.datafordeler.core.Engine;
 import dk.magenta.datafordeler.core.database.SessionManager;
+import dk.magenta.datafordeler.core.exception.DataFordelerException;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
 import dk.magenta.datafordeler.core.io.Event;
 import dk.magenta.datafordeler.core.io.ImportMetadata;
@@ -105,7 +106,7 @@ public class QueryTest {
         return wrapper.replace("%{data}", data).replace("%{skema}", schema);
     }
 
-    private void load(GladdrregEntityManager entityManager, String resourceName, String schema) throws IOException {
+    private void load(GladdrregEntityManager entityManager, String resourceName, String schema) throws IOException, DataFordelerException {
         Mockito.doReturn(0).when(entityManager).sendReceipt(null);
         String testData = InputStreamReader.readInputStream(QueryTest.class.getResourceAsStream(resourceName));
         Event event = new Event();
