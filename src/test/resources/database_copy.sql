@@ -669,3 +669,16 @@ join [dafotestdb007].[dbo].[gladdrreg_address_registration] r2 on r2.entity_id =
 join [dafotestdb007].[dbo].[gladdrreg_address_effect] v2 on v2.registration_id = r2.id
 
 
+
+SET IDENTITY_INSERT [dafotestdb007].[dbo].[record_collection] ON
+insert into [dafotestdb007].[dbo].[record_collection] (id)
+SELECT r.id
+  FROM [dafotestdb005].[dbo].[record_collection] r
+SET IDENTITY_INSERT [dafotestdb007].[dbo].[record_collection] OFF
+
+
+SET IDENTITY_INSERT [dafotestdb007].[dbo].[record] ON
+insert into [dafotestdb007].[dbo].[record] (id, sourceData, sourceReference, timestamp, collection_id)
+SELECT r.id, r.sourceData, r.sourceReference, r.timestamp, r.collection_id
+  FROM [dafotestdb005].[dbo].[record] r
+SET IDENTITY_INSERT [dafotestdb007].[dbo].[record] OFF
