@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name="gladdrreg_road_entity", indexes = {
         @Index(name = "gladdrreg_road_identification", columnList = "identification_id")
 })
-public class RoadEntity extends Entity<RoadEntity, RoadRegistration> {
+public class GladdrregRoadEntity extends Entity<GladdrregRoadEntity, RoadRegistration> {
 
     @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="type")
     public static final String schema = "Road";
