@@ -18,7 +18,7 @@ public class RoadEntityManager extends GladdrregEntityManager {
     private RoadEntityService roadEntityService;
 
     public RoadEntityManager() {
-        this.managedEntityClass = GladdrregRoadEntity.class;
+        this.managedEntityClass = RoadEntity.class;
         this.managedEntityReferenceClass = RoadEntityReference.class;
         this.managedRegistrationClass = RoadRegistration.class;
         this.managedRegistrationReferenceClass = RoadRegistrationReference.class;
@@ -36,7 +36,7 @@ public class RoadEntityManager extends GladdrregEntityManager {
 
     @Override
     public String getSchema() {
-        return GladdrregRoadEntity.schema;
+        return RoadEntity.schema;
     }
 
     @Override
