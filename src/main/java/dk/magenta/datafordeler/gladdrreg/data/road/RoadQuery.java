@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * Created by lars on 19-05-17.
  */
-public class RoadQuery extends SumiffiikQuery<RoadEntity> {
+public class RoadQuery extends SumiffiikQuery<GladdrregRoadEntity> {
 
     public static final String CODE = RoadData.IO_FIELD_CODE;
     public static final String NAME = RoadData.IO_FIELD_NAME;
@@ -199,8 +199,8 @@ public class RoadQuery extends SumiffiikQuery<RoadEntity> {
     }
 
     @Override
-    public Class<RoadEntity> getEntityClass() {
-        return RoadEntity.class;
+    public Class<GladdrregRoadEntity> getEntityClass() {
+        return GladdrregRoadEntity.class;
     }
 
     @Override
