@@ -15,7 +15,7 @@ import java.time.OffsetDateTime;
         @Index(name = "gladdrreg_road_registration_from", columnList = "registrationFrom"),
         @Index(name = "gladdrreg_road_registration_to", columnList = "registrationTo")
 })
-public class RoadRegistration extends Registration<GladdrregRoadEntity, RoadRegistration, RoadEffect> {
+public class RoadRegistration extends Registration<RoadEntity, RoadRegistration, RoadEffect> {
     @Override
     protected RoadEffect createEmptyEffect(OffsetDateTime effectFrom, OffsetDateTime effectTo) {
         return new RoadEffect(this, effectFrom, effectTo);

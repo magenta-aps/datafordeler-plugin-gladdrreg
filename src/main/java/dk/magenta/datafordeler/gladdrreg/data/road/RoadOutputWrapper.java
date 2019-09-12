@@ -3,7 +3,7 @@ package dk.magenta.datafordeler.gladdrreg.data.road;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.magenta.datafordeler.gladdrreg.data.GladdrregOutputWrapper;
 
-public class RoadOutputWrapper extends GladdrregOutputWrapper<GladdrregRoadEntity, RoadRegistration, RoadEffect, RoadData> {
+public class RoadOutputWrapper extends GladdrregOutputWrapper<RoadEntity, RoadRegistration, RoadEffect, RoadData> {
 
     @Override
     public void wrapData(ObjectNode objectNode, RoadData dataItem) {
