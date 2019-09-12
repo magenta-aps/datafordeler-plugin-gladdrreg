@@ -10,10 +10,10 @@ import java.util.UUID;
 /**
  * Created by lars on 16-05-17.
  */
-public class RoadEntityReference extends EntityReference<GladdrregRoadEntity, RoadRegistrationReference> {
+public class RoadEntityReference extends EntityReference<RoadEntity, RoadRegistrationReference> {
     @Override
-    public Class<GladdrregRoadEntity> getEntityClass() {
-        return GladdrregRoadEntity.class;
+    public Class<RoadEntity> getEntityClass() {
+        return RoadEntity.class;
     }
 
     @JsonProperty

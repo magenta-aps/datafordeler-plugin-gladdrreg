@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/gladdrreg/road/1/rest")
-public class RoadEntityService extends FapiService<GladdrregRoadEntity, RoadQuery> {
+public class RoadEntityService extends FapiService<RoadEntity, RoadQuery> {
 
     public RoadEntityService() {
         this.setOutputWrapper(new RoadOutputWrapper());
@@ -36,8 +36,8 @@ public class RoadEntityService extends FapiService<GladdrregRoadEntity, RoadQuer
     }
 
     @Override
-    protected Class<GladdrregRoadEntity> getEntityClass() {
-        return GladdrregRoadEntity.class;
+    protected Class<RoadEntity> getEntityClass() {
+        return RoadEntity.class;
     }
 
     @Override
