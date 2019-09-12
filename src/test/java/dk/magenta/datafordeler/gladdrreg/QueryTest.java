@@ -23,7 +23,7 @@ import dk.magenta.datafordeler.gladdrreg.data.municipality.MunicipalityEntity;
 import dk.magenta.datafordeler.gladdrreg.data.municipality.MunicipalityEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.postalcode.PostalCodeEntity;
 import dk.magenta.datafordeler.gladdrreg.data.postalcode.PostalCodeEntityManager;
-import dk.magenta.datafordeler.gladdrreg.data.road.GladdrregRoadEntity;
+import dk.magenta.datafordeler.gladdrreg.data.road.RoadEntity;
 import dk.magenta.datafordeler.gladdrreg.data.road.RoadEntityManager;
 import dk.magenta.datafordeler.gladdrreg.data.state.StateEntity;
 import dk.magenta.datafordeler.gladdrreg.data.state.StateEntityManager;
@@ -143,7 +143,7 @@ public class QueryTest {
     }
 
     public void loadRoad() throws Exception {
-        this.load(roadEntityManager, "/road.json", GladdrregRoadEntity.schema);
+        this.load(roadEntityManager, "/road.json", RoadEntity.schema);
     }
 
     public void loadState() throws Exception {
