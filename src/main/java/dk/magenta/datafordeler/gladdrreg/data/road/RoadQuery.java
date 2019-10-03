@@ -1,6 +1,5 @@
 package dk.magenta.datafordeler.gladdrreg.data.road;
 
-import dk.magenta.datafordeler.core.database.DatabaseEntry;
 import dk.magenta.datafordeler.core.database.Identification;
 import dk.magenta.datafordeler.core.database.LookupDefinition;
 import dk.magenta.datafordeler.core.fapi.ParameterMap;
